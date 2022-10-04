@@ -116,9 +116,11 @@ executable heltc
   main-is:             Main.hs
   other-modules:
     AppOptions
+    Lang
   build-depends:
 --      heltc
---    , optparse-applicative >= 0.14.3.0
+      helio
+    , optparse-applicative >= 0.14.3.0
   ghc-options:
     -threaded
     -rtsopts

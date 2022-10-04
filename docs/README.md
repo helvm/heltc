@@ -19,8 +19,8 @@
 * [CODE OF CONDUCT](developers/CODE_OF_CONDUCT.md)
 
 ## Reports
-* [hadock](reports/helct/index.html) - A documentation
-* [hpc](reports/helct-test/hpc_index.html) - Haskell program coverage report
+* [hadock](reports/heltc/index.html) - A documentation
+* [hpc](reports/heltc-test/hpc_index.html) - Haskell program coverage report
 * [stan](reports/stan.html) - Haskell STatic ANalyser report
 * [hlint](reports/hlint.html) - Source code suggestions report
 

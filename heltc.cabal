@@ -1,9 +1,9 @@
 cabal-version:         2.4
 
 name:                  heltc
-version:               0.1.0.0
+version:               0.1.0.1
 
-synopsis:              HELCT - Heavenly Esoteric Little C Transpiler to Esoteric Languages
+synopsis:              HELTC - Haskellish Esoteric Lambda True Calculator to Esoteric Languages
 description:           Please see the README on GitHub at <https://github.com/helvm/heltc#readme>
 homepage:              https://helvm.github.io/heltc/
 bug-reports:           https://github.com/helvm/heltc/issues

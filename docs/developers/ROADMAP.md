@@ -11,6 +11,8 @@ For planned features see [TODO](../users/TODO.md).
 2. [Implement Joy Calculator](https://github.com/helvm/heltc/milestone/2)
 
 ## For 2.0.0 version
-* Implement faster version of Joy Calculator in Rust
+* Implement in Rust faster version of Calculators for:
+  * Joy
+  * Lazy K 
 
 ## 🦄 🌈 ❤️ 💛 💚 💙 🤍 🖤

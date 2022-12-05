@@ -1,7 +1,7 @@
 cabal-version:         2.4
 
 name:                  heltc
-version:               0.1.0.0
+version:               0.1.0.1
 
 synopsis:              HELCT - Heavenly Esoteric Little C Transpiler to Esoteric Languages
 description:           Please see the README on GitHub at <https://github.com/helvm/heltc#readme>
@@ -20,7 +20,7 @@ extra-source-files:
   docs/developers/CHANGELOG.md
   docs/README.md
 
-tested-with:           GHC == 9.4.2
+tested-with:           GHC == 9.6.1
 
 source-repository head
   type:                git
@@ -28,7 +28,7 @@ source-repository head
 
 common common-options
   build-depends:
-      base             <  4.17
+      base             <  4.19
     , relude           == 1.1.0.0
   mixins:
       base hiding (Prelude)
@@ -119,6 +119,7 @@ executable heltc
   build-depends:
 --      heltc
 --    , optparse-applicative >= 0.14.3.0
+--    , trifecta
   ghc-options:
     -threaded
     -rtsopts

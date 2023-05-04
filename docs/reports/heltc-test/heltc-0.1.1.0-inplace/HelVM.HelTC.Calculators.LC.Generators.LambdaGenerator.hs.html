@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+span.lineno { color: white; background: #aaaaaa; border-right: solid white 12px }
+span.nottickedoff { background: yellow}
+span.istickedoff { background: white }
+span.tickonlyfalse { margin: -1px; border: 1px solid #f20913; background: #f20913 }
+span.tickonlytrue  { margin: -1px; border: 1px solid #60de51; background: #60de51 }
+span.funcount { font-size: small; color: orange; z-index: 2; position: absolute; right: 20 }
+span.decl { font-weight: bold }
+span.spaces    { background: white }
+</style>
+</head>
+<body>
+<pre>
+<span class="decl"><span class="nottickedoff">never executed</span> <span class="tickonlytrue">always true</span> <span class="tickonlyfalse">always false</span></span>
+</pre>
+<pre>
+<span class="lineno">    1 </span>module HelVM.HelTC.Calculators.LC.Generators.LambdaGenerator (
+<span class="lineno">    2 </span>  generateCodeForLambda,
+<span class="lineno">    3 </span>  generateUnLambda,
+<span class="lineno">    4 </span>  generateZot,
+<span class="lineno">    5 </span>) where
+<span class="lineno">    6 </span>
+<span class="lineno">    7 </span>import qualified HelVM.HelTC.Calculators.LC.Generators.Expression.MetaGenerator     as MetaGenerator
+<span class="lineno">    8 </span>import qualified HelVM.HelTC.Calculators.LC.Generators.Expression.SymbolicGenerator as SymbolicGenerator
+<span class="lineno">    9 </span>
+<span class="lineno">   10 </span>import           HelVM.HelTC.Calculators.LC.API.GeneratorType
+<span class="lineno">   11 </span>
+<span class="lineno">   12 </span>import           HelVM.HelTC.Calculators.LC.Lambda
+<span class="lineno">   13 </span>
+<span class="lineno">   14 </span>import           HelVM.HelIO.Control.Safe
+<span class="lineno">   15 </span>
+<span class="lineno">   16 </span>generateCodeForLambda :: MonadSafe m =&gt; GeneratorType -&gt; Lambda -&gt; m Text
+<span class="lineno">   17 </span><span class="decl"><span class="istickedoff">generateCodeForLambda MLC      = pure . MetaGenerator.generateCodeForLambda</span>
+<span class="lineno">   18 </span><span class="spaces"></span><span class="istickedoff">generateCodeForLambda SLC      = pure . SymbolicGenerator.generateCodeForLambda</span>
+<span class="lineno">   19 </span><span class="spaces"></span><span class="istickedoff">generateCodeForLambda UnLambda = generateUnLambda</span>
+<span class="lineno">   20 </span><span class="spaces"></span><span class="istickedoff">generateCodeForLambda Zot      = generateZot</span></span>
+<span class="lineno">   21 </span>
+<span class="lineno">   22 </span>-- | UnLambda
+<span class="lineno">   23 </span>generateUnLambda :: MonadSafe m =&gt; Lambda -&gt; m Text
+<span class="lineno">   24 </span><span class="decl"><span class="istickedoff">generateUnLambda l = appendError <span class="nottickedoff">(show l)</span> $ generateUnLambdaFix l</span></span>
+<span class="lineno">   25 </span>
+<span class="lineno">   26 </span>generateUnLambdaFix :: MonadSafe m =&gt; Lambda -&gt; m Text
+<span class="lineno">   27 </span><span class="decl"><span class="istickedoff">generateUnLambdaFix S         = pure &quot;s&quot;</span>
+<span class="lineno">   28 </span><span class="spaces"></span><span class="istickedoff">generateUnLambdaFix K         = pure &quot;k&quot;</span>
+<span class="lineno">   29 </span><span class="spaces"></span><span class="istickedoff">generateUnLambdaFix I         = pure &quot;i&quot;</span>
+<span class="lineno">   30 </span><span class="spaces"></span><span class="istickedoff">generateUnLambdaFix (App f a) = liftA2 generateUnLambdaApp (generateUnLambdaFix f) (generateUnLambdaFix a)</span>
+<span class="lineno">   31 </span><span class="spaces"></span><span class="istickedoff">generateUnLambdaFix other     = <span class="nottickedoff">liftError $ &quot;generateUnLambda &quot; &lt;&gt; show other</span></span></span>
+<span class="lineno">   32 </span>
+<span class="lineno">   33 </span>generateUnLambdaApp :: (Semigroup a, IsString a) =&gt; a -&gt; a -&gt; a
+<span class="lineno">   34 </span><span class="decl"><span class="istickedoff">generateUnLambdaApp f a = &quot;`&quot; &lt;&gt; f &lt;&gt; a</span></span>
+<span class="lineno">   35 </span>
+<span class="lineno">   36 </span>-- | Zot
+<span class="lineno">   37 </span>generateZot :: MonadSafe m =&gt; Lambda -&gt; m Text
+<span class="lineno">   38 </span><span class="decl"><span class="istickedoff">generateZot l = appendError <span class="nottickedoff">(show l)</span> $ generateZotFix l</span></span>
+<span class="lineno">   39 </span>
+<span class="lineno">   40 </span>generateZotFix :: MonadSafe m =&gt; Lambda -&gt; m Text
+<span class="lineno">   41 </span><span class="decl"><span class="istickedoff">generateZotFix S         = pure &quot;101010100&quot;</span>
+<span class="lineno">   42 </span><span class="spaces"></span><span class="istickedoff">generateZotFix K         = pure &quot;1010100&quot;</span>
+<span class="lineno">   43 </span><span class="spaces"></span><span class="istickedoff">generateZotFix I         = pure &quot;100&quot;</span>
+<span class="lineno">   44 </span><span class="spaces"></span><span class="istickedoff">generateZotFix (App f a) = liftA2 generateZotApp (generateZotFix f) (generateZotFix a)</span>
+<span class="lineno">   45 </span><span class="spaces"></span><span class="istickedoff">generateZotFix other     = <span class="nottickedoff">liftError $ &quot;generateZot &quot; &lt;&gt; show other</span></span></span>
+<span class="lineno">   46 </span>
+<span class="lineno">   47 </span>generateZotApp :: (Semigroup a, IsString a) =&gt; a -&gt; a -&gt; a
+<span class="lineno">   48 </span><span class="decl"><span class="istickedoff">generateZotApp f a = &quot;1&quot; &lt;&gt; f &lt;&gt; a</span></span>
+
+</pre>
+</body>
+</html>

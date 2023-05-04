@@ -1,0 +1,94 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+span.lineno { color: white; background: #aaaaaa; border-right: solid white 12px }
+span.nottickedoff { background: yellow}
+span.istickedoff { background: white }
+span.tickonlyfalse { margin: -1px; border: 1px solid #f20913; background: #f20913 }
+span.tickonlytrue  { margin: -1px; border: 1px solid #60de51; background: #60de51 }
+span.funcount { font-size: small; color: orange; z-index: 2; position: absolute; right: 20 }
+span.decl { font-weight: bold }
+span.spaces    { background: white }
+</style>
+</head>
+<body>
+<pre>
+<span class="decl"><span class="nottickedoff">never executed</span> <span class="tickonlytrue">always true</span> <span class="tickonlyfalse">always false</span></span>
+</pre>
+<pre>
+<span class="lineno">    1 </span>module HelVM.HelTC.Calculators.LC.Parsers.SymbolicParser (
+<span class="lineno">    2 </span>  ilParser,
+<span class="lineno">    3 </span>) where
+<span class="lineno">    4 </span>
+<span class="lineno">    5 </span>import           HelVM.HelTC.Calculators.LC.Lambda
+<span class="lineno">    6 </span>import           HelVM.HelTC.Calculators.LC.Lexer
+<span class="lineno">    7 </span>
+<span class="lineno">    8 </span>import           HelVM.HelTC.Calculator.Value
+<span class="lineno">    9 </span>
+<span class="lineno">   10 </span>import           HelVM.HelIO.Extra                 hiding (Parser)
+<span class="lineno">   11 </span>
+<span class="lineno">   12 </span>import           Text.Parser.Token
+<span class="lineno">   13 </span>import           Text.Trifecta
+<span class="lineno">   14 </span>
+<span class="lineno">   15 </span>ilParser :: Parser InstructionList
+<span class="lineno">   16 </span><span class="decl"><span class="istickedoff">ilParser = commentParser *&gt; many rootLambdaLnParser &lt;* eof</span></span>
+<span class="lineno">   17 </span>
+<span class="lineno">   18 </span>-- | Instruction Parsers
+<span class="lineno">   19 </span>rootLambdaLnParser :: Parser Instruction
+<span class="lineno">   20 </span><span class="decl"><span class="istickedoff">rootLambdaLnParser = rootLambdaParser &lt;?&gt; <span class="nottickedoff">&quot;rootln&quot;</span></span></span>
+<span class="lineno">   21 </span>
+<span class="lineno">   22 </span>rootLambdaParser :: Parser Instruction
+<span class="lineno">   23 </span><span class="decl"><span class="istickedoff">rootLambdaParser = parens (defineParser &lt;|&gt; evalParser) &lt;?&gt; <span class="nottickedoff">&quot;root&quot;</span></span></span>
+<span class="lineno">   24 </span>
+<span class="lineno">   25 </span>defineParser :: Parser Instruction
+<span class="lineno">   26 </span><span class="decl"><span class="istickedoff">defineParser = liftA2 Def (defineSymbol *&gt; identifierParser) lambdaParser &lt;?&gt; <span class="nottickedoff">&quot;define&quot;</span></span></span>
+<span class="lineno">   27 </span>
+<span class="lineno">   28 </span>evalParser :: Parser Instruction
+<span class="lineno">   29 </span><span class="decl"><span class="istickedoff">evalParser = (Eval &lt;$&gt; lambdaParser) &lt;?&gt; <span class="nottickedoff">&quot;eval&quot;</span></span></span>
+<span class="lineno">   30 </span>
+<span class="lineno">   31 </span>-- | Lambda Parsers
+<span class="lineno">   32 </span>lambdaParser :: Parser Lambda
+<span class="lineno">   33 </span><span class="decl"><span class="istickedoff">lambdaParser = (abstractionParser &lt;|&gt; applicationParser) &lt;?&gt; <span class="nottickedoff">&quot;lambda&quot;</span></span></span>
+<span class="lineno">   34 </span>
+<span class="lineno">   35 </span>abstractionParser :: Parser Lambda
+<span class="lineno">   36 </span><span class="decl"><span class="istickedoff">abstractionParser = liftA2 AbsRe paramsParser lambdaParser &lt;?&gt; <span class="nottickedoff">&quot;abstractionRe&quot;</span></span></span>
+<span class="lineno">   37 </span>
+<span class="lineno">   38 </span>paramsParser :: Parser IdentifierList
+<span class="lineno">   39 </span><span class="decl"><span class="istickedoff">paramsParser = (lambdaSymbol *&gt; parens (some identifierOrUnderscoreParser)) &lt;?&gt; <span class="nottickedoff">&quot;params&quot;</span></span></span>
+<span class="lineno">   40 </span>
+<span class="lineno">   41 </span>applicationParser :: Parser Lambda
+<span class="lineno">   42 </span><span class="decl"><span class="istickedoff">applicationParser = (lambdaFromNonEmpty &lt;$&gt; many1' terminalParser) &lt;?&gt; <span class="nottickedoff">&quot;application&quot;</span></span></span>
+<span class="lineno">   43 </span>
+<span class="lineno">   44 </span>terminalParser :: Parser Lambda
+<span class="lineno">   45 </span><span class="decl"><span class="istickedoff">terminalParser = (</span>
+<span class="lineno">   46 </span><span class="spaces">      </span><span class="istickedoff">parens lambdaParser</span>
+<span class="lineno">   47 </span><span class="spaces">  </span><span class="istickedoff">&lt;|&gt; listParser</span>
+<span class="lineno">   48 </span><span class="spaces">  </span><span class="istickedoff">&lt;|&gt; stringParser</span>
+<span class="lineno">   49 </span><span class="spaces">  </span><span class="istickedoff">&lt;|&gt; charParser</span>
+<span class="lineno">   50 </span><span class="spaces">  </span><span class="istickedoff">&lt;|&gt; signedParser</span>
+<span class="lineno">   51 </span><span class="spaces">  </span><span class="istickedoff">&lt;|&gt; naturalParser</span>
+<span class="lineno">   52 </span><span class="spaces">  </span><span class="istickedoff">&lt;|&gt; variableParser</span>
+<span class="lineno">   53 </span><span class="spaces">  </span><span class="istickedoff">) &lt;?&gt; <span class="nottickedoff">&quot;terminal&quot;</span></span></span>
+<span class="lineno">   54 </span>
+<span class="lineno">   55 </span>listParser :: Parser Lambda
+<span class="lineno">   56 </span><span class="decl"><span class="istickedoff">listParser = (<span class="nottickedoff">List</span> &lt;$&gt; brackets <span class="nottickedoff">(many lambdaParser)</span>) &lt;?&gt; <span class="nottickedoff">&quot;list&quot;</span></span></span>
+<span class="lineno">   57 </span>
+<span class="lineno">   58 </span>stringParser :: Parser Lambda
+<span class="lineno">   59 </span><span class="decl"><span class="istickedoff">stringParser = (<span class="nottickedoff">Str</span> &lt;$&gt; stringLiteral) &lt;?&gt; <span class="nottickedoff">&quot;string&quot;</span></span></span>
+<span class="lineno">   60 </span>
+<span class="lineno">   61 </span>charParser :: Parser Lambda
+<span class="lineno">   62 </span><span class="decl"><span class="istickedoff">charParser = (<span class="nottickedoff">lambdaFromChar</span> &lt;$&gt; charLiteral') &lt;?&gt; <span class="nottickedoff">&quot;char&quot;</span></span></span>
+<span class="lineno">   63 </span>
+<span class="lineno">   64 </span>signedParser :: Parser Lambda
+<span class="lineno">   65 </span><span class="decl"><span class="istickedoff">signedParser = (<span class="nottickedoff">Int</span> &lt;$&gt; liftA2 <span class="nottickedoff">SN</span> signParser <span class="nottickedoff">naturalLiteral</span>) &lt;?&gt; <span class="nottickedoff">&quot;integer&quot;</span></span></span>
+<span class="lineno">   66 </span>
+<span class="lineno">   67 </span>naturalParser :: Parser Lambda
+<span class="lineno">   68 </span><span class="decl"><span class="istickedoff">naturalParser = (<span class="nottickedoff">lambdaFromIntegral</span> &lt;$&gt; naturalLiteral) &lt;?&gt; <span class="nottickedoff">&quot;natural&quot;</span></span></span>
+<span class="lineno">   69 </span>
+<span class="lineno">   70 </span>variableParser :: Parser Lambda
+<span class="lineno">   71 </span><span class="decl"><span class="istickedoff">variableParser = (lambdaFromVariable &lt;$&gt; identifierParser) &lt;?&gt; <span class="nottickedoff">&quot;variable&quot;</span></span></span>
+
+</pre>
+</body>
+</html>

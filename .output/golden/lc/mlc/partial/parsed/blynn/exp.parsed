@@ -1,0 +1,65 @@
+[ Eval
+    ( App
+        ( App
+            ( Var "exp" )
+            ( Nat 2 )
+        )
+        ( Nat 3 )
+    )
+, Def "T"
+    ( Abs "x"
+        ( Abs "y"
+            ( Var "y" )
+        )
+    )
+, Def "F"
+    ( Abs "x"
+        ( Abs "y"
+            ( Var "x" )
+        )
+    )
+, Def ","
+    ( Abs "x"
+        ( Abs "y"
+            ( Abs "f"
+                ( App
+                    ( App
+                        ( Var "f" )
+                        ( Var "x" )
+                    )
+                    ( Var "y" )
+                )
+            )
+        )
+    )
+, Def "."
+    ( Abs "x"
+        ( Var "T" )
+    )
+, Def "@"
+    ( Abs "n"
+        ( Abs "f"
+            ( Abs "x"
+                ( App
+                    ( Var "f" )
+                    ( App
+                        ( App
+                            ( Var "n" )
+                            ( Var "f" )
+                        )
+                        ( Var "x" )
+                    )
+                )
+            )
+        )
+    )
+, Def "exp"
+    ( Abs "m"
+        ( Abs "n"
+            ( App
+                ( Var "n" )
+                ( Var "m" )
+            )
+        )
+    )
+]

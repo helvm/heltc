@@ -1,0 +1,6 @@
+("hello")
+(define T (lambda (x y ) y))
+(define F (lambda (x y ) x))
+(define , (lambda (x y f ) ((f x) y)))
+(define . (lambda (x ) T))
+(define @ (lambda (n f x ) (f ((n f) x))))

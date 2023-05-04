@@ -1,0 +1,5 @@
+(define Y (lambda (f ) ((lambda (x ) (f (x x))) (lambda (x ) (f (x x))))))
+(define cons (lambda (a b f ) ((f a) b)))
+(define nil (lambda (x y ) y))
+(define uncons (lambda (xs f z ) ((xs (lambda (a b _ ) ((f a) b))) z)))
+(define reverse ((Y (lambda (c ys xs ) (((uncons xs) (lambda (x xs ) ((c ((cons x) ys)) xs))) ys))) nil))

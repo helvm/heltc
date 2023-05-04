@@ -1,0 +1,6 @@
+: TRUE \ a \ b a
+: FALSE \ a \ b b
+: AND \ p \ q p q FALSE
+: OR \ p \ q p TRUE q
+: NOT \ p \ a \ b p b a
+: IF \ p \ a \ b p a b

@@ -1,0 +1,3 @@
+(define var (lambda (m a b c ) (a m)))
+(define app (lambda (m n a b c ) ((b m) n)))
+(define abs (lambda (f a b c ) (c f)))

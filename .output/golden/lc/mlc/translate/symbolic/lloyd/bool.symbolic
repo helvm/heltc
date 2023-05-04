@@ -1,0 +1,6 @@
+(define TRUE (lambda (a b ) a))
+(define FALSE (lambda (a b ) b))
+(define AND (lambda (p q ) ((p q) FALSE)))
+(define OR (lambda (p q ) ((p TRUE) q)))
+(define NOT (lambda (p a b ) ((p b) a)))
+(define IF (lambda (p a b ) ((p a) b)))

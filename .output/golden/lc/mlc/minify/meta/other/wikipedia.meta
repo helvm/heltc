@@ -1,0 +1,23 @@
+: id \ x x
+: T \ x \ y x
+: F \ x \ y y
+: and \ p \ q p q p
+: or \ p \ q p p q
+: not \ p p F T
+: if \ p \ a \ b p a b
+: pair \ x \ y \ f f x y
+: first \ p p T
+: second \ p p F
+: nil \ x T
+: null \ p p (\ x \ y F)
+: repeat \ n \ x n (pair x) nil
+: succ \ n \ f \ x f (n f x)
+: plus \ m \ n m succ n
+: mult \ m \ n m (plus n) 0
+: pow \ b \ e e b
+: is0 \ n n (\ x F) T
+: Φ \ x pair (second x) (succ (second x))
+: phi Φ
+: pred \ n first (n Φ (pair 0 0))
+: sub \ m \ n n pred m
+: leq \ m \ n is0 (sub m n)

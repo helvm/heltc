@@ -1,0 +1,235 @@
+[ Def "Y"
+    ( Abs "f"
+        ( App
+            ( Abs "x"
+                ( App
+                    ( Var "f" )
+                    ( App
+                        ( Var "x" )
+                        ( Var "x" )
+                    )
+                )
+            )
+            ( Abs "x"
+                ( App
+                    ( Var "f" )
+                    ( App
+                        ( Var "x" )
+                        ( Var "x" )
+                    )
+                )
+            )
+        )
+    )
+, Def "E"
+    ( App
+        ( Var "Y" )
+        ( Abs "e"
+            ( Abs "m"
+                ( App
+                    ( App
+                        ( App
+                            ( Var "m" )
+                            ( Abs "x"
+                                ( Var "x" )
+                            )
+                        )
+                        ( Abs "m"
+                            ( Abs "n"
+                                ( App
+                                    ( App
+                                        ( Var "e" )
+                                        ( Var "m" )
+                                    )
+                                    ( App
+                                        ( Var "e" )
+                                        ( Var "n" )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    ( Abs "m"
+                        ( Abs "v"
+                            ( App
+                                ( Var "e" )
+                                ( App
+                                    ( Var "m" )
+                                    ( Var "v" )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+, Def "P"
+    ( App
+        ( Var "Y" )
+        ( Abs "p"
+            ( Abs "m"
+                ( Abs "x"
+                    ( App
+                        ( App
+                            ( Var "x" )
+                            ( Abs "v"
+                                ( App
+                                    ( Var "p" )
+                                    ( Abs "a"
+                                        ( Abs "b"
+                                            ( Abs "c"
+                                                ( App
+                                                    ( App
+                                                        ( Var "b" )
+                                                        ( Var "m" )
+                                                    )
+                                                    ( App
+                                                        ( Var "v" )
+                                                        ( Abs "a"
+                                                            ( Abs "b"
+                                                                ( Var "b" )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                        ( Var "m" )
+                    )
+                )
+            )
+        )
+    )
+, Def "RR"
+    ( App
+        ( Var "Y" )
+        ( Abs "r"
+            ( Abs "m"
+                ( App
+                    ( App
+                        ( App
+                            ( Var "m" )
+                            ( Abs "x"
+                                ( Var "x" )
+                            )
+                        )
+                        ( Abs "m"
+                            ( Abs "n"
+                                ( App
+                                    ( App
+                                        ( App
+                                            ( Var "r" )
+                                            ( Var "m" )
+                                        )
+                                        ( Abs "a"
+                                            ( Abs "b"
+                                                ( Var "a" )
+                                            )
+                                        )
+                                    )
+                                    ( App
+                                        ( Var "r" )
+                                        ( Var "n" )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    ( Abs "m"
+                        ( App
+                            ( Abs "g"
+                                ( Abs "x"
+                                    ( App
+                                        ( App
+                                            ( Var "x" )
+                                            ( Var "g" )
+                                        )
+                                        ( Abs "a"
+                                            ( Abs "b"
+                                                ( Abs "c"
+                                                    ( App
+                                                        ( Var "c" )
+                                                        ( Abs "w"
+                                                            ( App
+                                                                ( App
+                                                                    ( Var "g" )
+                                                                    ( App
+                                                                        ( Var "P" )
+                                                                        ( Abs "a"
+                                                                            ( Abs "b"
+                                                                                ( Abs "c"
+                                                                                    ( App
+                                                                                        ( Var "a" )
+                                                                                        ( Var "w" )
+                                                                                    )
+                                                                                )
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Abs "a"
+                                                                    ( Abs "b"
+                                                                        ( Var "b" )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            ( Abs "v"
+                                ( App
+                                    ( Var "r" )
+                                    ( App
+                                        ( Var "m" )
+                                        ( Var "v" )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+, Def "R"
+    ( Abs "m"
+        ( App
+            ( App
+                ( Var "RR" )
+                ( Var "m" )
+            )
+            ( Abs "a"
+                ( Abs "b"
+                    ( Var "b" )
+                )
+            )
+        )
+    )
+, Def "succ"
+    ( Abs "n"
+        ( Abs "f"
+            ( Abs "x"
+                ( App
+                    ( Var "f" )
+                    ( App
+                        ( App
+                            ( Var "n" )
+                            ( Var "f" )
+                        )
+                        ( Var "x" )
+                    )
+                )
+            )
+        )
+    )
+]

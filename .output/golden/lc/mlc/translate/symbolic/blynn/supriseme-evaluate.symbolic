@@ -1,0 +1,6 @@
+(define Y (lambda (f ) ((lambda (x ) (f (x x))) (lambda (x ) (f (x x))))))
+(define E (Y (lambda (e m ) (((m (lambda (x ) x)) (lambda (m n ) ((e m) (e n)))) (lambda (m v ) (e (m v)))))))
+(define P (Y (lambda (p m x ) ((x (lambda (v ) (p (lambda (a b c ) ((b m) (v (lambda (a b ) b))))))) m))))
+(define RR (Y (lambda (r m ) (((m (lambda (x ) x)) (lambda (m n ) (((r m) (lambda (a b ) a)) (r n)))) (lambda (m ) ((lambda (g x ) ((x g) (lambda (a b c ) (c (lambda (w ) ((g (P (lambda (a b c ) (a w)))) (lambda (a b ) b))))))) (lambda (v ) (r (m v)))))))))
+(define R (lambda (m ) ((RR m) (lambda (a b ) b))))
+(define succ (lambda (n f x ) (f ((n f) x))))

@@ -1,0 +1,3 @@
+(define S (lambda (x y z ) ((x z) (y z))))
+(define K (lambda (x y ) x))
+(define I (lambda (x ) x))

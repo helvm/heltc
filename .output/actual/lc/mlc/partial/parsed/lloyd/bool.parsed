@@ -1,0 +1,65 @@
+[ Def "TRUE"
+    ( Abs "a"
+        ( Abs "b"
+            ( Var "a" )
+        )
+    )
+, Def "FALSE"
+    ( Abs "a"
+        ( Abs "b"
+            ( Var "b" )
+        )
+    )
+, Def "AND"
+    ( Abs "p"
+        ( Abs "q"
+            ( App
+                ( App
+                    ( Var "p" )
+                    ( Var "q" )
+                )
+                ( Var "FALSE" )
+            )
+        )
+    )
+, Def "OR"
+    ( Abs "p"
+        ( Abs "q"
+            ( App
+                ( App
+                    ( Var "p" )
+                    ( Var "TRUE" )
+                )
+                ( Var "q" )
+            )
+        )
+    )
+, Def "NOT"
+    ( Abs "p"
+        ( Abs "a"
+            ( Abs "b"
+                ( App
+                    ( App
+                        ( Var "p" )
+                        ( Var "b" )
+                    )
+                    ( Var "a" )
+                )
+            )
+        )
+    )
+, Def "IF"
+    ( Abs "p"
+        ( Abs "a"
+            ( Abs "b"
+                ( App
+                    ( App
+                        ( Var "p" )
+                        ( Var "a" )
+                    )
+                    ( Var "b" )
+                )
+            )
+        )
+    )
+]

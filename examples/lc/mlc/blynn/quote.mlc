@@ -1,0 +1,11 @@
+; https://crypto.stanford.edu/~blynn/lambda/
+
+; Encoding terms in lambda calculus (without typing the raw encoding):
+; app (abs (\ y var y)) (var x)
+
+; Our `quote` primitive lies outside lambda calculus:
+; quote ((\ y y) x)
+
+: var \ m \ a \ b \ c a m
+: app \ m \ n \ a \ b \ c b m n
+: abs \ f \ a \ b \ c c f

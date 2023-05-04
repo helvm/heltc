@@ -19,6 +19,7 @@ cabal.sandbox.config
 .stack-work/
 cabal.project.local
 cabal.project.local~
+cabal.project.local*
 .HTF/
 .ghc.environment.*
 
@@ -36,3 +37,4 @@ out/
 
 /stan.html
 *.tix
+*.log

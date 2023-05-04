@@ -1,0 +1,45 @@
+[ Def "var"
+    ( Abs "m"
+        ( Abs "a"
+            ( Abs "b"
+                ( Abs "c"
+                    ( App
+                        ( Var "a" )
+                        ( Var "m" )
+                    )
+                )
+            )
+        )
+    )
+, Def "app"
+    ( Abs "m"
+        ( Abs "n"
+            ( Abs "a"
+                ( Abs "b"
+                    ( Abs "c"
+                        ( App
+                            ( App
+                                ( Var "b" )
+                                ( Var "m" )
+                            )
+                            ( Var "n" )
+                        )
+                    )
+                )
+            )
+        )
+    )
+, Def "abs"
+    ( Abs "f"
+        ( Abs "a"
+            ( Abs "b"
+                ( Abs "c"
+                    ( App
+                        ( Var "c" )
+                        ( Var "f" )
+                    )
+                )
+            )
+        )
+    )
+]

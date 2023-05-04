@@ -1,0 +1,3 @@
+: var \ m \ a \ b \ c a m
+: app \ m \ n \ a \ b \ c b m n
+: abs \ f \ a \ b \ c c f

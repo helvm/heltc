@@ -1,0 +1,914 @@
+[ Def "Y"
+    ( App
+        ( App S
+            ( App
+                ( App S
+                    ( App
+                        ( App S ( App K S ) )
+                        ( App
+                            ( App S ( App K K ) ) I
+                        )
+                    )
+                )
+                ( App K
+                    ( App ( App S I ) I )
+                )
+            )
+        )
+        ( App
+            ( App S
+                ( App
+                    ( App S ( App K S ) )
+                    ( App
+                        ( App S ( App K K ) ) I
+                    )
+                )
+            )
+            ( App K
+                ( App ( App S I ) I )
+            )
+        )
+    )
+, Def "id" I
+, Def "compose"
+    ( App
+        ( App S
+            ( App
+                ( App S ( App K S ) )
+                ( App
+                    ( App S
+                        ( App K
+                            ( App S ( App K S ) )
+                        )
+                    )
+                    ( App
+                        ( App S
+                            ( App K
+                                ( App S ( App K K ) )
+                            )
+                        )
+                        ( App
+                            ( App S ( App K K ) ) I
+                        )
+                    )
+                )
+            )
+        )
+        ( App K
+            ( App
+                ( App S
+                    ( App
+                        ( App S ( App K S ) )
+                        ( App
+                            ( App S ( App K K ) ) I
+                        )
+                    )
+                ) ( App K I )
+            )
+        )
+    )
+, Def "T"
+    ( App
+        ( App S ( App K K ) ) I
+    )
+, Def "F" ( App K I )
+, Def "if"
+    ( App
+        ( App S
+            ( App
+                ( App S ( App K S ) )
+                ( App
+                    ( App S
+                        ( App K
+                            ( App S ( App K S ) )
+                        )
+                    )
+                    ( App
+                        ( App S
+                            ( App
+                                ( App S ( App K S ) )
+                                ( App
+                                    ( App S
+                                        ( App K
+                                            ( App S ( App K S ) )
+                                        )
+                                    )
+                                    ( App
+                                        ( App S
+                                            ( App K
+                                                ( App S ( App K K ) )
+                                            )
+                                        )
+                                        ( App
+                                            ( App S ( App K K ) ) I
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                        ( App K
+                            ( App
+                                ( App S ( App K K ) ) I
+                            )
+                        )
+                    )
+                )
+            )
+        )
+        ( App K ( App K I ) )
+    )
+, Def "pair"
+    ( App
+        ( App S
+            ( App
+                ( App S ( App K S ) )
+                ( App
+                    ( App S
+                        ( App K
+                            ( App S ( App K S ) )
+                        )
+                    )
+                    ( App
+                        ( App S
+                            ( App K
+                                ( App S
+                                    ( App K ( App S I ) )
+                                )
+                            )
+                        )
+                        ( App
+                            ( App S
+                                ( App K
+                                    ( App S ( App K K ) )
+                                )
+                            )
+                            ( App
+                                ( App S ( App K K ) ) I
+                            )
+                        )
+                    )
+                )
+            )
+        )
+        ( App K
+            ( App
+                ( App S ( App K K ) ) I
+            )
+        )
+    )
+, Def "fst"
+    ( App ( App S I )
+        ( App K
+            ( App
+                ( App S ( App K K ) ) I
+            )
+        )
+    )
+, Def "snd"
+    ( App ( App S I )
+        ( App K ( App K I ) )
+    )
+, Def "cons"
+    ( App
+        ( App S
+            ( App
+                ( App S ( App K S ) )
+                ( App
+                    ( App S
+                        ( App K
+                            ( App S ( App K S ) )
+                        )
+                    )
+                    ( App
+                        ( App S
+                            ( App K
+                                ( App S
+                                    ( App K
+                                        ( App S ( App K S ) )
+                                    )
+                                )
+                            )
+                        )
+                        ( App
+                            ( App S
+                                ( App K
+                                    ( App S
+                                        ( App K
+                                            ( App S
+                                                ( App
+                                                    ( App S ( App K S ) )
+                                                    ( App
+                                                        ( App S ( App K K ) ) I
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            ( App
+                                ( App S
+                                    ( App K
+                                        ( App S
+                                            ( App K
+                                                ( App S ( App K K ) )
+                                            )
+                                        )
+                                    )
+                                )
+                                ( App
+                                    ( App S
+                                        ( App K
+                                            ( App S ( App K K ) )
+                                        )
+                                    )
+                                    ( App
+                                        ( App S ( App K K ) ) I
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+        ( App K
+            ( App
+                ( App S
+                    ( App
+                        ( App S ( App K S ) )
+                        ( App
+                            ( App S
+                                ( App K
+                                    ( App S ( App K S ) )
+                                )
+                            )
+                            ( App
+                                ( App S
+                                    ( App
+                                        ( App S ( App K S ) )
+                                        ( App
+                                            ( App S
+                                                ( App K
+                                                    ( App S ( App K S ) )
+                                                )
+                                            )
+                                            ( App
+                                                ( App S
+                                                    ( App K
+                                                        ( App S ( App K K ) )
+                                                    )
+                                                )
+                                                ( App
+                                                    ( App S ( App K K ) ) I
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                                ( App K
+                                    ( App
+                                        ( App S ( App K K ) ) I
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+                ( App K ( App K I ) )
+            )
+        )
+    )
+, Def "nil" ( App K I )
+, Def "fold"
+    ( App
+        ( App S
+            ( App
+                ( App S ( App K S ) )
+                ( App
+                    ( App S
+                        ( App K
+                            ( App S ( App K S ) )
+                        )
+                    )
+                    ( App
+                        ( App S
+                            ( App K
+                                ( App S
+                                    ( App
+                                        ( App S ( App K S ) )
+                                        ( App
+                                            ( App S ( App K K ) ) I
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                        ( App
+                            ( App S
+                                ( App K
+                                    ( App S ( App K K ) )
+                                )
+                            )
+                            ( App
+                                ( App S ( App K K ) ) I
+                            )
+                        )
+                    )
+                )
+            )
+        )
+        ( App K ( App K I ) )
+    )
+, Def "map"
+    ( App
+        ( App S
+            ( App
+                ( App S ( App K S ) )
+                ( App
+                    ( App S
+                        ( App K
+                            ( App S ( App K S ) )
+                        )
+                    )
+                    ( App
+                        ( App S
+                            ( App K
+                                ( App S
+                                    ( App K
+                                        ( App S ( App K S ) )
+                                    )
+                                )
+                            )
+                        )
+                        ( App
+                            ( App S
+                                ( App K
+                                    ( App S
+                                        ( App
+                                            ( App S ( App K S ) )
+                                            ( App
+                                                ( App S
+                                                    ( App K
+                                                        ( App S ( App K S ) )
+                                                    )
+                                                )
+                                                ( App
+                                                    ( App S
+                                                        ( App K
+                                                            ( App S ( App K K ) )
+                                                        )
+                                                    )
+                                                    ( App
+                                                        ( App S ( App K K ) ) I
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            ( App
+                                ( App S
+                                    ( App
+                                        ( App S ( App K S ) )
+                                        ( App
+                                            ( App S
+                                                ( App K
+                                                    ( App S ( App K S ) )
+                                                )
+                                            )
+                                            ( App
+                                                ( App S
+                                                    ( App K
+                                                        ( App S
+                                                            ( App K
+                                                                ( App S ( App K S ) )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                                ( App
+                                                    ( App S
+                                                        ( App
+                                                            ( App S ( App K S ) )
+                                                            ( App
+                                                                ( App S
+                                                                    ( App K
+                                                                        ( App S ( App K S ) )
+                                                                    )
+                                                                )
+                                                                ( App
+                                                                    ( App S
+                                                                        ( App K
+                                                                            ( App S
+                                                                                ( App K
+                                                                                    ( App S ( App K S ) )
+                                                                                )
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                    ( App
+                                                                        ( App S
+                                                                            ( App K
+                                                                                ( App S
+                                                                                    ( App K
+                                                                                        ( App S ( App K K ) )
+                                                                                    )
+                                                                                )
+                                                                            )
+                                                                        )
+                                                                        ( App
+                                                                            ( App S
+                                                                                ( App K
+                                                                                    ( App S ( App K K ) )
+                                                                                )
+                                                                            )
+                                                                            ( App
+                                                                                ( App S ( App K K ) )
+                                                                                ( App K
+                                                                                    ( Var "compose" )
+                                                                                )
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                    ( App K
+                                                        ( App K
+                                                            ( App
+                                                                ( App S ( App K K ) ) I
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                                ( App
+                                    ( App S
+                                        ( App K
+                                            ( App S
+                                                ( App K
+                                                    ( App S ( App K K ) )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    ( App
+                                        ( App S
+                                            ( App K
+                                                ( App S ( App K K ) )
+                                            )
+                                        )
+                                        ( App
+                                            ( App S ( App K K ) ) I
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+        ( App K
+            ( App K ( App K I ) )
+        )
+    )
+, Def "succ"
+    ( App
+        ( App S
+            ( App K
+                ( App S
+                    ( App
+                        ( App S ( App K S ) )
+                        ( App
+                            ( App S ( App K K ) ) I
+                        )
+                    )
+                )
+            )
+        )
+        ( App
+            ( App S
+                ( App
+                    ( App S ( App K S ) )
+                    ( App
+                        ( App S
+                            ( App K
+                                ( App S ( App K S ) )
+                            )
+                        )
+                        ( App
+                            ( App S
+                                ( App
+                                    ( App S ( App K S ) )
+                                    ( App
+                                        ( App S
+                                            ( App K
+                                                ( App S ( App K S ) )
+                                            )
+                                        )
+                                        ( App
+                                            ( App S
+                                                ( App K
+                                                    ( App S ( App K K ) )
+                                                )
+                                            )
+                                            ( App
+                                                ( App S ( App K K ) ) I
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            ( App K
+                                ( App
+                                    ( App S ( App K K ) ) I
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+            ( App K ( App K I ) )
+        )
+    )
+, Def "add"
+    ( App
+        ( App S
+            ( App
+                ( App S ( App K S ) )
+                ( App
+                    ( App S
+                        ( App K
+                            ( App S ( App K S ) )
+                        )
+                    )
+                    ( App
+                        ( App S
+                            ( App K
+                                ( App S
+                                    ( App K
+                                        ( App S ( App K S ) )
+                                    )
+                                )
+                            )
+                        )
+                        ( App
+                            ( App S
+                                ( App
+                                    ( App S ( App K S ) )
+                                    ( App
+                                        ( App S
+                                            ( App K
+                                                ( App S ( App K S ) )
+                                            )
+                                        )
+                                        ( App
+                                            ( App S
+                                                ( App K
+                                                    ( App S
+                                                        ( App K
+                                                            ( App S ( App K S ) )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                            ( App
+                                                ( App S
+                                                    ( App K
+                                                        ( App S
+                                                            ( App K
+                                                                ( App S ( App K K ) )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                                ( App
+                                                    ( App S
+                                                        ( App K
+                                                            ( App S ( App K K ) )
+                                                        )
+                                                    )
+                                                    ( App
+                                                        ( App S ( App K K ) ) I
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            ( App K
+                                ( App K
+                                    ( App
+                                        ( App S ( App K K ) ) I
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+        ( App K
+            ( App
+                ( App S
+                    ( App
+                        ( App S ( App K S ) )
+                        ( App
+                            ( App S
+                                ( App K
+                                    ( App S ( App K S ) )
+                                )
+                            )
+                            ( App
+                                ( App S
+                                    ( App
+                                        ( App S ( App K S ) )
+                                        ( App
+                                            ( App S
+                                                ( App K
+                                                    ( App S ( App K S ) )
+                                                )
+                                            )
+                                            ( App
+                                                ( App S
+                                                    ( App K
+                                                        ( App S ( App K K ) )
+                                                    )
+                                                )
+                                                ( App
+                                                    ( App S ( App K K ) ) I
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                                ( App K
+                                    ( App
+                                        ( App S ( App K K ) ) I
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+                ( App K ( App K I ) )
+            )
+        )
+    )
+, Def "mul"
+    ( App
+        ( App S
+            ( App
+                ( App S ( App K S ) )
+                ( App
+                    ( App S
+                        ( App K
+                            ( App S ( App K S ) )
+                        )
+                    )
+                    ( App
+                        ( App S
+                            ( App K
+                                ( App S
+                                    ( App K
+                                        ( App S ( App K S ) )
+                                    )
+                                )
+                            )
+                        )
+                        ( App
+                            ( App S
+                                ( App
+                                    ( App S ( App K S ) )
+                                    ( App
+                                        ( App S
+                                            ( App K
+                                                ( App S ( App K S ) )
+                                            )
+                                        )
+                                        ( App
+                                            ( App S
+                                                ( App K
+                                                    ( App S
+                                                        ( App K
+                                                            ( App S ( App K S ) )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                            ( App
+                                                ( App S
+                                                    ( App K
+                                                        ( App S
+                                                            ( App K
+                                                                ( App S ( App K K ) )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                                ( App
+                                                    ( App S
+                                                        ( App K
+                                                            ( App S ( App K K ) )
+                                                        )
+                                                    )
+                                                    ( App
+                                                        ( App S ( App K K ) ) I
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            ( App K
+                                ( App
+                                    ( App S
+                                        ( App
+                                            ( App S ( App K S ) )
+                                            ( App
+                                                ( App S
+                                                    ( App K
+                                                        ( App S ( App K S ) )
+                                                    )
+                                                )
+                                                ( App
+                                                    ( App S
+                                                        ( App K
+                                                            ( App S ( App K K ) )
+                                                        )
+                                                    )
+                                                    ( App
+                                                        ( App S ( App K K ) ) I
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    ( App K
+                                        ( App
+                                            ( App S ( App K K ) ) I
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+        ( App K
+            ( App K ( App K I ) )
+        )
+    )
+, Def "pow"
+    ( App
+        ( App S
+            ( App K ( App S I ) )
+        )
+        ( App
+            ( App S ( App K K ) ) I
+        )
+    )
+, Def "pred"
+    ( App
+        ( App S
+            ( App
+                ( App S ( App K S ) )
+                ( App
+                    ( App S
+                        ( App K
+                            ( App S ( App K S ) )
+                        )
+                    )
+                    ( App
+                        ( App S
+                            ( App
+                                ( App S ( App K S ) )
+                                ( App
+                                    ( App S
+                                        ( App K
+                                            ( App S ( App K S ) )
+                                        )
+                                    )
+                                    ( App
+                                        ( App S
+                                            ( App
+                                                ( App S ( App K S ) )
+                                                ( App
+                                                    ( App S
+                                                        ( App K
+                                                            ( App S ( App K S ) )
+                                                        )
+                                                    )
+                                                    ( App
+                                                        ( App S
+                                                            ( App K
+                                                                ( App S ( App K K ) )
+                                                            )
+                                                        )
+                                                        ( App
+                                                            ( App S ( App K K ) ) I
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                        ( App K
+                                            ( App
+                                                ( App S
+                                                    ( App K
+                                                        ( App S
+                                                            ( App K
+                                                                ( App S
+                                                                    ( App K ( App S I ) )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                                ( App
+                                                    ( App S
+                                                        ( App K
+                                                            ( App S
+                                                                ( App K
+                                                                    ( App S
+                                                                        ( App
+                                                                            ( App S ( App K S ) )
+                                                                            ( App
+                                                                                ( App S ( App K K ) ) I
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                    ( App
+                                                        ( App S
+                                                            ( App K
+                                                                ( App S
+                                                                    ( App K
+                                                                        ( App S ( App K K ) )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                        ( App
+                                                            ( App S
+                                                                ( App K
+                                                                    ( App S ( App K K ) )
+                                                                )
+                                                            )
+                                                            ( App
+                                                                ( App S ( App K K ) ) I
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                        ( App K
+                            ( App K
+                                ( App
+                                    ( App S ( App K K ) ) I
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+        ( App K
+            ( App K ( App K I ) )
+        )
+    )
+, Def "eq0"
+    ( App
+        ( App S
+            ( App ( App S I )
+                ( App
+                    ( App S ( App K K ) )
+                    ( App K
+                        ( Var "F" )
+                    )
+                )
+            )
+        )
+        ( App K
+            ( Var "T" )
+        )
+    )
+]

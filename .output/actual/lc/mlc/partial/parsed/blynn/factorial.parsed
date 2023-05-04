@@ -1,0 +1,160 @@
+[ Eval
+    ( App
+        ( Var "fact" )
+        ( Nat 4 )
+    )
+, Def "T"
+    ( Abs "x"
+        ( Abs "y"
+            ( Var "y" )
+        )
+    )
+, Def "F"
+    ( Abs "x"
+        ( Abs "y"
+            ( Var "x" )
+        )
+    )
+, Def ","
+    ( Abs "x"
+        ( Abs "y"
+            ( Abs "f"
+                ( App
+                    ( App
+                        ( Var "f" )
+                        ( Var "x" )
+                    )
+                    ( Var "y" )
+                )
+            )
+        )
+    )
+, Def "."
+    ( Abs "x"
+        ( Var "T" )
+    )
+, Def "@"
+    ( Abs "n"
+        ( Abs "f"
+            ( Abs "x"
+                ( App
+                    ( Var "f" )
+                    ( App
+                        ( App
+                            ( Var "n" )
+                            ( Var "f" )
+                        )
+                        ( Var "x" )
+                    )
+                )
+            )
+        )
+    )
+, Def "pred"
+    ( Abs "n"
+        ( Abs "f"
+            ( Abs "x"
+                ( App
+                    ( App
+                        ( App
+                            ( Var "n" )
+                            ( Abs "g"
+                                ( Abs "h"
+                                    ( App
+                                        ( Var "h" )
+                                        ( App
+                                            ( Var "g" )
+                                            ( Var "f" )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                        ( Abs "u"
+                            ( Var "x" )
+                        )
+                    )
+                    ( Abs "u"
+                        ( Var "u" )
+                    )
+                )
+            )
+        )
+    )
+, Def "mul"
+    ( Abs "m"
+        ( Abs "n"
+            ( Abs "f"
+                ( App
+                    ( Var "m" )
+                    ( App
+                        ( Var "n" )
+                        ( Var "f" )
+                    )
+                )
+            )
+        )
+    )
+, Def "is0"
+    ( Abs "n"
+        ( App
+            ( App
+                ( Var "n" )
+                ( Abs "_"
+                    ( Var "F" )
+                )
+            )
+            ( Var "T" )
+        )
+    )
+, Def "Y"
+    ( Abs "f"
+        ( App
+            ( Abs "x"
+                ( App
+                    ( Var "x" )
+                    ( Var "x" )
+                )
+            )
+            ( Abs "x"
+                ( App
+                    ( Var "f" )
+                    ( App
+                        ( Var "x" )
+                        ( Var "x" )
+                    )
+                )
+            )
+        )
+    )
+, Def "fact"
+    ( App
+        ( Var "Y" )
+        ( Abs "f"
+            ( Abs "n"
+                ( App
+                    ( App
+                        ( App
+                            ( Var "is0" )
+                            ( Var "n" )
+                        )
+                        ( Nat 1 )
+                    )
+                    ( App
+                        ( App
+                            ( Var "mul" )
+                            ( Var "n" )
+                        )
+                        ( App
+                            ( Var "f" )
+                            ( App
+                                ( Var "pred" )
+                                ( Var "n" )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+]

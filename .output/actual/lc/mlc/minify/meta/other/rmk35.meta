@@ -1,0 +1,19 @@
+: Y \ f (\ x f (x x)) (\ x f (x x))
+: id \ x x
+: compose \ f \ g \ x f (g x)
+: T \ x \ y x
+: F \ x \ y y
+: if \ p \ x \ y p x y
+: pair \ x \ y \ f f x y
+: fst \ p p (\ x \ y x)
+: snd \ p p (\ x \ y y)
+: cons \ x \ y \ f \ init f x (y f init)
+: nil \ f \ init init
+: fold \ f \ l \ init l f init
+: map \ f \ l \ g \ init l (compose g f) init
+: succ \ n \ f \ x f (n f x)
+: add \ n \ m \ f \ x n f (m f x)
+: mul \ n \ m \ f \ x n (m f) x
+: pow \ n \ m m n
+: pred \ n \ f \ x n (\ g \ h h (g f)) (\ u x) (\ u u)
+: eq0 \ n n (\ x F) T

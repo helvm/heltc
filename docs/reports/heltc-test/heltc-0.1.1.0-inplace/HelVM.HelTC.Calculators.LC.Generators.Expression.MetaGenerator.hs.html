@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+span.lineno { color: white; background: #aaaaaa; border-right: solid white 12px }
+span.nottickedoff { background: yellow}
+span.istickedoff { background: white }
+span.tickonlyfalse { margin: -1px; border: 1px solid #f20913; background: #f20913 }
+span.tickonlytrue  { margin: -1px; border: 1px solid #60de51; background: #60de51 }
+span.funcount { font-size: small; color: orange; z-index: 2; position: absolute; right: 20 }
+span.decl { font-weight: bold }
+span.spaces    { background: white }
+</style>
+</head>
+<body>
+<pre>
+<span class="decl"><span class="nottickedoff">never executed</span> <span class="tickonlytrue">always true</span> <span class="tickonlyfalse">always false</span></span>
+</pre>
+<pre>
+<span class="lineno">    1 </span>module HelVM.HelTC.Calculators.LC.Generators.Expression.MetaGenerator where
+<span class="lineno">    2 </span>
+<span class="lineno">    3 </span>import           HelVM.HelTC.Calculators.LC.Generators.GeneratorUtil
+<span class="lineno">    4 </span>
+<span class="lineno">    5 </span>import           HelVM.HelTC.Calculators.LC.Lambda
+<span class="lineno">    6 </span>
+<span class="lineno">    7 </span>import           HelVM.HelTC.Calculator.Value
+<span class="lineno">    8 </span>
+<span class="lineno">    9 </span>generateCodeForIL :: InstructionList -&gt; Text
+<span class="lineno">   10 </span><span class="decl"><span class="istickedoff">generateCodeForIL il = unlines $ generateCodeForInstruction &lt;$&gt; il</span></span>
+<span class="lineno">   11 </span>
+<span class="lineno">   12 </span>generateCodeForInstruction :: Instruction -&gt; Text
+<span class="lineno">   13 </span><span class="decl"><span class="istickedoff">generateCodeForInstruction (Def i l) = generateCodeForDefinition i l</span>
+<span class="lineno">   14 </span><span class="spaces"></span><span class="istickedoff">generateCodeForInstruction (Eval  l) = generateCodeForLambda l</span></span>
+<span class="lineno">   15 </span>
+<span class="lineno">   16 </span>generateCodeForDefinition :: Identifier -&gt; Lambda -&gt; Text
+<span class="lineno">   17 </span><span class="decl"><span class="istickedoff">generateCodeForDefinition i l = &quot;: &quot; &lt;&gt; i &lt;&gt; &quot; &quot; &lt;&gt; generateCodeForLambda l</span></span>
+<span class="lineno">   18 </span>
+<span class="lineno">   19 </span>generateCodeForLambda  :: Lambda -&gt; Text
+<span class="lineno">   20 </span><span class="decl"><span class="istickedoff">generateCodeForLambda S              = &quot;S&quot;</span>
+<span class="lineno">   21 </span><span class="spaces"></span><span class="istickedoff">generateCodeForLambda K              = &quot;K&quot;</span>
+<span class="lineno">   22 </span><span class="spaces"></span><span class="istickedoff">generateCodeForLambda I              = &quot;I&quot;</span>
+<span class="lineno">   23 </span><span class="spaces"></span><span class="istickedoff">generateCodeForLambda a@(App _ _)    = generateCodeForApp a</span>
+<span class="lineno">   24 </span><span class="spaces"></span><span class="istickedoff">generateCodeForLambda f@(Abs _ _)    = generateCodeForAbs f</span>
+<span class="lineno">   25 </span><span class="spaces"></span><span class="istickedoff">generateCodeForLambda (AbsRe l f)    = <span class="nottickedoff">generateCodeForAbsRe l f</span></span>
+<span class="lineno">   26 </span><span class="spaces"></span><span class="istickedoff">generateCodeForLambda (Var v)        = v</span>
+<span class="lineno">   27 </span><span class="spaces"></span><span class="istickedoff">generateCodeForLambda (Nat   n)      = show n</span>
+<span class="lineno">   28 </span><span class="spaces"></span><span class="istickedoff">generateCodeForLambda (Int (SN s n)) = showSign s &lt;&gt; show n</span>
+<span class="lineno">   29 </span><span class="spaces"></span><span class="istickedoff">generateCodeForLambda (Dec s n)      = <span class="nottickedoff">show s &lt;&gt; show n</span></span>
+<span class="lineno">   30 </span><span class="spaces"></span><span class="istickedoff">generateCodeForLambda (List  l)      = <span class="nottickedoff">generateCodeForList l</span></span>
+<span class="lineno">   31 </span><span class="spaces"></span><span class="istickedoff">generateCodeForLambda (Str   s)      = generateCodeForSrt s</span></span>
+<span class="lineno">   32 </span>
+<span class="lineno">   33 </span>generateCodeForApp :: Lambda -&gt; Text
+<span class="lineno">   34 </span><span class="decl"><span class="istickedoff">generateCodeForApp (App f a) = generateCodeForApp f &lt;&gt; &quot; &quot; &lt;&gt; par generateCodeForLambda  a</span>
+<span class="lineno">   35 </span><span class="spaces"></span><span class="istickedoff">generateCodeForApp e         = par generateCodeForLambda  e</span></span>
+<span class="lineno">   36 </span>
+<span class="lineno">   37 </span>generateCodeForAbs :: Lambda -&gt; Text
+<span class="lineno">   38 </span><span class="decl"><span class="istickedoff">generateCodeForAbs (Abs p e) = &quot;\\ &quot; &lt;&gt; p &lt;&gt; &quot; &quot; &lt;&gt; generateCodeForAbs e</span>
+<span class="lineno">   39 </span><span class="spaces"></span><span class="istickedoff">generateCodeForAbs e         = generateCodeForLambda  e</span></span>
+<span class="lineno">   40 </span>
+<span class="lineno">   41 </span>generateCodeForAbsRe :: IdentifierList -&gt; Lambda -&gt; Text
+<span class="lineno">   42 </span><span class="decl"><span class="nottickedoff">generateCodeForAbsRe il f = &quot;(lambda (&quot; &lt;&gt; show il &lt;&gt; &quot;)&quot; &lt;&gt; generateCodeForLambda f &lt;&gt; &quot;)&quot;</span></span>
+<span class="lineno">   43 </span>
+<span class="lineno">   44 </span>generateCodeForList :: LambdaList-&gt; Text
+<span class="lineno">   45 </span><span class="decl"><span class="nottickedoff">generateCodeForList l   = &quot;[&quot; &lt;&gt; show l &lt;&gt; &quot;]&quot;</span></span>
+<span class="lineno">   46 </span>
+<span class="lineno">   47 </span>generateCodeForSrt :: String -&gt; Text
+<span class="lineno">   48 </span><span class="decl"><span class="istickedoff">generateCodeForSrt s = &quot;\&quot;&quot; &lt;&gt; toText s &lt;&gt; &quot;\&quot;&quot;</span></span>
+
+</pre>
+</body>
+</html>

@@ -1,0 +1,7 @@
+E (app qsucc (app qsucc q0))
+: var \ x \ i x
+: app \ m \ n \ i i (m i) (n i)
+: abs \ f \ i \ x f x i
+: E \ q q (\ x x)
+: qsucc abs (\ n abs (\ f abs (\ x app (var f) (app (app (var n) (var f)) (var x)))))
+: q0 abs (\ f abs (\ x var x))

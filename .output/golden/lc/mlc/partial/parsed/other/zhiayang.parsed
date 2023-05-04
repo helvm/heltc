@@ -1,0 +1,28 @@
+[ Def "S"
+    ( Abs "x"
+        ( Abs "y"
+            ( Abs "z"
+                ( App
+                    ( App
+                        ( Var "x" )
+                        ( Var "z" )
+                    )
+                    ( App
+                        ( Var "y" )
+                        ( Var "z" )
+                    )
+                )
+            )
+        )
+    )
+, Def "K"
+    ( Abs "x"
+        ( Abs "y"
+            ( Var "x" )
+        )
+    )
+, Def "I"
+    ( Abs "x"
+        ( Var "x" )
+    )
+]

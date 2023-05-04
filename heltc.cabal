@@ -1,9 +1,9 @@
 cabal-version:         2.4
 
 name:                  heltc
-version:               0.1.0.2
+version:               0.1.1.0
 
-synopsis:              HELCT - Heavenly Esoteric Little C Transpiler to Esoteric Languages
+synopsis:              HELTC - Heavenly Esoteric Little True Calculator to Esoteric Languages
 description:           Please see the README on GitHub at <https://github.com/helvm/heltc#readme>
 homepage:              https://helvm.github.io/heltc/
 bug-reports:           https://github.com/helvm/heltc/issues
@@ -20,19 +20,25 @@ extra-source-files:
   docs/developers/CHANGELOG.md
   docs/README.md
 
-tested-with:           GHC == 9.6.1
+tested-with:           GHC == 9.6.2
 
 source-repository head
   type:                git
   location:            https://github.com/helvm/heltc
 
+flag ghcoptions
+  description:         compile with options
+  manual:              True
+  default:             False
+
 common common-options
   build-depends:
-      base             <  4.19
-    , relude           == 1.1.0.0
+      base                 <  4.19
+    , relude               == 1.1.0.0
   mixins:
       base hiding (Prelude)
     , relude (Relude as Prelude, Relude.Extra, Data.Text)
+  default-language:    Haskell2010
   default-extensions:
     EmptyDataDecls
     ExistentialQuantification
@@ -75,39 +81,68 @@ common common-options
     DerivingStrategies
     ConstraintKinds
     StrictData
-  ghc-options:
-    -Wall
-    -Wcompat
-    -Widentities
-    -Wincomplete-uni-patterns
-    -Wincomplete-record-updates
-    -Wredundant-constraints
-    -Wnoncanonical-monad-instances
-    -fhide-source-paths
---    -Wmissing-export-lists FIXME
-    -Wpartial-fields
-    -Wmissing-deriving-strategies
-    -fwrite-ide-info
-    -hiedir=.hie
-    -Wunused-packages
---    -Werror
-    -fprint-potential-instances
-
-  default-language:    Haskell2010
+  if flag(ghcoptions)
+    ghc-options:
+      -Wall
+      -Wcompat
+      -Widentities
+      -Wincomplete-uni-patterns
+      -Wincomplete-record-updates
+      -Wredundant-constraints
+      -Wnoncanonical-monad-instances
+      -fhide-source-paths
+--      -Wmissing-export-lists FIXME
+       -Wpartial-fields
+      -Wmissing-deriving-strategies
+      -fwrite-ide-info
+      -hiedir=.hie
+--      -Wunused-packages FIXME for attoparser
+      -fprint-potential-instances
+      -Werror
 
 library
   import:              common-options
   hs-source-dirs:      hs/src
   exposed-modules:
-    HelVM.HelTC.HelTC
 
-  other-extensions:
+    HelVM.HelTC.Calculator.IO.BusinessIO
+    HelVM.HelTC.Calculator.Value
+
+    HelVM.HelTC.Calculators.LC.API.GeneratorType
+    HelVM.HelTC.Calculators.LC.API.ParserType
+
+    HelVM.HelTC.Calculators.LC.Generators.GeneratorUtil
+    HelVM.HelTC.Calculators.LC.Generators.ExpressionGenerator
+    HelVM.HelTC.Calculators.LC.Generators.LambdaGenerator
+
+    HelVM.HelTC.Calculators.LC.Generators.Expression.MetaGenerator
+    HelVM.HelTC.Calculators.LC.Generators.Expression.SymbolicGenerator
+
+    HelVM.HelTC.Calculators.LC.Parsers.MetaParser
+    HelVM.HelTC.Calculators.LC.Parsers.SymbolicParser
+
+    HelVM.HelTC.Calculators.LC.Reducers.AbstractionReducer
+    HelVM.HelTC.Calculators.LC.Reducers.AbsReReducer
+    HelVM.HelTC.Calculators.LC.Reducers.IntegerReducer
+    HelVM.HelTC.Calculators.LC.Reducers.NaturalReducer
+    HelVM.HelTC.Calculators.LC.Reducers.ListReducer
+    HelVM.HelTC.Calculators.LC.Reducers.StringReducer
+
+    HelVM.HelTC.Calculators.LC.Calculator
+    HelVM.HelTC.Calculators.LC.DefinitionExpander
+    HelVM.HelTC.Calculators.LC.Lambda
+    HelVM.HelTC.Calculators.LC.LambdaReducer
+    HelVM.HelTC.Calculators.LC.Lexer
+    HelVM.HelTC.Calculators.LC.Parser
+
   build-depends:
-  mixins:
-      base hiding (Prelude)
-    , relude (Relude as Prelude, Relude.Extra)
-  hs-source-dirs:      hs/src
-  default-language:    Haskell2010
+      helio
+    , attoparsec           <  0.14.4
+    , bytestring
+    , containers           <  0.7
+    , parsers
+    , trifecta
+    , type-operators
   ghc-options:
 
 executable heltc
@@ -116,10 +151,12 @@ executable heltc
   main-is:             Main.hs
   other-modules:
     AppOptions
+    BoolTypes
   build-depends:
---      heltc
---    , optparse-applicative >= 0.14.3.0
---    , trifecta
+      optparse-applicative >= 0.14.3.0
+
+    , heltc
+    , helio
   ghc-options:
     -threaded
     -rtsopts
@@ -132,6 +169,14 @@ test-suite heltc-test
   main-is:             Main.hs
   other-modules:
     Spec
+    SpecHook
+
+    HelVM.Expectations
+    HelVM.GoldenExpectations
+
+    HelVM.HelTC.Calculators.LC.CalculatorSpec
+    HelVM.HelTC.Calculators.LC.FileUtil
+
   build-depends:
       hspec
     , hspec-core
@@ -139,7 +184,11 @@ test-suite heltc-test
     , hspec-golden > 0.1.0.0
     , hspec-slow
 
+    , helio
     , heltc
+
+    , filepath
+    , type-operators
 
   build-tool-depends:  hspec-discover:hspec-discover == 2.*
   ghc-options:

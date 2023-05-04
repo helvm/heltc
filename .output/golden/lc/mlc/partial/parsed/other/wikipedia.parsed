@@ -1,0 +1,255 @@
+[ Def "id"
+    ( Abs "x"
+        ( Var "x" )
+    )
+, Def "T"
+    ( Abs "x"
+        ( Abs "y"
+            ( Var "x" )
+        )
+    )
+, Def "F"
+    ( Abs "x"
+        ( Abs "y"
+            ( Var "y" )
+        )
+    )
+, Def "and"
+    ( Abs "p"
+        ( Abs "q"
+            ( App
+                ( App
+                    ( Var "p" )
+                    ( Var "q" )
+                )
+                ( Var "p" )
+            )
+        )
+    )
+, Def "or"
+    ( Abs "p"
+        ( Abs "q"
+            ( App
+                ( App
+                    ( Var "p" )
+                    ( Var "p" )
+                )
+                ( Var "q" )
+            )
+        )
+    )
+, Def "not"
+    ( Abs "p"
+        ( App
+            ( App
+                ( Var "p" )
+                ( Var "F" )
+            )
+            ( Var "T" )
+        )
+    )
+, Def "if"
+    ( Abs "p"
+        ( Abs "a"
+            ( Abs "b"
+                ( App
+                    ( App
+                        ( Var "p" )
+                        ( Var "a" )
+                    )
+                    ( Var "b" )
+                )
+            )
+        )
+    )
+, Def "pair"
+    ( Abs "x"
+        ( Abs "y"
+            ( Abs "f"
+                ( App
+                    ( App
+                        ( Var "f" )
+                        ( Var "x" )
+                    )
+                    ( Var "y" )
+                )
+            )
+        )
+    )
+, Def "first"
+    ( Abs "p"
+        ( App
+            ( Var "p" )
+            ( Var "T" )
+        )
+    )
+, Def "second"
+    ( Abs "p"
+        ( App
+            ( Var "p" )
+            ( Var "F" )
+        )
+    )
+, Def "nil"
+    ( Abs "x"
+        ( Var "T" )
+    )
+, Def "null"
+    ( Abs "p"
+        ( App
+            ( Var "p" )
+            ( Abs "x"
+                ( Abs "y"
+                    ( Var "F" )
+                )
+            )
+        )
+    )
+, Def "repeat"
+    ( Abs "n"
+        ( Abs "x"
+            ( App
+                ( App
+                    ( Var "n" )
+                    ( App
+                        ( Var "pair" )
+                        ( Var "x" )
+                    )
+                )
+                ( Var "nil" )
+            )
+        )
+    )
+, Def "succ"
+    ( Abs "n"
+        ( Abs "f"
+            ( Abs "x"
+                ( App
+                    ( Var "f" )
+                    ( App
+                        ( App
+                            ( Var "n" )
+                            ( Var "f" )
+                        )
+                        ( Var "x" )
+                    )
+                )
+            )
+        )
+    )
+, Def "plus"
+    ( Abs "m"
+        ( Abs "n"
+            ( App
+                ( App
+                    ( Var "m" )
+                    ( Var "succ" )
+                )
+                ( Var "n" )
+            )
+        )
+    )
+, Def "mult"
+    ( Abs "m"
+        ( Abs "n"
+            ( App
+                ( App
+                    ( Var "m" )
+                    ( App
+                        ( Var "plus" )
+                        ( Var "n" )
+                    )
+                )
+                ( Nat 0 )
+            )
+        )
+    )
+, Def "pow"
+    ( Abs "b"
+        ( Abs "e"
+            ( App
+                ( Var "e" )
+                ( Var "b" )
+            )
+        )
+    )
+, Def "is0"
+    ( Abs "n"
+        ( App
+            ( App
+                ( Var "n" )
+                ( Abs "x"
+                    ( Var "F" )
+                )
+            )
+            ( Var "T" )
+        )
+    )
+, Def "Φ"
+    ( Abs "x"
+        ( App
+            ( App
+                ( Var "pair" )
+                ( App
+                    ( Var "second" )
+                    ( Var "x" )
+                )
+            )
+            ( App
+                ( Var "succ" )
+                ( App
+                    ( Var "second" )
+                    ( Var "x" )
+                )
+            )
+        )
+    )
+, Def "phi"
+    ( Var "Φ" )
+, Def "pred"
+    ( Abs "n"
+        ( App
+            ( Var "first" )
+            ( App
+                ( App
+                    ( Var "n" )
+                    ( Var "Φ" )
+                )
+                ( App
+                    ( App
+                        ( Var "pair" )
+                        ( Nat 0 )
+                    )
+                    ( Nat 0 )
+                )
+            )
+        )
+    )
+, Def "sub"
+    ( Abs "m"
+        ( Abs "n"
+            ( App
+                ( App
+                    ( Var "n" )
+                    ( Var "pred" )
+                )
+                ( Var "m" )
+            )
+        )
+    )
+, Def "leq"
+    ( Abs "m"
+        ( Abs "n"
+            ( App
+                ( Var "is0" )
+                ( App
+                    ( App
+                        ( Var "sub" )
+                        ( Var "m" )
+                    )
+                    ( Var "n" )
+                )
+            )
+        )
+    )
+]

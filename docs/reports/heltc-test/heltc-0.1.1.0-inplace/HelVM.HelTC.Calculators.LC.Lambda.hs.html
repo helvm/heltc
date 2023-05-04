@@ -1,0 +1,83 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+span.lineno { color: white; background: #aaaaaa; border-right: solid white 12px }
+span.nottickedoff { background: yellow}
+span.istickedoff { background: white }
+span.tickonlyfalse { margin: -1px; border: 1px solid #f20913; background: #f20913 }
+span.tickonlytrue  { margin: -1px; border: 1px solid #60de51; background: #60de51 }
+span.funcount { font-size: small; color: orange; z-index: 2; position: absolute; right: 20 }
+span.decl { font-weight: bold }
+span.spaces    { background: white }
+</style>
+</head>
+<body>
+<pre>
+<span class="decl"><span class="nottickedoff">never executed</span> <span class="tickonlytrue">always true</span> <span class="tickonlyfalse">always false</span></span>
+</pre>
+<pre>
+<span class="lineno">    1 </span>module HelVM.HelTC.Calculators.LC.Lambda where
+<span class="lineno">    2 </span>
+<span class="lineno">    3 </span>import           HelVM.HelTC.Calculator.Value
+<span class="lineno">    4 </span>
+<span class="lineno">    5 </span>import           Relude.Extra
+<span class="lineno">    6 </span>
+<span class="lineno">    7 </span>-- | Constructions
+<span class="lineno">    8 </span>lambdaFromChar :: Char -&gt; Lambda
+<span class="lineno">    9 </span><span class="decl"><span class="istickedoff">lambdaFromChar = lambdaFromIntegral . ord</span></span>
+<span class="lineno">   10 </span>
+<span class="lineno">   11 </span>lambdaFromIntegral :: Integral a =&gt; a -&gt; Lambda
+<span class="lineno">   12 </span><span class="decl"><span class="istickedoff">lambdaFromIntegral = Nat . fromIntegral</span></span>
+<span class="lineno">   13 </span>
+<span class="lineno">   14 </span>lambdaFromNonEmpty :: NonEmpty Lambda -&gt; Lambda
+<span class="lineno">   15 </span><span class="decl"><span class="istickedoff">lambdaFromNonEmpty = foldl1' App</span></span>
+<span class="lineno">   16 </span>
+<span class="lineno">   17 </span>lambdaFromVariable :: Text -&gt; Lambda
+<span class="lineno">   18 </span><span class="decl"><span class="istickedoff">lambdaFromVariable &quot;S&quot; = <span class="nottickedoff">S</span></span>
+<span class="lineno">   19 </span><span class="spaces"></span><span class="istickedoff">lambdaFromVariable &quot;K&quot; = <span class="nottickedoff">K</span></span>
+<span class="lineno">   20 </span><span class="spaces"></span><span class="istickedoff">lambdaFromVariable &quot;I&quot; = I</span>
+<span class="lineno">   21 </span><span class="spaces"></span><span class="istickedoff">lambdaFromVariable  n  = Var n</span></span>
+<span class="lineno">   22 </span>
+<span class="lineno">   23 </span>-- | Constants
+<span class="lineno">   24 </span>appPairVariable :: Lambda -&gt; Lambda -&gt; Lambda
+<span class="lineno">   25 </span><span class="decl"><span class="istickedoff">appPairVariable l = App pairVariable . App l</span></span>
+<span class="lineno">   26 </span>
+<span class="lineno">   27 </span>falseVariable , pairVariable , succVariable , trueVariable :: Lambda
+<span class="lineno">   28 </span><span class="decl"><span class="istickedoff">falseVariable = Var &quot;F&quot;</span></span>
+<span class="lineno">   29 </span><span class="decl"><span class="istickedoff">pairVariable  = Var &quot;,&quot;</span></span>
+<span class="lineno">   30 </span><span class="decl"><span class="istickedoff">succVariable  = Var &quot;@&quot;</span></span>
+<span class="lineno">   31 </span><span class="decl"><span class="istickedoff">trueVariable  = Var &quot;T&quot;</span></span>
+<span class="lineno">   32 </span>
+<span class="lineno">   33 </span>-- | Types
+<span class="lineno">   34 </span>type InstructionList = [Instruction]
+<span class="lineno">   35 </span>
+<span class="lineno">   36 </span>data Instruction =
+<span class="lineno">   37 </span>    Eval Lambda
+<span class="lineno">   38 </span>  | Def Identifier Lambda
+<span class="lineno">   39 </span>  deriving stock (<span class="decl"><span class="istickedoff">Eq</span></span> , <span class="decl"><span class="nottickedoff"><span class="decl"><span class="nottickedoff"><span class="decl"><span class="nottickedoff"><span class="decl"><span class="nottickedoff"><span class="decl"><span class="nottickedoff">Ord</span></span></span></span></span></span></span></span></span></span> , <span class="decl"><span class="nottickedoff"><span class="decl"><span class="nottickedoff"><span class="decl"><span class="nottickedoff">Read</span></span></span></span></span></span> , <span class="decl"><span class="istickedoff">Show</span></span>)
+<span class="lineno">   40 </span>
+<span class="lineno">   41 </span>type LambdaList = [Lambda]
+<span class="lineno">   42 </span>
+<span class="lineno">   43 </span>data Lambda =
+<span class="lineno">   44 </span>    S
+<span class="lineno">   45 </span>  | K
+<span class="lineno">   46 </span>  | I
+<span class="lineno">   47 </span>  | App Lambda Lambda
+<span class="lineno">   48 </span>  | Abs Identifier Lambda
+<span class="lineno">   49 </span>  | AbsRe IdentifierList Lambda
+<span class="lineno">   50 </span>
+<span class="lineno">   51 </span>  | Var Identifier
+<span class="lineno">   52 </span>  | Nat Natural
+<span class="lineno">   53 </span>  | Int SignNatural
+<span class="lineno">   54 </span>  | Dec SignNatural SignNatural
+<span class="lineno">   55 </span>  | List LambdaList
+<span class="lineno">   56 </span>  | Str String
+<span class="lineno">   57 </span>  deriving stock (<span class="decl"><span class="istickedoff">Eq</span></span> , <span class="decl"><span class="nottickedoff">Ord</span></span> , <span class="decl"><span class="nottickedoff"><span class="decl"><span class="nottickedoff"><span class="decl"><span class="nottickedoff">Read</span></span></span></span></span></span> , <span class="decl"><span class="istickedoff">Show</span></span>)
+<span class="lineno">   58 </span>
+<span class="lineno">   59 </span>data SignNatural = SN Sign Natural
+<span class="lineno">   60 </span>  deriving stock (<span class="decl"><span class="istickedoff">Eq</span></span> , <span class="decl"><span class="nottickedoff"><span class="decl"><span class="nottickedoff"><span class="decl"><span class="nottickedoff"><span class="decl"><span class="nottickedoff"><span class="decl"><span class="nottickedoff">Ord</span></span></span></span></span></span></span></span></span></span> , <span class="decl"><span class="nottickedoff"><span class="decl"><span class="nottickedoff"><span class="decl"><span class="nottickedoff">Read</span></span></span></span></span></span> , <span class="decl"><span class="istickedoff">Show</span></span>)
+
+</pre>
+</body>
+</html>

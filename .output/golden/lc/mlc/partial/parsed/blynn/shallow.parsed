@@ -1,0 +1,129 @@
+[ Eval
+    ( App
+        ( Var "E" )
+        ( App
+            ( App
+                ( Var "app" )
+                ( Var "qsucc" )
+            )
+            ( App
+                ( App
+                    ( Var "app" )
+                    ( Var "qsucc" )
+                )
+                ( Var "q0" )
+            )
+        )
+    )
+, Def "var"
+    ( Abs "x"
+        ( Abs "i"
+            ( Var "x" )
+        )
+    )
+, Def "app"
+    ( Abs "m"
+        ( Abs "n"
+            ( Abs "i"
+                ( App
+                    ( App
+                        ( Var "i" )
+                        ( App
+                            ( Var "m" )
+                            ( Var "i" )
+                        )
+                    )
+                    ( App
+                        ( Var "n" )
+                        ( Var "i" )
+                    )
+                )
+            )
+        )
+    )
+, Def "abs"
+    ( Abs "f"
+        ( Abs "i"
+            ( Abs "x"
+                ( App
+                    ( App
+                        ( Var "f" )
+                        ( Var "x" )
+                    )
+                    ( Var "i" )
+                )
+            )
+        )
+    )
+, Def "E"
+    ( Abs "q"
+        ( App
+            ( Var "q" )
+            ( Abs "x"
+                ( Var "x" )
+            )
+        )
+    )
+, Def "qsucc"
+    ( App
+        ( Var "abs" )
+        ( Abs "n"
+            ( App
+                ( Var "abs" )
+                ( Abs "f"
+                    ( App
+                        ( Var "abs" )
+                        ( Abs "x"
+                            ( App
+                                ( App
+                                    ( Var "app" )
+                                    ( App
+                                        ( Var "var" )
+                                        ( Var "f" )
+                                    )
+                                )
+                                ( App
+                                    ( App
+                                        ( Var "app" )
+                                        ( App
+                                            ( App
+                                                ( Var "app" )
+                                                ( App
+                                                    ( Var "var" )
+                                                    ( Var "n" )
+                                                )
+                                            )
+                                            ( App
+                                                ( Var "var" )
+                                                ( Var "f" )
+                                            )
+                                        )
+                                    )
+                                    ( App
+                                        ( Var "var" )
+                                        ( Var "x" )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+, Def "q0"
+    ( App
+        ( Var "abs" )
+        ( Abs "f"
+            ( App
+                ( Var "abs" )
+                ( Abs "x"
+                    ( App
+                        ( Var "var" )
+                        ( Var "x" )
+                    )
+                )
+            )
+        )
+    )
+]

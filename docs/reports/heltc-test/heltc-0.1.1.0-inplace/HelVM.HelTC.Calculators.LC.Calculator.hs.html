@@ -1,0 +1,65 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+span.lineno { color: white; background: #aaaaaa; border-right: solid white 12px }
+span.nottickedoff { background: yellow}
+span.istickedoff { background: white }
+span.tickonlyfalse { margin: -1px; border: 1px solid #f20913; background: #f20913 }
+span.tickonlytrue  { margin: -1px; border: 1px solid #60de51; background: #60de51 }
+span.funcount { font-size: small; color: orange; z-index: 2; position: absolute; right: 20 }
+span.decl { font-weight: bold }
+span.spaces    { background: white }
+</style>
+</head>
+<body>
+<pre>
+<span class="decl"><span class="nottickedoff">never executed</span> <span class="tickonlytrue">always true</span> <span class="tickonlyfalse">always false</span></span>
+</pre>
+<pre>
+<span class="lineno">    1 </span>module HelVM.HelTC.Calculators.LC.Calculator where
+<span class="lineno">    2 </span>
+<span class="lineno">    3 </span>import           HelVM.HelTC.Calculators.LC.API.GeneratorType
+<span class="lineno">    4 </span>import           HelVM.HelTC.Calculators.LC.API.ParserType
+<span class="lineno">    5 </span>
+<span class="lineno">    6 </span>import           HelVM.HelTC.Calculators.LC.Generators.ExpressionGenerator
+<span class="lineno">    7 </span>import           HelVM.HelTC.Calculators.LC.Generators.LambdaGenerator
+<span class="lineno">    8 </span>
+<span class="lineno">    9 </span>import           HelVM.HelTC.Calculators.LC.DefinitionExpander
+<span class="lineno">   10 </span>import           HelVM.HelTC.Calculators.LC.Lambda
+<span class="lineno">   11 </span>import           HelVM.HelTC.Calculators.LC.LambdaReducer
+<span class="lineno">   12 </span>import           HelVM.HelTC.Calculators.LC.Parser
+<span class="lineno">   13 </span>
+<span class="lineno">   14 </span>import           HelVM.HelTC.Calculator.IO.BusinessIO
+<span class="lineno">   15 </span>
+<span class="lineno">   16 </span>import           HelVM.HelIO.Control.Safe
+<span class="lineno">   17 </span>
+<span class="lineno">   18 </span>translateFile :: BIO m =&gt; ParserType -&gt; ParserType -&gt; FilePath -&gt; m Text
+<span class="lineno">   19 </span><span class="decl"><span class="nottickedoff">translateFile generatorType parserType filePath = translateText generatorType parserType =&lt;&lt; wReadFile filePath</span></span>
+<span class="lineno">   20 </span>
+<span class="lineno">   21 </span>minimizeText :: BIO m =&gt; ParserType -&gt; Text -&gt; m Text
+<span class="lineno">   22 </span><span class="decl"><span class="istickedoff">minimizeText parserType = translateText parserType parserType</span></span>
+<span class="lineno">   23 </span>
+<span class="lineno">   24 </span>translateText :: MonadSafe m =&gt; ParserType -&gt; ParserType -&gt; Text -&gt; m Text
+<span class="lineno">   25 </span><span class="decl"><span class="istickedoff">translateText generatorType parserType source = generateCodeForIL generatorType &lt;$&gt; parseAssemblyText parserType source</span></span>
+<span class="lineno">   26 </span>
+<span class="lineno">   27 </span>assembleFile :: BIO m =&gt; GeneratorType -&gt; ParserType -&gt; FilePath -&gt; m Text
+<span class="lineno">   28 </span><span class="decl"><span class="istickedoff">assembleFile generatorType parserType filePath = assembleText generatorType parserType =&lt;&lt; wReadFile filePath</span></span>
+<span class="lineno">   29 </span>
+<span class="lineno">   30 </span>assembleText :: MonadSafe m =&gt; GeneratorType -&gt; ParserType -&gt; Text -&gt; m Text
+<span class="lineno">   31 </span><span class="decl"><span class="istickedoff">assembleText generatorType parserType source = generateCodeForLambda generatorType =&lt;&lt; reduceText parserType source</span></span>
+<span class="lineno">   32 </span>
+<span class="lineno">   33 </span>reduceText :: MonadSafe m =&gt; ParserType -&gt; Text -&gt; m Lambda
+<span class="lineno">   34 </span><span class="decl"><span class="istickedoff">reduceText parserType source = reduceIL =&lt;&lt; parseAssemblyText parserType source</span></span>
+<span class="lineno">   35 </span>
+<span class="lineno">   36 </span>reduceIL :: MonadSafe m =&gt; InstructionList -&gt; m Lambda
+<span class="lineno">   37 </span><span class="decl"><span class="istickedoff">reduceIL = extract &lt;=&lt; expandDefinitions . reduceLambda</span></span>
+<span class="lineno">   38 </span>
+<span class="lineno">   39 </span>extract :: MonadSafe m =&gt; LambdaList -&gt; m Lambda
+<span class="lineno">   40 </span><span class="decl"><span class="istickedoff">extract []  = pure I</span>
+<span class="lineno">   41 </span><span class="spaces"></span><span class="istickedoff">extract [l] = pure l</span>
+<span class="lineno">   42 </span><span class="spaces"></span><span class="istickedoff">extract ll  = <span class="nottickedoff">liftErrorWithPrefix &quot;more then one&quot; $ show ll</span></span></span>
+
+</pre>
+</body>
+</html>

@@ -1,0 +1,12 @@
+; https://crypto.stanford.edu/~blynn/lambda/
+
+; Shallow encoding.
+: var \ x \ i x
+: app \ m \ n \ i i (m i) (n i)
+: abs \ f \ i \ x f x i
+: E   \ q q (\ x x); A self-interpreter.
+
+: qsucc abs (\ n abs(\ f abs(\ x app (var f) (app (app (var n) (var f)) (var x)))))
+: q0    abs (\ f abs(\ x var x))
+
+E (app qsucc (app qsucc q0)); Compute succ (succ 0).

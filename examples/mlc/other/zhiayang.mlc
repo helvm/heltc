@@ -1,0 +1,7 @@
+; https://github.com/zhiayang/lambda
+
+: S \ x \ y \ z x z (y z)
+: K \ x \ y x
+: I \ x x
+
+; S K K == I

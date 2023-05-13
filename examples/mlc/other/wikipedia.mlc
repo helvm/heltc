@@ -1,0 +1,48 @@
+; Based on https://en.wikipedia.org/wiki/Lambda_calculus
+
+; Constants
+: id     \ x x
+: T      \ x \ y x
+: F      \ x \ y y
+
+; Logic
+: and    \ p \ q p q p
+: or     \ p \ q p p q
+: not    \ p p F T
+: if     \ p \ a \ b p a b
+
+; Pair
+: pair   \ x \ y \ f f x y
+: first  \ p p T
+: second \ p p F
+
+; List
+: nil    \ x T
+: null   \ p p (\ x \ y F)
+: repeat \ n \ x n (pair x) nil
+
+; Arithmetic - succ
+: succ   \ n \ f \ x f (n f x)
+; plus   \ m \ n \ f \ x m f (n f x)
+: plus   \ m \ n m succ n
+; mult   \ m \ n \ f m (n f)
+: mult   \ m \ n m (plus n) 0
+: pow    \ b \ e e b
+
+; Natural numbers
+; 0      \ f \ x x
+; 1      \ f \ x f x
+; 2      \ f \ x f (f x)
+; 3      \ f \ x f (f (f x))
+
+; Arithmetic - pred
+: is0    \ n n (\ x F) T
+: Φ      \ x pair (second x) (succ (second x))
+: phi    Φ
+; pred   \ n \ f \ x n (\ g \ h h (g f)) (\ u x) (\ u u)
+; pred   \ n n (\ g \ k is0 (g 1) k (plus (g k) 1)) (\ v 0) 0
+: pred   \ n first (n Φ (pair 0 0))
+: sub    \ m \ n n pred m
+
+; Compare
+: leq    \ m \ n is0 (sub m n)

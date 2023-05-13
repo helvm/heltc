@@ -1,0 +1,10 @@
+; https://users $monash $edu/~lloyd/tildeFP/Lambda/Examples/
+
+: TRUE  \ a \ b a
+: FALSE \ a \ b b
+
+: AND   \ p \ q p q FALSE
+: OR    \ p \ q p TRUE q
+: NOT   \ p \ a \ b p b a
+: IF    \ p \ a \ b p a b
+; EQ    \ x \ y if x = y then TRUE else FALSE ; Are you kidding?

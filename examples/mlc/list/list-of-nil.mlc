@@ -1,0 +1,7 @@
+: T \ x \ y y
+: F \ x \ y x
+: , \ x \ y \ f f x y
+: . \ x T
+: @ \ n \ f \ x f (n f x)
+
+, . , . , . , . .

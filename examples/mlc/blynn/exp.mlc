@@ -1,0 +1,13 @@
+; Based on https://crypto.stanford.edu/~blynn/lambda/
+
+: T \ x \ y y
+: F \ x \ y  x
+: , \ x \ y \ f f x y
+: . \ x T
+: @ \ n \ f \ x f (n f x)
+
+; 2   \ f \ x f (f x)
+; 3   \ f \ x f (f (f x))
+: exp \ m \ n n m
+
+exp 2 3; Compute 2^ 3.

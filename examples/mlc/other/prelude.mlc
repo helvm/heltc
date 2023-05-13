@@ -1,0 +1,84 @@
+; Constants
+: id       \ x x
+: T        \ x \ y x
+: F        \ x \ y y
+
+; Logic
+: and      \ p \ q p q p
+: or       \ p \ q p p q
+: not      \ p p F T
+: nand     \ p \ q not (and p q)
+: nor      \ p \ q not (or p q)
+: if       \ p \ a \ b p a b
+: if       \ p \ x \ y p x y
+
+: compose  \ f \ g \ x f (g x)
+
+: pair     \ x \ y \ f f x y
+: ,        pair
+: fst      \ p p T
+: snd      \ p p F
+: car      fst
+: cdr      snd
+
+; List
+: cons     \ x \ y \ f \ init f x (y f init)
+; nil      \ x \ init init
+: nil      F
+; .        nil
+: null     \ p p (\ x \ y F)
+: repeat   \ n \ x n (pair x) nil
+: uncons   \ xs \ f \ z xs (\ a \ b \ _ f a b) z
+
+: fold     \ f \ l \ init l f init
+: map      \ f \ l \ g \ init l (compose g f) init
+
+: nilmap   \ f \ a if (null a) (f a) nil
+
+; Arithmetic add
+: succ     \ n \ f \ x f (n f x)
+; add      \ m \ n \ f \ x m f (n f x)
+: add      \ m \ n m succ n
+; mul      \ m \ n \ f m (n f)
+: mul      \ m \ n m (add n) 0
+: pow      \ b \ e e b
+
+; 0        \ f \ x x
+; 1        \ f \ x f x
+; 2        \ f \ x f (f x)
+; 3        \ f \ x f (f (f x))
+
+; Arithmetic minus
+: is0      \ n n (\ x F) T
+: eq0      is0
+: phi      \ x cons (cdr x) (succ (cdr x))
+: Φ        phi
+; pred     \ n \ f \ x n (\ g \ h h (g f)) (\ u x) (\ u u)
+; pred     \ n n (\ g \ k is0 (g 1) k (add (g k) 1)) (\ v 0) 0
+: pred     \ n car (n Φ (cons 0 0))
+: sub      \ m \ n n pred m
+
+; Compare
+: leq      \ m \ n is0 (sub m n)
+: geq      \ m \ n leq n m
+: eq       \ m \ n and (leq n m) (geq n m)
+: neq      \ m \ n nand (leq n m) (geq n m)
+: lt       \ m \ n and (leq n m) (not (geq n m))
+: gt       \ m \ n and (not (leq n m)) (geq n m)
+
+; Other
+: Y        \ rec (\ x rec (x x)) (\ x rec (x x))
+: fix      Y
+; I        id
+; S        \ x \ y \ z x z (y z)
+; K        T
+: B        \ x \ y \ z x (y z)
+: C        \ x \ y \ z x z y
+: W        \ x \ y x y y
+: ω        \ x x x
+: Δ        \ x x x
+: Ω        ω ω
+
+; List recursive
+: reverse  Y (\ rec \ ys \ xs uncons xs (\ x \ xs rec (cons x ys) xs) ys) nil
+: fact     Y (\ rec \ n (is0 n) 1 (mul n (rec (pred n))))

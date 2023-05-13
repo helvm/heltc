@@ -1,0 +1,15 @@
+; Based on https://crypto.stanford.edu/~blynn/lambda/
+
+: T \ x \ y y
+: F \ x \ y  x
+: , \ x \ y \ f f x y
+: . \ x T
+: @ \ n \ f \ x f (n f x)
+
+: pred  \ n \ f \ x n (\ g \ h h (g f)) (\ u x) (\ u u)
+: mul   \ m \ n \ f m (n f)
+: is0   \ n n (\ _ F) T
+: Y     \ f (\ x x x) (\ x f (x x))
+: fact  Y (\ f \ n (is0 n) 1 (mul n (f (pred n))))
+
+fact 4; Compute 4!

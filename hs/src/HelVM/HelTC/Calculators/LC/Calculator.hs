@@ -1,10 +1,9 @@
 module HelVM.HelTC.Calculators.LC.Calculator where
 
-import           HelVM.HelTC.Calculators.LC.API.GeneratorType
-import           HelVM.HelTC.Calculators.LC.API.ParserType
+import           HelVM.HelTC.Calculators.LC.API.ILType
+import           HelVM.HelTC.Calculators.LC.API.LambdaType
 
-import           HelVM.HelTC.Calculators.LC.Generators.ExpressionGenerator
-import           HelVM.HelTC.Calculators.LC.Generators.LambdaGenerator
+import           HelVM.HelTC.Calculators.LC.Generators.Generator
 
 import           HelVM.HelTC.Calculators.LC.DefinitionExpander
 import           HelVM.HelTC.Calculators.LC.Lambda
@@ -15,23 +14,27 @@ import           HelVM.HelTC.Calculator.IO.BusinessIO
 
 import           HelVM.HelIO.Control.Safe
 
-translateFile :: BIO m => ParserType -> ParserType -> FilePath -> m Text
+import           Control.Applicative.Tools
+
+import           HelVM.HelTC.Calculators.LC.Reducers.SkiReducer
+
+translateFile :: BIO m => ILType -> ILType -> FilePath -> m Text
 translateFile generatorType parserType filePath = translateText generatorType parserType =<< wReadFile filePath
 
-minimizeText :: BIO m => ParserType -> Text -> m Text
-minimizeText parserType = translateText parserType parserType
+minimizeText :: BIO m => ILType -> Text -> m Text
+minimizeText ilType = translateText ilType ilType
 
-translateText :: MonadSafe m => ParserType -> ParserType -> Text -> m Text
-translateText generatorType parserType source = generateCodeForIL generatorType <$> parseAssemblyText parserType source
+translateText :: MonadSafe m => ILType -> ILType -> Text -> m Text
+translateText generatorType parserType = generateCodeForIL generatorType <.> parseILText parserType
 
-assembleFile :: BIO m => GeneratorType -> ParserType -> FilePath -> m Text
-assembleFile generatorType parserType filePath = assembleText generatorType parserType =<< wReadFile filePath
+toCombinatorsFile :: BIO m => LambdaType -> ILType -> FilePath -> m Text
+toCombinatorsFile generatorType parserType = toCombinatorsText generatorType parserType <=< wReadFile
 
-assembleText :: MonadSafe m => GeneratorType -> ParserType -> Text -> m Text
-assembleText generatorType parserType source = generateCodeForLambda generatorType =<< reduceText parserType source
+toCombinatorsText :: MonadSafe m => LambdaType -> ILType -> Text -> m Text
+toCombinatorsText generatorType parserType = generateCodeForLambda generatorType <=< reduceText parserType
 
-reduceText :: MonadSafe m => ParserType -> Text -> m Lambda
-reduceText parserType source = reduceIL =<< parseAssemblyText parserType source
+reduceText :: MonadSafe m => ILType -> Text -> m Lambda
+reduceText ilType = reduceIL <=< parseILText ilType
 
 reduceIL :: MonadSafe m => InstructionList -> m Lambda
 reduceIL = extract <=< expandDefinitions . reduceLambda
@@ -40,3 +43,9 @@ extract :: MonadSafe m => LambdaList -> m Lambda
 extract []  = pure I
 extract [l] = pure l
 extract ll  = liftErrorWithPrefix "more then one" $ show ll
+
+toAbstractionFile :: BIO m => ILType -> LambdaType -> FilePath -> m Text
+toAbstractionFile generatorType parserType = toAbstractionText generatorType parserType <=< wReadFile
+
+toAbstractionText :: MonadSafe m => ILType -> LambdaType -> Text -> m Text
+toAbstractionText generatorType parserType = generateCodeForAbstract generatorType <.> reduceSki <.> parseLambdaText parserType

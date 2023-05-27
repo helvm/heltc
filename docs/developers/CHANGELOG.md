@@ -1,5 +1,8 @@
 # 📅 Revision history for HelTC
 
+## 0.1.2.0  -- 2023-06-19
+* Add parser and generator for Legacy Lambda
+
 ## 0.1.1.0  -- 2023-05-27
 * Add parser and generator for MLC
 

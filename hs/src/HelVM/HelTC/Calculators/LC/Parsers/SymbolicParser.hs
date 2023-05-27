@@ -1,5 +1,6 @@
 module HelVM.HelTC.Calculators.LC.Parsers.SymbolicParser (
   ilParser,
+  lambdaParser,
 ) where
 
 import           HelVM.HelTC.Calculators.LC.Lambda

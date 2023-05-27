@@ -1,9 +1,9 @@
 module HelVM.HelTC.Calculators.LC.CalculatorSpec (spec) where
 
-import           HelVM.HelTC.Calculators.LC.API.GeneratorType
-import           HelVM.HelTC.Calculators.LC.API.ParserType
+import           HelVM.HelTC.Calculators.LC.API.ILType
+import           HelVM.HelTC.Calculators.LC.API.LambdaType
 
-import           HelVM.HelTC.Calculators.LC.Generators.ExpressionGenerator
+import           HelVM.HelTC.Calculators.LC.Generators.Generator
 
 import           HelVM.HelTC.Calculators.LC.FileUtil
 
@@ -23,11 +23,11 @@ import           HelVM.HelIO.ZipA
 import           HelVM.Expectations
 import           HelVM.GoldenExpectations
 
-import           Data.Char                                                 (toLower)
+import           Data.Char                                       (toLower)
 
 import           System.FilePath.Posix
 
-import           Test.Hspec                                                (Spec, describe, it)
+import           Test.Hspec                                      (Spec, describe, it)
 
 
 spec :: Spec
@@ -61,7 +61,7 @@ spec = describe "parse" $ do
     )) $ \(fileName , dirName) -> do
     let path = dirName </> fileName
     let absolutePath = buildAbsolutePathToSourceFile "mlc" path
-    let parsedFile = (controlTToIOWithoutLogs $ parseAssemblyFile Meta absolutePath) :: IO InstructionList
+    let parsedFile = (controlTToIOWithoutLogs $ parseILFile Meta absolutePath) :: IO InstructionList
     describe "partial" $ do
       let ext = "mlc" </> "partial"
       it ("parsed"   </> path) $ showP <$> parsedFile `goldenShouldIO` buildAbsoluteParsedFileName ext path
@@ -81,18 +81,18 @@ spec = describe "parse" $ do
       let f2 = (controlTToIOWithoutLogs . minimizeText parseType =<< f) :: IO Text
       it ("minify" </> parseTypeAsString </> path) $ f2 `goldenShouldIO` buildAbsoluteExtFileName parseTypeAsString ("mlc" </> "minify") path
 
-    describe "generator" $ forM_ generatorTypes $ \generatorType -> do
-      let generatorTypeAsString = toLower <$> show generatorType
-      let f = assembleFile generatorType Meta absolutePath
+    describe "generator" $ forM_ generatorTypes $ \lambdaType -> do
+      let generatorTypeAsString = toLower <$> show lambdaType
+      let f = toCombinatorsFile lambdaType Meta absolutePath
       it ("generator" </> generatorTypeAsString </> path) $ f `goldenShouldControlT` buildAbsoluteExtFileName generatorTypeAsString ("mlc" </> "generator") path
 
-  describe "assembleText" $ forM_
+  describe "toCombinatorsText" $ forM_
     [ (": T \\ x \\ y y"              , "I")
     , (": F \\ x \\ y x"              , "I")
     , (": , \\ x \\ y \\ f f x y"     , "I")
     , (": @ \\ n \\ f \\ x f (n f x)" , "I")
     ] $ \(source , code) ->
-    it (toString source) $ assembleText MLC Meta (source <> "\n") `shouldSafe` code
+    it (toString source) $ toCombinatorsText MLC Meta (source <> "\n") `shouldSafe` code
 
   describe "reduce" $ forM_
     [ (": T \\ x \\ y y"              , [Def "T" (App K I)])
@@ -101,7 +101,7 @@ spec = describe "parse" $ do
     , (": , \\ x \\ y \\ f f x y"     , [Def "," (App (App S (App (App S (App K S)) (App (App S (App K (App S (App K S)))) (App (App S (App K (App S (App K (App S I))))) (App (App S (App K (App S (App K K)))) (App (App S (App K K)) I)))))) (App K (App (App S (App K K)) I)))])
     , (": @ \\ n \\ f \\ x f (n f x)" , [Def "@" (App (App S (App K (App S (App (App S (App K S)) (App (App S (App K K)) I))))) (App (App S (App (App S (App K S)) (App (App S (App K (App S (App K S)))) (App (App S (App (App S (App K S)) (App (App S (App K (App S (App K S)))) (App (App S (App K (App S (App K K)))) (App (App S (App K K)) I))))) (App K (App (App S (App K K)) I)))))) (App K (App K I))))])
     ] $ \(source , code) ->
-    it (toString source) $ (reduceLambda <$> parseAssemblyText Meta (source <> "\n")) `shouldSafe` code
+    it (toString source) $ (reduceLambda <$> parseILText Meta (source <> "\n")) `shouldSafe` code
 
   describe "minimizeText" $ forM_
     [ ("'h"              , "104")
@@ -121,7 +121,7 @@ spec = describe "parse" $ do
     , ("(, 0 , 1 , 2 , 3 , 4 .)"                  , [Eval (App (App (App (App (App (App (App (App (App (App (Var ",") (Nat 0)) (Var ",")) (Nat 1)) (Var ",")) (Nat 2)) (Var ",")) (Nat 3)) (Var ",")) (Nat 4)) (Var "."))])
     , ("(, -1 , +2 , -3 , +4 .)"                  , [Eval (App (App (App (App (App (App (App (App (Var ",") (Int (SN Minus 1))) (Var ",")) (Int (SN Plus 2))) (Var ",")) (Int (SN Minus 3))) (Var ",")) (Int (SN Plus 4))) (Var "."))])
     ] $ \(source , code) -> do
-    it ("parseAssemblyText" </> toString source) $ parseAssemblyText Meta (source <> "\n") `shouldSafe` code
+    it ("parseILText" </> toString source) $ parseILText Meta (source <> "\n") `shouldSafe` code
 --    it ("minimizeText" </>  toString source) $ (minimizeText Meta (source <> "\n")) `shouldControlT` (source <> "\n")
 
   describe ("internal" </> show Symbolic) $ forM_
@@ -133,4 +133,4 @@ spec = describe "parse" $ do
     , ("(define , (lambda (x y f) (f x y)))"     , [Def "," (AbsRe ["x" , "y" , "f"] (App (App (Var "f") (Var "x")) (Var "y")))])
     , ("(define @ (lambda (n f x) (f (n f x))))" , [Def "@" (AbsRe ["n" , "f" , "x"] (App (Var "f") (App (App (Var "n") (Var "f")) (Var "x"))))])
     ] $ \(source , code) ->
-    it ("parseAssemblyText" </> toString source) $ parseAssemblyText Symbolic (source <> "\n") `shouldSafe` code
+    it ("parseILText" </> toString source) $ parseILText Symbolic (source <> "\n") `shouldSafe` code

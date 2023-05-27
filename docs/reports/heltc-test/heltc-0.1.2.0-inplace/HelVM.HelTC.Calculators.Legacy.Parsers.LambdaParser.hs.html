@@ -1,0 +1,74 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+span.lineno { color: white; background: #aaaaaa; border-right: solid white 12px }
+span.nottickedoff { background: yellow}
+span.istickedoff { background: white }
+span.tickonlyfalse { margin: -1px; border: 1px solid #f20913; background: #f20913 }
+span.tickonlytrue  { margin: -1px; border: 1px solid #60de51; background: #60de51 }
+span.funcount { font-size: small; color: orange; z-index: 2; position: absolute; right: 20 }
+span.decl { font-weight: bold }
+span.spaces    { background: white }
+</style>
+</head>
+<body>
+<pre>
+<span class="decl"><span class="nottickedoff">never executed</span> <span class="tickonlytrue">always true</span> <span class="tickonlyfalse">always false</span></span>
+</pre>
+<pre>
+<span class="lineno">    1 </span>module HelVM.HelTC.Calculators.Legacy.Parsers.LambdaParser where
+<span class="lineno">    2 </span>
+<span class="lineno">    3 </span>import           HelVM.HelTC.Calculators.LC.Lambda
+<span class="lineno">    4 </span>
+<span class="lineno">    5 </span>import           HelVM.HelTC.Calculators.Legacy.Parse
+<span class="lineno">    6 </span>
+<span class="lineno">    7 </span>import           Data.Char
+<span class="lineno">    8 </span>
+<span class="lineno">    9 </span>import qualified Relude.Unsafe                        as Unsafe
+<span class="lineno">   10 </span>
+<span class="lineno">   11 </span>parseLambda :: Text -&gt; Lambda
+<span class="lineno">   12 </span><span class="decl"><span class="nottickedoff">parseLambda = fst . fst . Unsafe.head . (lambdaParser &gt;*&gt; eof) . lexer . toString</span></span>
+<span class="lineno">   13 </span>
+<span class="lineno">   14 </span>lambdaParser :: Parse String Lambda
+<span class="lineno">   15 </span><span class="decl"><span class="nottickedoff">lambdaParser = applyParser `alt` funParser</span></span>
+<span class="lineno">   16 </span>
+<span class="lineno">   17 </span>applyParser :: Parse String Lambda
+<span class="lineno">   18 </span><span class="decl"><span class="nottickedoff">applyParser = recL1 App atomParser</span></span>
+<span class="lineno">   19 </span>
+<span class="lineno">   20 </span>funParser :: Parse String Lambda
+<span class="lineno">   21 </span><span class="decl"><span class="nottickedoff">funParser = token &quot;\\&quot; &gt;*&gt; paramsParser &gt;*&gt; token &quot;-&gt;&quot; &gt;*&gt; lambdaParser `build` buildFun</span></span>
+<span class="lineno">   22 </span>
+<span class="lineno">   23 </span>buildFun :: (String, ([String], (String, Lambda))) -&gt; Lambda
+<span class="lineno">   24 </span><span class="decl"><span class="nottickedoff">buildFun (&quot;\\&quot;, (ps, (&quot;-&gt;&quot;, e))) = makeFun (toText &lt;$&gt; ps) e</span>
+<span class="lineno">   25 </span><span class="spaces"></span><span class="nottickedoff">buildFun  _                      = error &quot;buildFun&quot;</span></span>
+<span class="lineno">   26 </span>
+<span class="lineno">   27 </span>makeFun :: [Text] -&gt; Lambda -&gt; Lambda
+<span class="lineno">   28 </span><span class="decl"><span class="nottickedoff">makeFun [p] ex      = Abs p ex</span>
+<span class="lineno">   29 </span><span class="spaces"></span><span class="nottickedoff">makeFun (p : ps) ex = Abs p $ makeFun ps ex</span>
+<span class="lineno">   30 </span><span class="spaces"></span><span class="nottickedoff">makeFun _ _         = error &quot;makeFun error: need 1 parameter at least&quot;</span></span>
+<span class="lineno">   31 </span>
+<span class="lineno">   32 </span>atomParser :: Parse String Lambda
+<span class="lineno">   33 </span><span class="decl"><span class="nottickedoff">atomParser = (spot (isLower . Unsafe.head) `build` (Var . toText)) `alt` parensParser</span></span>
+<span class="lineno">   34 </span>
+<span class="lineno">   35 </span>parensParser :: Parse String Lambda
+<span class="lineno">   36 </span><span class="decl"><span class="nottickedoff">parensParser = token &quot;(&quot; &gt;*&gt; lambdaParser &gt;*&gt; token &quot;)&quot; `build` fst . snd</span></span>
+<span class="lineno">   37 </span>
+<span class="lineno">   38 </span>paramsParser :: Parse String [String]
+<span class="lineno">   39 </span><span class="decl"><span class="nottickedoff">paramsParser = list1 $ spot $ isLower . Unsafe.head</span></span>
+<span class="lineno">   40 </span>
+<span class="lineno">   41 </span>lexer :: String -&gt; [String]
+<span class="lineno">   42 </span><span class="decl"><span class="nottickedoff">lexer             &quot;&quot;  = []</span>
+<span class="lineno">   43 </span><span class="spaces"></span><span class="nottickedoff">lexer (' '       : s) = lexer s</span>
+<span class="lineno">   44 </span><span class="spaces"></span><span class="nottickedoff">lexer ('\n'      : s) = lexer s</span>
+<span class="lineno">   45 </span><span class="spaces"></span><span class="nottickedoff">lexer ('\\'      : s) = &quot;\\&quot; : lexer s</span>
+<span class="lineno">   46 </span><span class="spaces"></span><span class="nottickedoff">lexer ('-' : '&gt;' : s) = &quot;-&gt;&quot; : lexer s</span>
+<span class="lineno">   47 </span><span class="spaces"></span><span class="nottickedoff">lexer (      '(' : s) = &quot;(&quot;  : lexer s</span>
+<span class="lineno">   48 </span><span class="spaces"></span><span class="nottickedoff">lexer (      ')' : s) = &quot;)&quot;  : lexer s</span>
+<span class="lineno">   49 </span><span class="spaces"></span><span class="nottickedoff">lexer ca@(c : _)</span>
+<span class="lineno">   50 </span><span class="spaces">  </span><span class="nottickedoff">| isLower c    = ret : lexer s where (ret, s) = span isAlphaNum ca</span>
+<span class="lineno">   51 </span><span class="spaces"></span><span class="nottickedoff">lexer ca      = error $ &quot;lexer error: &quot; &lt;&gt; toText ca</span></span>
+
+</pre>
+</body>
+</html>

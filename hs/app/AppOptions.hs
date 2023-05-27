@@ -1,8 +1,8 @@
 {-# LANGUAGE StrictData #-}
 module AppOptions where
 
-import           HelVM.HelTC.Calculators.LC.API.GeneratorType
-import           HelVM.HelTC.Calculators.LC.API.ParserType
+import           HelVM.HelTC.Calculators.LC.API.ILType
+import           HelVM.HelTC.Calculators.LC.API.LambdaType
 
 import           BoolTypes
 
@@ -15,17 +15,17 @@ optionParser = AppOptions
                    <> help    "Pring logs to strerr"
                    <> showDefault
                    )
-  <*> option auto  (  long    "parserType"
+  <*> option auto  (  long    "ilType"
                    <> short   'p'
-                   <> metavar "[ParserType]"
-                   <> help   ("ParserType: " <> show parserTypes)
+                   <> metavar "[ILType]"
+                   <> help   ("ILType: " <> show parserTypes)
                    <> value    defaultParserType
                    <> showDefault
                    )
-  <*> option auto  (  long    "generatorType"
+  <*> option auto  (  long    "lambdaType"
                    <> short   'g'
-                   <> metavar "[GeneratorType]"
-                   <> help   ("GeneratorType: " <> show generatorTypes)
+                   <> metavar "[LambdaType]"
+                   <> help   ("LambdaType: " <> show generatorTypes)
                    <> value    defaultGeneratorType
                    <> showDefault
                    )
@@ -39,8 +39,8 @@ optionParser = AppOptions
 -- | Types
 
 data AppOptions = AppOptions
-  { printLogs     :: !PrintLogs
-  , parserType    :: !ParserType
-  , generatorType :: !GeneratorType
-  , file          :: !String
+  { printLogs  :: !PrintLogs
+  , ilType     :: !ILType
+  , lambdaType :: !LambdaType
+  , file       :: !String
   }

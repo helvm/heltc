@@ -40,6 +40,9 @@ data Instruction =
 
 type LambdaList = [Lambda]
 
+infixl 9 `App`
+infixr 8 `Abs`
+
 data Lambda =
     S
   | K

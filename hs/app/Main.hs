@@ -16,5 +16,5 @@ main = run =<< execParser opts where
      <> progDesc "" )
 
 run :: AppOptions -> IO ()
-run (AppOptions printLogs parserType generatorType filePath) =
-  putTextLn =<< controlTToIO printLogs (assembleFile generatorType parserType filePath)
+run (AppOptions printLogs ilType lambdaType filePath) =
+  putTextLn =<< controlTToIO printLogs (toCombinatorsFile lambdaType ilType filePath)

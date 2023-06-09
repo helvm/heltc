@@ -1,8 +1,14 @@
-# TODO
+# ✔️TODO
 
 **Future Features**
 
-*We do not have **todo** now.*
+Features to implemented in Haskell:
+* Calculators:
+  * [ ] 🦄 [BLC](https://github.com/helvm/blc) Calculator
+  * [ ] 🦄 [Crazy L](https://crypto.stanford.edu/~blynn/lambda/crazyl.html) Calculator
+  * [ ] 🦄 [DBLC](https://github.com/helvm/Dependent-Binary-Lambda-Calculus) Calculator
+  * [x] 🦄 [Lazy K](https://helvm.org/lazy-k/lazy-k.html) Calculator
+  * [x] 🦄 [Zot](https://github.com/helvm/zot_haskell) Calculator
 
 You can propose feature by [GitHub](https://github.com/helvm/heltc/issues).
 

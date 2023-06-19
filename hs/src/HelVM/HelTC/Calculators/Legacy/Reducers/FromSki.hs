@@ -3,9 +3,9 @@ module HelVM.HelTC.Calculators.Legacy.Reducers.FromSki (
   buildSki,
 ) where
 
-import           HelVM.HelTC.Calculators.LC.Lambda
+import           HelVM.HelTC.Calculators.Lambda.Lambda
 
-import           Data.List                         (minimumBy)
+import           Data.List                             (minimumBy)
 
 skiToLambda :: Lambda -> Lambda
 skiToLambda = betaSki . minimumBy (comparing size) . take 15 . iterate betaReduction

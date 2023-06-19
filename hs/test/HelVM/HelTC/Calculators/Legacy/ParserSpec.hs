@@ -35,4 +35,4 @@ spec = describe "parse" $ forM_ ((
       let inputTypeAsString = toLower <$> show inputType
       let file = readCalculusFile inputTypeAsString path
       it (inputTypeAsString </> path) $
-        (showP <$> (safeIOToIO $ parseLambdaText inputType <$> file)) `goldenShouldIO` buildAbsolutePathToIlFile inputTypeAsString path
+        (showP <$> safeIOToIO ( parseLambdaText inputType <$> file)) `goldenShouldIO` buildAbsolutePathToIlFile inputTypeAsString path

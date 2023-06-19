@@ -4,9 +4,9 @@ module HelVM.HelTC.Calculators.Legacy.Parser (
 
 import           HelVM.HelTC.Calculators.Legacy.API.CalculusType
 
-import           HelVM.HelTC.Calculators.LC.Lambda
+import           HelVM.HelTC.Calculators.Lambda.Lambda
 
-import           HelVM.HelTC.Calculators.LC.Parsers.UnLambdaParser
+import           HelVM.HelTC.Calculators.Lambda.Parsers.UnLambdaParser
 import           HelVM.HelTC.Calculators.Legacy.Parsers.LambdaParser
 import           HelVM.HelTC.Calculators.Legacy.Parsers.ZotParser
 

@@ -1,8 +1,8 @@
 {-# LANGUAGE StrictData #-}
 module AppOptions where
 
-import           HelVM.HelTC.Calculators.LC.API.ILType
-import           HelVM.HelTC.Calculators.LC.API.LambdaType
+import           HelVM.HelTC.Calculators.Lambda.API.ILType
+import           HelVM.HelTC.Calculators.Lambda.API.LambdaType
 
 import           BoolTypes
 

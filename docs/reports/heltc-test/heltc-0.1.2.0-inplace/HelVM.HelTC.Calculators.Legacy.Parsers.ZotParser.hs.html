@@ -21,17 +21,17 @@ span.spaces    { background: white }
 <span class="lineno">    2 </span>  parseZot,
 <span class="lineno">    3 </span>) where
 <span class="lineno">    4 </span>
-<span class="lineno">    5 </span>import           HelVM.HelTC.Calculators.LC.Lambda
+<span class="lineno">    5 </span>import           HelVM.HelTC.Calculators.Lambda.Lambda
 <span class="lineno">    6 </span>
-<span class="lineno">    7 </span>import           HelVM.HelTC.Calculators.LC.Parsers.UnLambdaParser
+<span class="lineno">    7 </span>import           HelVM.HelTC.Calculators.Lambda.Parsers.UnLambdaParser
 <span class="lineno">    8 </span>
 <span class="lineno">    9 </span>import           HelVM.HelTC.Calculators.Legacy.Parse
 <span class="lineno">   10 </span>
 <span class="lineno">   11 </span>import           Data.Char
 <span class="lineno">   12 </span>
-<span class="lineno">   13 </span>import qualified Relude.Unsafe                                     as Unsafe
+<span class="lineno">   13 </span>import qualified Relude.Unsafe                                         as Unsafe
 <span class="lineno">   14 </span>
-<span class="lineno">   15 </span>import qualified Data.Text                                         as Text
+<span class="lineno">   15 </span>import qualified Data.Text                                             as Text
 <span class="lineno">   16 </span>
 <span class="lineno">   17 </span>parseZot :: Text -&gt; Lambda
 <span class="lineno">   18 </span><span class="decl"><span class="istickedoff">parseZot = parseUnLambda . convert</span></span>

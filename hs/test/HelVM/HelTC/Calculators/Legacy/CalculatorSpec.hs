@@ -36,4 +36,4 @@ spec = describe "calculus" $ forM_ ((
       forM_ calculusTypes $ \ outputType -> do
         let outputTypeAsString = toLower <$> show outputType
         it (inputTypeAsString </> outputTypeAsString </> path) $
-          (safeIOToIO $ toCombinatorsText outputType inputType <$> file) `goldenShouldIO` buildAbsoluteCalculusExtFileName inputTypeAsString outputTypeAsString path
+          safeIOToIO (toCombinatorsText outputType inputType <$> file) `goldenShouldIO` buildAbsoluteCalculusExtFileName inputTypeAsString outputTypeAsString path

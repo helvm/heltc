@@ -3,7 +3,7 @@ cabal-version:         2.4
 name:                  heltc
 version:               0.1.2.0
 
-synopsis:              HELTC - Heavenly Esoteric Little True Calculator to Esoteric Languages
+synopsis:              HelTC - Heavenly Esoteric Little True Calculator to Esoteric Languages
 description:           Please see the README on GitHub at <https://github.com/helvm/heltc#readme>
 homepage:              https://helvm.github.io/heltc/
 bug-reports:           https://github.com/helvm/heltc/issues
@@ -106,43 +106,52 @@ library
   hs-source-dirs:      hs/src
   exposed-modules:
 
-    HelVM.HelTC.Calculator.IO.BusinessIO
+    HelVM.HelTC.Calculator.ReadPExtra
     HelVM.HelTC.Calculator.Value
 
-    HelVM.HelTC.Calculators.LC.API.ILType
-    HelVM.HelTC.Calculators.LC.API.LambdaType
+    HelVM.HelTC.Calculator.API.IOTypes
 
-    HelVM.HelTC.Calculators.LC.Generators.Generator
-    HelVM.HelTC.Calculators.LC.Generators.GeneratorUtil
+    HelVM.HelTC.Calculators.Combinators.LazyK.Calculator
+    HelVM.HelTC.Calculators.Combinators.LazyK.Combinator
+    HelVM.HelTC.Calculators.Combinators.LazyK.Constants
+    HelVM.HelTC.Calculators.Combinators.LazyK.Evaluator
+    HelVM.HelTC.Calculators.Combinators.LazyK.InputEncoder
+    HelVM.HelTC.Calculators.Combinators.LazyK.Lexer
+    HelVM.HelTC.Calculators.Combinators.LazyK.Parser
+    HelVM.HelTC.Calculators.Combinators.LazyK.Reducer
 
-    HelVM.HelTC.Calculators.LC.Generators.Impl.HaskellGenerator
-    HelVM.HelTC.Calculators.LC.Generators.Impl.MetaGenerator
-    HelVM.HelTC.Calculators.LC.Generators.Impl.SymbolicGenerator
-    HelVM.HelTC.Calculators.LC.Generators.Impl.UnLambdaGenerator
-    HelVM.HelTC.Calculators.LC.Generators.Impl.ZotGenerator
+    HelVM.HelTC.Calculators.Lambda.API.ILType
+    HelVM.HelTC.Calculators.Lambda.API.LambdaType
 
-    HelVM.HelTC.Calculators.LC.Parsers.HaskellParser
-    HelVM.HelTC.Calculators.LC.Parsers.MetaParser
-    HelVM.HelTC.Calculators.LC.Parsers.SymbolicParser
-    HelVM.HelTC.Calculators.LC.Parsers.UnLambdaParser
-    HelVM.HelTC.Calculators.LC.Parsers.ZotParser
+    HelVM.HelTC.Calculators.Lambda.Generators.Generator
+    HelVM.HelTC.Calculators.Lambda.Generators.GeneratorUtil
 
-    HelVM.HelTC.Calculators.LC.Reducers.AbstractionReducer
-    HelVM.HelTC.Calculators.LC.Reducers.AbsReReducer
-    HelVM.HelTC.Calculators.LC.Reducers.IntegerReducer
-    HelVM.HelTC.Calculators.LC.Reducers.NaturalReducer
-    HelVM.HelTC.Calculators.LC.Reducers.ListReducer
-    HelVM.HelTC.Calculators.LC.Reducers.SkiReducer
-    HelVM.HelTC.Calculators.LC.Reducers.StringReducer
+    HelVM.HelTC.Calculators.Lambda.Generators.Impl.HaskellGenerator
+    HelVM.HelTC.Calculators.Lambda.Generators.Impl.MetaGenerator
+    HelVM.HelTC.Calculators.Lambda.Generators.Impl.SymbolicGenerator
+    HelVM.HelTC.Calculators.Lambda.Generators.Impl.UnLambdaGenerator
+    HelVM.HelTC.Calculators.Lambda.Generators.Impl.ZotGenerator
 
+    HelVM.HelTC.Calculators.Lambda.Parsers.HaskellParser
+    HelVM.HelTC.Calculators.Lambda.Parsers.MetaParser
+    HelVM.HelTC.Calculators.Lambda.Parsers.SymbolicParser
+    HelVM.HelTC.Calculators.Lambda.Parsers.UnLambdaParser
+    HelVM.HelTC.Calculators.Lambda.Parsers.ZotParser
 
-    HelVM.HelTC.Calculators.LC.Calculator
-    HelVM.HelTC.Calculators.LC.DefinitionExpander
-    HelVM.HelTC.Calculators.LC.Lambda
-    HelVM.HelTC.Calculators.LC.LambdaReducer
-    HelVM.HelTC.Calculators.LC.Lexer
-    HelVM.HelTC.Calculators.LC.Parser
+    HelVM.HelTC.Calculators.Lambda.Reducers.AbstractionReducer
+    HelVM.HelTC.Calculators.Lambda.Reducers.AbsReReducer
+    HelVM.HelTC.Calculators.Lambda.Reducers.IntegerReducer
+    HelVM.HelTC.Calculators.Lambda.Reducers.NaturalReducer
+    HelVM.HelTC.Calculators.Lambda.Reducers.ListReducer
+    HelVM.HelTC.Calculators.Lambda.Reducers.SkiReducer
+    HelVM.HelTC.Calculators.Lambda.Reducers.StringReducer
 
+    HelVM.HelTC.Calculators.Lambda.Calculator
+    HelVM.HelTC.Calculators.Lambda.DefinitionExpander
+    HelVM.HelTC.Calculators.Lambda.Lambda
+    HelVM.HelTC.Calculators.Lambda.LambdaReducer
+    HelVM.HelTC.Calculators.Lambda.Lexer
+    HelVM.HelTC.Calculators.Lambda.Parser
 
     HelVM.HelTC.Calculators.Legacy.Calculator
     HelVM.HelTC.Calculators.Legacy.Parser
@@ -199,8 +208,15 @@ test-suite heltc-test
     HelVM.Expectations
     HelVM.GoldenExpectations
 
-    HelVM.HelTC.Calculators.LC.CalculatorSpec
-    HelVM.HelTC.Calculators.LC.FileUtil
+    HelVM.HelTC.Calculators.FileExtra
+
+    HelVM.HelTC.Calculators.Lambda.CalculatorSpec
+    HelVM.HelTC.Calculators.Lambda.FileUtil
+
+    HelVM.HelTC.Calculators.Combinators.LazyK.EvaluatorSpec
+    HelVM.HelTC.Calculators.Combinators.LazyK.FileExtra
+    HelVM.HelTC.Calculators.Combinators.LazyK.NumberSpec
+    HelVM.HelTC.Calculators.Combinators.LazyK.ParserSpec
 
     HelVM.HelTC.Calculators.Legacy.CalculatorSpec
     HelVM.HelTC.Calculators.Legacy.ParserSpec

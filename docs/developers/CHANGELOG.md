@@ -1,5 +1,8 @@
 # 📅 Revision history for HelTC
 
+## 0.1.3.0  -- 2023-06-21
+* Add LazyK
+
 ## 0.1.2.0  -- 2023-06-19
 * Add parser and generator for Legacy Lambda
 

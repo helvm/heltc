@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+span.lineno { color: white; background: #aaaaaa; border-right: solid white 12px }
+span.nottickedoff { background: yellow}
+span.istickedoff { background: white }
+span.tickonlyfalse { margin: -1px; border: 1px solid #f20913; background: #f20913 }
+span.tickonlytrue  { margin: -1px; border: 1px solid #60de51; background: #60de51 }
+span.funcount { font-size: small; color: orange; z-index: 2; position: absolute; right: 20 }
+span.decl { font-weight: bold }
+span.spaces    { background: white }
+</style>
+</head>
+<body>
+<pre>
+<span class="decl"><span class="nottickedoff">never executed</span> <span class="tickonlytrue">always true</span> <span class="tickonlyfalse">always false</span></span>
+</pre>
+<pre>
+<span class="lineno">    1 </span>module HelVM.HelTC.Calculators.Blynn.Translator where
+<span class="lineno">    2 </span>
+<span class="lineno">    3 </span>import           HelVM.HelTC.Calculators.Blynn.Lambda
+<span class="lineno">    4 </span>
+<span class="lineno">    5 </span>import qualified HelVM.HelTC.Calculators.Lambda.Lambda    as Hel
+<span class="lineno">    6 </span>
+<span class="lineno">    7 </span>translateToCL :: Hel.Lambda -&gt; CL
+<span class="lineno">    8 </span><span class="decl"><span class="istickedoff">translateToCL  Hel.S        = Lf S</span>
+<span class="lineno">    9 </span><span class="spaces"></span><span class="istickedoff">translateToCL  Hel.K        = Lf K</span>
+<span class="lineno">   10 </span><span class="spaces"></span><span class="istickedoff">translateToCL  Hel.I        = Lf I</span>
+<span class="lineno">   11 </span><span class="spaces"></span><span class="istickedoff">translateToCL (Hel.App f g) = translateToCL f :# translateToCL g</span>
+<span class="lineno">   12 </span><span class="spaces"></span><span class="istickedoff">translateToCL _             = <span class="nottickedoff">error &quot;error in translateToCL&quot;</span></span></span>
+<span class="lineno">   13 </span>
+<span class="lineno">   14 </span>
+<span class="lineno">   15 </span>translateToLC :: Hel.Lambda -&gt; LC
+<span class="lineno">   16 </span><span class="decl"><span class="nottickedoff">translateToLC  Hel.S        = Other S</span>
+<span class="lineno">   17 </span><span class="spaces"></span><span class="nottickedoff">translateToLC  Hel.K        = Other K</span>
+<span class="lineno">   18 </span><span class="spaces"></span><span class="nottickedoff">translateToLC  Hel.I        = Other I</span>
+<span class="lineno">   19 </span><span class="spaces"></span><span class="nottickedoff">translateToLC (Hel.App f g) = translateToLC f :@ translateToLC g</span>
+<span class="lineno">   20 </span><span class="spaces"></span><span class="nottickedoff">translateToLC (Hel.Var n)   = Var $ toString n</span>
+<span class="lineno">   21 </span><span class="spaces"></span><span class="nottickedoff">translateToLC (Hel.Abs n f) = Lam (toString n) (translateToLC f)</span>
+<span class="lineno">   22 </span><span class="spaces"></span><span class="nottickedoff">translateToLC _             = error &quot;error in translateToLC&quot;</span></span>
+
+</pre>
+</body>
+</html>

@@ -2,17 +2,17 @@ module HelVM.HelTC.Calculators.Legacy.Parsers.ZotParser (
   parseZot,
 ) where
 
-import           HelVM.HelTC.Calculators.LC.Lambda
+import           HelVM.HelTC.Calculators.Lambda.Lambda
 
-import           HelVM.HelTC.Calculators.LC.Parsers.UnLambdaParser
+import           HelVM.HelTC.Calculators.Lambda.Parsers.UnLambdaParser
 
 import           HelVM.HelTC.Calculators.Legacy.Parse
 
 import           Data.Char
 
-import qualified Relude.Unsafe                                     as Unsafe
+import qualified Relude.Unsafe                                         as Unsafe
 
-import qualified Data.Text                                         as Text
+import qualified Data.Text                                             as Text
 
 parseZot :: Text -> Lambda
 parseZot = parseUnLambda . convert

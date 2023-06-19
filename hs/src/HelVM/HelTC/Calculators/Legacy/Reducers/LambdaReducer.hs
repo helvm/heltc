@@ -2,7 +2,7 @@ module HelVM.HelTC.Calculators.Legacy.Reducers.LambdaReducer (
   reduceLambda,
 ) where
 
-import           HelVM.HelTC.Calculators.LC.Lambda
+import           HelVM.HelTC.Calculators.Lambda.Lambda
 
 reduceLambda :: Lambda -> Lambda
 reduceLambda (App f a) = App (reduceLambda f) (reduceLambda a)

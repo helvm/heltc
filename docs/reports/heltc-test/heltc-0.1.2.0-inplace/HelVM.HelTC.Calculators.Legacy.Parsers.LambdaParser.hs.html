@@ -19,13 +19,13 @@ span.spaces    { background: white }
 <pre>
 <span class="lineno">    1 </span>module HelVM.HelTC.Calculators.Legacy.Parsers.LambdaParser where
 <span class="lineno">    2 </span>
-<span class="lineno">    3 </span>import           HelVM.HelTC.Calculators.LC.Lambda
+<span class="lineno">    3 </span>import           HelVM.HelTC.Calculators.Lambda.Lambda
 <span class="lineno">    4 </span>
 <span class="lineno">    5 </span>import           HelVM.HelTC.Calculators.Legacy.Parse
 <span class="lineno">    6 </span>
 <span class="lineno">    7 </span>import           Data.Char
 <span class="lineno">    8 </span>
-<span class="lineno">    9 </span>import qualified Relude.Unsafe                        as Unsafe
+<span class="lineno">    9 </span>import qualified Relude.Unsafe                         as Unsafe
 <span class="lineno">   10 </span>
 <span class="lineno">   11 </span>parseLambda :: Text -&gt; Lambda
 <span class="lineno">   12 </span><span class="decl"><span class="nottickedoff">parseLambda = fst . fst . Unsafe.head . (lambdaParser &gt;*&gt; eof) . lexer . toString</span></span>

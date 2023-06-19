@@ -1,12 +1,12 @@
 module HelVM.HelTC.Calculators.Legacy.Parsers.LambdaParser where
 
-import           HelVM.HelTC.Calculators.LC.Lambda
+import           HelVM.HelTC.Calculators.Lambda.Lambda
 
 import           HelVM.HelTC.Calculators.Legacy.Parse
 
 import           Data.Char
 
-import qualified Relude.Unsafe                        as Unsafe
+import qualified Relude.Unsafe                         as Unsafe
 
 parseLambda :: Text -> Lambda
 parseLambda = fst . fst . Unsafe.head . (lambdaParser >*> eof) . lexer . toString

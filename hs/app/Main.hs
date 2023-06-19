@@ -1,6 +1,6 @@
 module Main where
 
-import           HelVM.HelTC.Calculators.LC.Calculator
+import           HelVM.HelTC.Calculators.Lambda.Calculator
 
 import           HelVM.HelIO.Control.Control
 

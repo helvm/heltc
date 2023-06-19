@@ -2,11 +2,11 @@ module HelVM.HelTC.Calculators.Legacy.Reducer (
   reduce,
 ) where
 
-import           HelVM.HelTC.Calculators.LC.Lambda
+import           HelVM.HelTC.Calculators.Lambda.Lambda
 
 import           HelVM.HelTC.Calculators.Legacy.API.CalculusType
 
-import           HelVM.HelTC.Calculators.LC.Reducers.SkiReducer
+import           HelVM.HelTC.Calculators.Lambda.Reducers.SkiReducer
 import           HelVM.HelTC.Calculators.Legacy.Reducers.LambdaReducer
 
 reduce :: CalculusType -> CalculusType -> Lambda -> Lambda

@@ -21,7 +21,7 @@ lambdaParser :: Parser Lambda
 lambdaParser = applicationParser <|> sParser <|> kParser <|> iParser
 
 applicationParser :: Parser Lambda
-applicationParser = backtick *> (liftA2 App lambdaParser lambdaParser)
+applicationParser = backtick *> liftA2 App lambdaParser lambdaParser
 
 sParser , kParser , iParser :: Parser Lambda
 sParser = S <$ symbolic 's'

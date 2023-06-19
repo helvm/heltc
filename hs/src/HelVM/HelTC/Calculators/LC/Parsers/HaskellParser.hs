@@ -28,8 +28,7 @@ absParser = do
   _ <- symbol "\\"
   var <- identifierParser
   _ <- symbol "->"
-  body <- terminalParser
-  pure (Abs var body)
+  Abs var <$> terminalParser
 
 applicationParser :: Parser Lambda
 applicationParser = (lambdaFromNonEmpty <$> parens (many1' terminalParser)) <?> "application"

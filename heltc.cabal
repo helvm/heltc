@@ -109,6 +109,8 @@ library
     HelVM.HelTC.Calculator.IO.BusinessIO
     HelVM.HelTC.Calculator.Value
 
+    HelVM.HelTC.Calculators.Blynn.Lambda
+
     HelVM.HelTC.Calculators.LC.API.ILType
     HelVM.HelTC.Calculators.LC.API.LambdaType
 

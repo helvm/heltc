@@ -110,6 +110,7 @@ library
     HelVM.HelTC.Calculator.Value
 
     HelVM.HelTC.Calculators.Blynn.Lambda
+    HelVM.HelTC.Calculators.Blynn.Translator
 
     HelVM.HelTC.Calculators.LC.API.ILType
     HelVM.HelTC.Calculators.LC.API.LambdaType

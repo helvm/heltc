@@ -58,8 +58,8 @@ data Lambda =
   | List LambdaList
   | Str String
   deriving stock (Eq , Ord , Read , Show)
-  
-  
+
+
 
 data SignNatural = SN Sign Natural
   deriving stock (Eq , Ord , Read , Show)

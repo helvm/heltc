@@ -2,6 +2,7 @@ module HelVM.HelTC.Calculators.LC.FileUtil (
   readLangFile,
   readSourceFile,
   buildAbsolutePathToSourceFile,
+  buildAbsoluteTranslateFileName,
   buildAbsoluteExpandedFileName,
   buildAbsoluteReducedFileName,
   buildAbsoluteParsedFileName,
@@ -28,6 +29,9 @@ readSourceFile filePath = readFileTextUtf8 $ familyDir </> filePath
 
 buildAbsolutePathToSourceFile :: FilePath -> FilePath -> FilePath
 buildAbsolutePathToSourceFile lang fileName = familyDir </> lang </> fileName <.> lang
+
+buildAbsoluteTranslateFileName :: FilePath -> FilePath -> FilePath
+buildAbsoluteTranslateFileName = buildAbsoluteExtFileName "translate"
 
 buildAbsoluteExpandedFileName :: FilePath -> FilePath -> FilePath
 buildAbsoluteExpandedFileName = buildAbsoluteExtFileName "expanded"

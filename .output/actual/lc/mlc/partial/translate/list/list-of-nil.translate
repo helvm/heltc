@@ -1,0 +1,171 @@
+(
+    (
+        (
+            (
+                (
+                    (
+                        (
+                            (
+                                ( Other S :@
+                                    (
+                                        ( Other S :@ ( Other K :@ Other S ) ) :@
+                                        (
+                                            ( Other S :@
+                                                ( Other K :@
+                                                    ( Other S :@ ( Other K :@ Other S ) )
+                                                )
+                                            ) :@
+                                            (
+                                                ( Other S :@
+                                                    ( Other K :@
+                                                        ( Other S :@
+                                                            ( Other K :@ ( Other S :@ Other I ) )
+                                                        )
+                                                    )
+                                                ) :@
+                                                (
+                                                    ( Other S :@
+                                                        ( Other K :@
+                                                            ( Other S :@ ( Other K :@ Other K ) )
+                                                        )
+                                                    ) :@
+                                                    (
+                                                        ( Other S :@ ( Other K :@ Other K ) ) :@ Other I
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                ) :@
+                                ( Other K :@
+                                    (
+                                        ( Other S :@ ( Other K :@ Other K ) ) :@ Other I
+                                    )
+                                )
+                            ) :@
+                            ( Other K :@ ( Other K :@ Other I ) )
+                        ) :@
+                        (
+                            ( Other S :@
+                                (
+                                    ( Other S :@ ( Other K :@ Other S ) ) :@
+                                    (
+                                        ( Other S :@
+                                            ( Other K :@
+                                                ( Other S :@ ( Other K :@ Other S ) )
+                                            )
+                                        ) :@
+                                        (
+                                            ( Other S :@
+                                                ( Other K :@
+                                                    ( Other S :@
+                                                        ( Other K :@ ( Other S :@ Other I ) )
+                                                    )
+                                                )
+                                            ) :@
+                                            (
+                                                ( Other S :@
+                                                    ( Other K :@
+                                                        ( Other S :@ ( Other K :@ Other K ) )
+                                                    )
+                                                ) :@
+                                                (
+                                                    ( Other S :@ ( Other K :@ Other K ) ) :@ Other I
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            ) :@
+                            ( Other K :@
+                                (
+                                    ( Other S :@ ( Other K :@ Other K ) ) :@ Other I
+                                )
+                            )
+                        )
+                    ) :@
+                    ( Other K :@ ( Other K :@ Other I ) )
+                ) :@
+                (
+                    ( Other S :@
+                        (
+                            ( Other S :@ ( Other K :@ Other S ) ) :@
+                            (
+                                ( Other S :@
+                                    ( Other K :@
+                                        ( Other S :@ ( Other K :@ Other S ) )
+                                    )
+                                ) :@
+                                (
+                                    ( Other S :@
+                                        ( Other K :@
+                                            ( Other S :@
+                                                ( Other K :@ ( Other S :@ Other I ) )
+                                            )
+                                        )
+                                    ) :@
+                                    (
+                                        ( Other S :@
+                                            ( Other K :@
+                                                ( Other S :@ ( Other K :@ Other K ) )
+                                            )
+                                        ) :@
+                                        (
+                                            ( Other S :@ ( Other K :@ Other K ) ) :@ Other I
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    ) :@
+                    ( Other K :@
+                        (
+                            ( Other S :@ ( Other K :@ Other K ) ) :@ Other I
+                        )
+                    )
+                )
+            ) :@
+            ( Other K :@ ( Other K :@ Other I ) )
+        ) :@
+        (
+            ( Other S :@
+                (
+                    ( Other S :@ ( Other K :@ Other S ) ) :@
+                    (
+                        ( Other S :@
+                            ( Other K :@
+                                ( Other S :@ ( Other K :@ Other S ) )
+                            )
+                        ) :@
+                        (
+                            ( Other S :@
+                                ( Other K :@
+                                    ( Other S :@
+                                        ( Other K :@ ( Other S :@ Other I ) )
+                                    )
+                                )
+                            ) :@
+                            (
+                                ( Other S :@
+                                    ( Other K :@
+                                        ( Other S :@ ( Other K :@ Other K ) )
+                                    )
+                                ) :@
+                                (
+                                    ( Other S :@ ( Other K :@ Other K ) ) :@ Other I
+                                )
+                            )
+                        )
+                    )
+                )
+            ) :@
+            ( Other K :@
+                (
+                    ( Other S :@ ( Other K :@ Other K ) ) :@ Other I
+                )
+            )
+        )
+    ) :@
+    ( Other K :@ ( Other K :@ Other I ) )
+) :@
+    ( Other K :@ ( Other K :@ Other I ) )

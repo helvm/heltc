@@ -4,11 +4,14 @@ module HelVM.HelTC.Calculators.Blynn.Lambda where
 import           HelVM.HelIO.SwitchEnum
 
 data Com = S | K | I | B | C | T
+  deriving stock (Eq , Ord , Read , Show)
 
 data CL = Lf Com | CL :# CL | Ext String
+  deriving stock (Eq , Ord , Read , Show)
 
 type VarId = String
 data LC = Var VarId | Lam VarId LC | LC :@ LC | Other Com
+  deriving stock (Eq , Ord , Read , Show)
 
 deLam :: LC -> LC
 deLam t = case t of

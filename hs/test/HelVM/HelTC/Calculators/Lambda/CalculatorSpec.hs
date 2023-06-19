@@ -14,6 +14,9 @@ import           HelVM.HelTC.Calculators.Lambda.Parser
 
 import qualified HelVM.HelTC.Calculators.Combinators.LazyK.Combinator as LazyK
 
+--import qualified HelVM.HelTC.Calculators.Blynn.Lambda                 as Blynn
+--import           HelVM.HelTC.Calculators.Blynn.Translator
+
 import           HelVM.HelTC.Calculator.Value
 
 import           HelVM.HelIO.Control.Business
@@ -73,6 +76,11 @@ spec = describe "parse" $ do
       it ("reduced"  </> path) $ showP <$> businessTToIOWithoutLogs reducedLambdaFile `goldenShouldIO` buildAbsoluteReducedFileName ext path
       it ("expanded" </> path) $ showP <$> businessTToIOWithoutLogs reducedILFIle `goldenShouldIO` buildAbsoluteExpandedFileName ext path
       it ("lazy"     </> path) $ showP <$> businessTToIOWithoutLogs lazy `goldenShouldIO` buildAbsoluteExtFileName "lazy" ext path
+--      it ("parsed"    </> path) $ showP <$> parsedFile `goldenShouldIO` buildAbsoluteParsedFileName ext path
+--      it ("reduced"   </> path) $ showP <$> (reduceLambda <$> parsedFile) `goldenShouldIO` buildAbsoluteReducedFileName ext path
+--      it ("expanded"  </> path) $ safeIOToPTextIO (reduceIL <$> parsedFile) `goldenShouldIO` buildAbsoluteExpandedFileName ext path
+--      it ("translate" </> path) $ (showP <$> translateToCL <$> (safeIOToIO $ reduceIL <$> parsedFile))`goldenShouldIO` buildAbsoluteExtFileName "translate" ext path
+--      it ("run"       </> path) $ (showP <$> (flip Blynn.runCom "") <$> translateToCL <$> (safeIOToIO $ reduceIL <$> parsedFile))`goldenShouldIO` buildAbsoluteExtFileName "run" ext path
 
     describe "translate" $ forM_ parserTypes $ \parseType -> do
       let parseTypeAsString = toLower <$> show parseType

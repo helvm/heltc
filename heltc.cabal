@@ -109,8 +109,12 @@ library
     HelVM.HelTC.Calculator.ReadPExtra
     HelVM.HelTC.Calculator.Value
 
+
     HelVM.HelTC.Calculator.API.IOTypes
     HelVM.HelTC.Calculator.Types.FormatType
+
+    HelVM.HelTC.Calculators.Blynn.Lambda
+    HelVM.HelTC.Calculators.Blynn.Translator
 
     HelVM.HelTC.Calculators.Evaluator
 

@@ -1,0 +1,577 @@
+(
+    (
+        ( Lf S :#
+            ( Lf K :#
+                ( ( Lf S :# Lf I ) :# Lf I )
+            )
+        ) :#
+        (
+            ( Lf S :#
+                (
+                    ( Lf S :# ( Lf K :# Lf S ) ) :#
+                    (
+                        ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                    )
+                )
+            ) :#
+            ( Lf K :#
+                ( ( Lf S :# Lf I ) :# Lf I )
+            )
+        )
+    ) :#
+    (
+        ( Lf S :#
+            (
+                ( Lf S :# ( Lf K :# Lf S ) ) :#
+                (
+                    ( Lf S :#
+                        (
+                            ( Lf S :# ( Lf K :# Lf S ) ) :#
+                            (
+                                ( Lf S :#
+                                    (
+                                        ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                        (
+                                            ( Lf S :# ( Lf K :# Lf K ) ) :#
+                                            ( Lf K :#
+                                                (
+                                                    ( Lf S :#
+                                                        ( ( Lf S :# Lf I ) :#
+                                                            (
+                                                                ( Lf S :# ( Lf K :# Lf K ) ) :#
+                                                                ( Lf K :#
+                                                                    (
+                                                                        ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    ) :#
+                                                    ( Lf K :# ( Lf K :# Lf I ) )
+                                                )
+                                            )
+                                        )
+                                    )
+                                ) :# ( Lf K :# Lf I )
+                            )
+                        )
+                    ) :#
+                    (
+                        ( Lf S :#
+                            (
+                                ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                (
+                                    ( Lf S :# ( Lf K :# Lf K ) ) :#
+                                    ( Lf K :#
+                                        (
+                                            ( Lf S :#
+                                                ( Lf K :#
+                                                    ( Lf S :#
+                                                        (
+                                                            ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                                            (
+                                                                ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            ) :#
+                                            (
+                                                ( Lf S :#
+                                                    (
+                                                        ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                                        (
+                                                            ( Lf S :#
+                                                                ( Lf K :#
+                                                                    ( Lf S :# ( Lf K :# Lf S ) )
+                                                                )
+                                                            ) :#
+                                                            (
+                                                                ( Lf S :#
+                                                                    (
+                                                                        ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                                                        (
+                                                                            ( Lf S :#
+                                                                                ( Lf K :#
+                                                                                    ( Lf S :# ( Lf K :# Lf S ) )
+                                                                                )
+                                                                            ) :#
+                                                                            (
+                                                                                ( Lf S :#
+                                                                                    ( Lf K :#
+                                                                                        ( Lf S :# ( Lf K :# Lf K ) )
+                                                                                    )
+                                                                                ) :#
+                                                                                (
+                                                                                    ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                                                                )
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                ) :#
+                                                                ( Lf K :#
+                                                                    (
+                                                                        ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                ) :#
+                                                ( Lf K :# ( Lf K :# Lf I ) )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        ) :#
+                        (
+                            ( Lf S :# ( Lf K :# Lf K ) ) :#
+                            ( Lf K :#
+                                (
+                                    ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ) :#
+        (
+            ( Lf S :#
+                (
+                    ( Lf S :# ( Lf K :# Lf S ) ) :#
+                    (
+                        ( Lf S :#
+                            (
+                                ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                (
+                                    ( Lf S :# ( Lf K :# Lf K ) ) :#
+                                    ( Lf K :#
+                                        (
+                                            ( Lf S :#
+                                                (
+                                                    ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                                    (
+                                                        ( Lf S :#
+                                                            ( Lf K :#
+                                                                ( Lf S :# ( Lf K :# Lf S ) )
+                                                            )
+                                                        ) :#
+                                                        (
+                                                            ( Lf S :#
+                                                                ( Lf K :#
+                                                                    ( Lf S :# ( Lf K :# Lf K ) )
+                                                                )
+                                                            ) :#
+                                                            (
+                                                                ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            ) :#
+                                            ( Lf K :#
+                                                (
+                                                    ( Lf S :#
+                                                        (
+                                                            ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                                            (
+                                                                ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                                            )
+                                                        )
+                                                    ) :# ( Lf K :# Lf I )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        ) :# ( Lf K :# Lf I )
+                    )
+                )
+            ) :#
+            (
+                ( Lf S :#
+                    (
+                        ( Lf S :# ( Lf K :# Lf S ) ) :#
+                        (
+                            ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                        )
+                    )
+                ) :#
+                (
+                    ( Lf S :#
+                        (
+                            ( Lf S :# ( Lf K :# Lf S ) ) :#
+                            (
+                                ( Lf S :# ( Lf K :# Lf K ) ) :#
+                                ( Lf K :#
+                                    (
+                                        ( Lf S :#
+                                            (
+                                                ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                                (
+                                                    ( Lf S :#
+                                                        ( Lf K :#
+                                                            ( Lf S :# ( Lf K :# Lf S ) )
+                                                        )
+                                                    ) :#
+                                                    (
+                                                        ( Lf S :#
+                                                            (
+                                                                ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                                                (
+                                                                    ( Lf S :#
+                                                                        ( Lf K :#
+                                                                            ( Lf S :# ( Lf K :# Lf S ) )
+                                                                        )
+                                                                    ) :#
+                                                                    (
+                                                                        ( Lf S :#
+                                                                            (
+                                                                                ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                                                                (
+                                                                                    ( Lf S :#
+                                                                                        ( Lf K :#
+                                                                                            ( Lf S :# ( Lf K :# Lf S ) )
+                                                                                        )
+                                                                                    ) :#
+                                                                                    (
+                                                                                        ( Lf S :#
+                                                                                            ( Lf K :#
+                                                                                                ( Lf S :# ( Lf K :# Lf K ) )
+                                                                                            )
+                                                                                        ) :#
+                                                                                        (
+                                                                                            ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                                                                        )
+                                                                                    )
+                                                                                )
+                                                                            )
+                                                                        ) :#
+                                                                        ( Lf K :#
+                                                                            (
+                                                                                ( Lf S :#
+                                                                                    ( Lf K :#
+                                                                                        ( Lf S :#
+                                                                                            ( Lf K :#
+                                                                                                ( Lf S :#
+                                                                                                    ( Lf K :# ( Lf S :# Lf I ) )
+                                                                                                )
+                                                                                            )
+                                                                                        )
+                                                                                    )
+                                                                                ) :#
+                                                                                (
+                                                                                    ( Lf S :#
+                                                                                        ( Lf K :#
+                                                                                            ( Lf S :#
+                                                                                                ( Lf K :#
+                                                                                                    ( Lf S :#
+                                                                                                        (
+                                                                                                            ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                                                                                            (
+                                                                                                                ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                                                                                            )
+                                                                                                        )
+                                                                                                    )
+                                                                                                )
+                                                                                            )
+                                                                                        )
+                                                                                    ) :#
+                                                                                    (
+                                                                                        ( Lf S :#
+                                                                                            ( Lf K :#
+                                                                                                ( Lf S :#
+                                                                                                    ( Lf K :#
+                                                                                                        ( Lf S :# ( Lf K :# Lf K ) )
+                                                                                                    )
+                                                                                                )
+                                                                                            )
+                                                                                        ) :#
+                                                                                        (
+                                                                                            ( Lf S :#
+                                                                                                ( Lf K :#
+                                                                                                    ( Lf S :# ( Lf K :# Lf K ) )
+                                                                                                )
+                                                                                            ) :#
+                                                                                            (
+                                                                                                ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                                                                            )
+                                                                                        )
+                                                                                    )
+                                                                                )
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                        ) :#
+                                                        ( Lf K :#
+                                                            ( Lf K :#
+                                                                (
+                                                                    ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        ) :#
+                                        ( Lf K :#
+                                            ( Lf K :# ( Lf K :# Lf I ) )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    ) :# ( Lf K :# Lf I )
+                )
+            )
+        )
+    )
+) :#
+    (
+        (
+            ( Lf S :#
+                ( Lf K :#
+                    ( Lf S :#
+                        (
+                            ( Lf S :# ( Lf K :# Lf S ) ) :#
+                            (
+                                ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                            )
+                        )
+                    )
+                )
+            ) :#
+            (
+                ( Lf S :#
+                    (
+                        ( Lf S :# ( Lf K :# Lf S ) ) :#
+                        (
+                            ( Lf S :#
+                                ( Lf K :#
+                                    ( Lf S :# ( Lf K :# Lf S ) )
+                                )
+                            ) :#
+                            (
+                                ( Lf S :#
+                                    (
+                                        ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                        (
+                                            ( Lf S :#
+                                                ( Lf K :#
+                                                    ( Lf S :# ( Lf K :# Lf S ) )
+                                                )
+                                            ) :#
+                                            (
+                                                ( Lf S :#
+                                                    ( Lf K :#
+                                                        ( Lf S :# ( Lf K :# Lf K ) )
+                                                    )
+                                                ) :#
+                                                (
+                                                    ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                                )
+                                            )
+                                        )
+                                    )
+                                ) :#
+                                ( Lf K :#
+                                    (
+                                        ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                    )
+                                )
+                            )
+                        )
+                    )
+                ) :#
+                ( Lf K :# ( Lf K :# Lf I ) )
+            )
+        ) :#
+        (
+            (
+                ( Lf S :#
+                    ( Lf K :#
+                        ( Lf S :#
+                            (
+                                ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                (
+                                    ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                )
+                            )
+                        )
+                    )
+                ) :#
+                (
+                    ( Lf S :#
+                        (
+                            ( Lf S :# ( Lf K :# Lf S ) ) :#
+                            (
+                                ( Lf S :#
+                                    ( Lf K :#
+                                        ( Lf S :# ( Lf K :# Lf S ) )
+                                    )
+                                ) :#
+                                (
+                                    ( Lf S :#
+                                        (
+                                            ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                            (
+                                                ( Lf S :#
+                                                    ( Lf K :#
+                                                        ( Lf S :# ( Lf K :# Lf S ) )
+                                                    )
+                                                ) :#
+                                                (
+                                                    ( Lf S :#
+                                                        ( Lf K :#
+                                                            ( Lf S :# ( Lf K :# Lf K ) )
+                                                        )
+                                                    ) :#
+                                                    (
+                                                        ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    ) :#
+                                    ( Lf K :#
+                                        (
+                                            ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    ) :#
+                    ( Lf K :# ( Lf K :# Lf I ) )
+                )
+            ) :#
+            (
+                (
+                    ( Lf S :#
+                        ( Lf K :#
+                            ( Lf S :#
+                                (
+                                    ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                    (
+                                        ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                    )
+                                )
+                            )
+                        )
+                    ) :#
+                    (
+                        ( Lf S :#
+                            (
+                                ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                (
+                                    ( Lf S :#
+                                        ( Lf K :#
+                                            ( Lf S :# ( Lf K :# Lf S ) )
+                                        )
+                                    ) :#
+                                    (
+                                        ( Lf S :#
+                                            (
+                                                ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                                (
+                                                    ( Lf S :#
+                                                        ( Lf K :#
+                                                            ( Lf S :# ( Lf K :# Lf S ) )
+                                                        )
+                                                    ) :#
+                                                    (
+                                                        ( Lf S :#
+                                                            ( Lf K :#
+                                                                ( Lf S :# ( Lf K :# Lf K ) )
+                                                            )
+                                                        ) :#
+                                                        (
+                                                            ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        ) :#
+                                        ( Lf K :#
+                                            (
+                                                ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        ) :#
+                        ( Lf K :# ( Lf K :# Lf I ) )
+                    )
+                ) :#
+                (
+                    (
+                        ( Lf S :#
+                            ( Lf K :#
+                                ( Lf S :#
+                                    (
+                                        ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                        (
+                                            ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                        )
+                                    )
+                                )
+                            )
+                        ) :#
+                        (
+                            ( Lf S :#
+                                (
+                                    ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                    (
+                                        ( Lf S :#
+                                            ( Lf K :#
+                                                ( Lf S :# ( Lf K :# Lf S ) )
+                                            )
+                                        ) :#
+                                        (
+                                            ( Lf S :#
+                                                (
+                                                    ( Lf S :# ( Lf K :# Lf S ) ) :#
+                                                    (
+                                                        ( Lf S :#
+                                                            ( Lf K :#
+                                                                ( Lf S :# ( Lf K :# Lf S ) )
+                                                            )
+                                                        ) :#
+                                                        (
+                                                            ( Lf S :#
+                                                                ( Lf K :#
+                                                                    ( Lf S :# ( Lf K :# Lf K ) )
+                                                                )
+                                                            ) :#
+                                                            (
+                                                                ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            ) :#
+                                            ( Lf K :#
+                                                (
+                                                    ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            ) :#
+                            ( Lf K :# ( Lf K :# Lf I ) )
+                        )
+                    ) :#
+                    (
+                        ( Lf S :# ( Lf K :# Lf K ) ) :# Lf I
+                    )
+                )
+            )
+        )
+    )

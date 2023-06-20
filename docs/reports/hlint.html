@@ -161,15 +161,17 @@ document.body.className = "script";
 
 <p><a class="all" href="javascript:show('')">All hints</a></p>
 <ul>
-<li><a id="hint0" href="javascript:show('hint0')">Warning: Functor law (1)</a></li>
-<li><a id="hint1" href="javascript:show('hint1')">Suggestion: Move brackets to avoid $ (1)</a></li>
+<li><a id="hint0" href="javascript:show('hint0')">Warning: Functor law (3)</a></li>
+<li><a id="hint1" href="javascript:show('hint1')">Suggestion: Move brackets to avoid $ (2)</a></li>
 <li><a id="hint2" href="javascript:show('hint2')">Suggestion: Reduce duplication (1)</a></li>
+<li><a id="hint3" href="javascript:show('hint3')">Suggestion: Redundant bracket (1)</a></li>
+<li><a id="hint4" href="javascript:show('hint4')">Suggestion: Use section (1)</a></li>
 </ul>
 
 <p><a class="all" href="javascript:show('')">All files</a></p>
 <ul>
 <li><a id="file0" href="javascript:show('file0')">./dist-newstyle/src/helio-157a2fc26d319c83/hs/test/HelVM/HelIO/Collections/MapListSpec.hs (1)</a></li>
-<li><a id="file1" href="javascript:show('file1')">./hs/test/HelVM/HelTC/Calculators/LC/CalculatorSpec.hs (2)</a></li>
+<li><a id="file1" href="javascript:show('file1')">./hs/test/HelVM/HelTC/Calculators/LC/CalculatorSpec.hs (7)</a></li>
 </ul>
 
 </div>
@@ -196,20 +198,69 @@ Perhaps<br/>
 </div>
 
 <div class="hint0 file1">
-hs/test/HelVM/HelTC/Calculators/LC/CalculatorSpec.hs:72:36-97: Warning: Functor law<br/>
+hs/test/HelVM/HelTC/Calculators/LC/CalculatorSpec.hs:73:36-101: Warning: Functor law<br/>
 Found<br/>
-<pre><span class='hs-definition'>showP</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>translate</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>safeIOToIO</span> <span class='hs-varop'>$</span> <span class='hs-varid'>reduceIL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span><span class='hs-layout'>)</span></pre>
+<pre><span class='hs-definition'>showP</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>translateToCL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>safeIOToIO</span> <span class='hs-varop'>$</span> <span class='hs-varid'>reduceIL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span><span class='hs-layout'>)</span></pre>
 Perhaps<br/>
-<pre><span class='hs-definition'>showP</span> <span class='hs-varop'>.</span> <span class='hs-varid'>translate</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>safeIOToIO</span> <span class='hs-varop'>$</span> <span class='hs-varid'>reduceIL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span><span class='hs-layout'>)</span></pre>
+<pre><span class='hs-definition'>showP</span> <span class='hs-varop'>.</span> <span class='hs-varid'>translateToCL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>safeIOToIO</span> <span class='hs-varop'>$</span> <span class='hs-varid'>reduceIL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span><span class='hs-layout'>)</span></pre>
 
 </div>
 
 <div class="hint1 file1">
-hs/test/HelVM/HelTC/Calculators/LC/CalculatorSpec.hs:72:36-97: Suggestion: Move brackets to avoid $<br/>
+hs/test/HelVM/HelTC/Calculators/LC/CalculatorSpec.hs:73:36-101: Suggestion: Move brackets to avoid $<br/>
 Found<br/>
-<pre><span class='hs-definition'>showP</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>translate</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>safeIOToIO</span> <span class='hs-varop'>$</span> <span class='hs-varid'>reduceIL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span><span class='hs-layout'>)</span></pre>
+<pre><span class='hs-definition'>showP</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>translateToCL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>safeIOToIO</span> <span class='hs-varop'>$</span> <span class='hs-varid'>reduceIL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span><span class='hs-layout'>)</span></pre>
 Perhaps<br/>
-<pre><span class='hs-definition'>showP</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>translate</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>safeIOToIO</span> <span class='hs-layout'>(</span><span class='hs-varid'>reduceIL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span><span class='hs-layout'>)</span></pre>
+<pre><span class='hs-definition'>showP</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>translateToCL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>safeIOToIO</span> <span class='hs-layout'>(</span><span class='hs-varid'>reduceIL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span><span class='hs-layout'>)</span></pre>
+
+</div>
+
+<div class="hint0 file1">
+hs/test/HelVM/HelTC/Calculators/LC/CalculatorSpec.hs:74:36-85: Warning: Functor law<br/>
+Found<br/>
+<pre><span class='hs-definition'>showP</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>flip</span> <span class='hs-conid'>Blynn.runCom</span> <span class='hs-str'>""</span><span class='hs-layout'>)</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>translateToCL</span></pre>
+Perhaps<br/>
+<pre><span class='hs-layout'>(</span><span class='hs-varid'>showP</span> <span class='hs-varop'>.</span> <span class='hs-varid'>flip</span> <span class='hs-conid'>Blynn.runCom</span> <span class='hs-str'>""</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>translateToCL</span><span class='hs-layout'>)</span></pre>
+
+</div>
+
+<div class="hint0 file1">
+hs/test/HelVM/HelTC/Calculators/LC/CalculatorSpec.hs:74:36-128: Warning: Functor law<br/>
+Found<br/>
+<pre><span class='hs-definition'>showP</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>flip</span> <span class='hs-conid'>Blynn.runCom</span> <span class='hs-str'>""</span><span class='hs-layout'>)</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>translateToCL</span>
+  <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>safeIOToIO</span> <span class='hs-varop'>$</span> <span class='hs-varid'>reduceIL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span><span class='hs-layout'>)</span></pre>
+Perhaps<br/>
+<pre><span class='hs-layout'>(</span><span class='hs-varid'>showP</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>flip</span> <span class='hs-conid'>Blynn.runCom</span> <span class='hs-str'>""</span><span class='hs-layout'>)</span><span class='hs-layout'>)</span> <span class='hs-varop'>.</span> <span class='hs-varid'>translateToCL</span>
+  <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>safeIOToIO</span> <span class='hs-varop'>$</span> <span class='hs-varid'>reduceIL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span><span class='hs-layout'>)</span></pre>
+
+</div>
+
+<div class="hint1 file1">
+hs/test/HelVM/HelTC/Calculators/LC/CalculatorSpec.hs:74:36-128: Suggestion: Move brackets to avoid $<br/>
+Found<br/>
+<pre><span class='hs-definition'>showP</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>flip</span> <span class='hs-conid'>Blynn.runCom</span> <span class='hs-str'>""</span><span class='hs-layout'>)</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>translateToCL</span>
+  <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>safeIOToIO</span> <span class='hs-varop'>$</span> <span class='hs-varid'>reduceIL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span><span class='hs-layout'>)</span></pre>
+Perhaps<br/>
+<pre><span class='hs-definition'>showP</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>flip</span> <span class='hs-conid'>Blynn.runCom</span> <span class='hs-str'>""</span><span class='hs-layout'>)</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>translateToCL</span>
+  <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>safeIOToIO</span> <span class='hs-layout'>(</span><span class='hs-varid'>reduceIL</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span><span class='hs-layout'>)</span></pre>
+
+</div>
+
+<div class="hint4 file1">
+hs/test/HelVM/HelTC/Calculators/LC/CalculatorSpec.hs:74:46-67: Suggestion: Use section<br/>
+Found<br/>
+<pre><span class='hs-layout'>(</span><span class='hs-varid'>flip</span> <span class='hs-conid'>Blynn.runCom</span> <span class='hs-str'>""</span><span class='hs-layout'>)</span></pre>
+Perhaps<br/>
+<pre><span class='hs-layout'>(</span><span class='hs-varop'>`Blynn.runCom`</span> <span class='hs-str'>""</span><span class='hs-layout'>)</span></pre>
+
+</div>
+
+<div class="hint3 file1">
+hs/test/HelVM/HelTC/Calculators/LC/CalculatorSpec.hs:74:46-67: Suggestion: Redundant bracket<br/>
+Found<br/>
+<pre><span class='hs-definition'>showP</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>flip</span> <span class='hs-conid'>Blynn.runCom</span> <span class='hs-str'>""</span><span class='hs-layout'>)</span></pre>
+Perhaps<br/>
+<pre><span class='hs-definition'>showP</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>flip</span> <span class='hs-conid'>Blynn.runCom</span> <span class='hs-str'>""</span></pre>
 
 </div>
 

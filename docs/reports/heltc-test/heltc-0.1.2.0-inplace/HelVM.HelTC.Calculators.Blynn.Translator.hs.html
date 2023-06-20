@@ -23,14 +23,22 @@ span.spaces    { background: white }
 <span class="lineno">    4 </span>
 <span class="lineno">    5 </span>import qualified HelVM.HelTC.Calculators.LC.Lambda    as Hel
 <span class="lineno">    6 </span>
-<span class="lineno">    7 </span>translate :: Hel.Lambda -&gt; LC
-<span class="lineno">    8 </span><span class="decl"><span class="istickedoff">translate  Hel.S        = Other S</span>
-<span class="lineno">    9 </span><span class="spaces"></span><span class="istickedoff">translate  Hel.K        = Other K</span>
-<span class="lineno">   10 </span><span class="spaces"></span><span class="istickedoff">translate  Hel.I        = Other I</span>
-<span class="lineno">   11 </span><span class="spaces"></span><span class="istickedoff">translate (Hel.Var n)   = <span class="nottickedoff">Var $ toString n</span></span>
-<span class="lineno">   12 </span><span class="spaces"></span><span class="istickedoff">translate (Hel.Abs n f) = <span class="nottickedoff">Lam (toString n) (translate f)</span></span>
-<span class="lineno">   13 </span><span class="spaces"></span><span class="istickedoff">translate (Hel.App f g) = translate f :@ translate g</span>
-<span class="lineno">   14 </span><span class="spaces"></span><span class="istickedoff">translate _             = <span class="nottickedoff">error &quot;error in translate&quot;</span></span></span>
+<span class="lineno">    7 </span>translateToCL :: Hel.Lambda -&gt; CL
+<span class="lineno">    8 </span><span class="decl"><span class="istickedoff">translateToCL  Hel.S        = Lf S</span>
+<span class="lineno">    9 </span><span class="spaces"></span><span class="istickedoff">translateToCL  Hel.K        = Lf K</span>
+<span class="lineno">   10 </span><span class="spaces"></span><span class="istickedoff">translateToCL  Hel.I        = Lf I</span>
+<span class="lineno">   11 </span><span class="spaces"></span><span class="istickedoff">translateToCL (Hel.App f g) = translateToCL f :# translateToCL g</span>
+<span class="lineno">   12 </span><span class="spaces"></span><span class="istickedoff">translateToCL _             = <span class="nottickedoff">error &quot;error in translateToCL&quot;</span></span></span>
+<span class="lineno">   13 </span>
+<span class="lineno">   14 </span>
+<span class="lineno">   15 </span>translateToLC :: Hel.Lambda -&gt; LC
+<span class="lineno">   16 </span><span class="decl"><span class="nottickedoff">translateToLC  Hel.S        = Other S</span>
+<span class="lineno">   17 </span><span class="spaces"></span><span class="nottickedoff">translateToLC  Hel.K        = Other K</span>
+<span class="lineno">   18 </span><span class="spaces"></span><span class="nottickedoff">translateToLC  Hel.I        = Other I</span>
+<span class="lineno">   19 </span><span class="spaces"></span><span class="nottickedoff">translateToLC (Hel.App f g) = translateToLC f :@ translateToLC g</span>
+<span class="lineno">   20 </span><span class="spaces"></span><span class="nottickedoff">translateToLC (Hel.Var n)   = Var $ toString n</span>
+<span class="lineno">   21 </span><span class="spaces"></span><span class="nottickedoff">translateToLC (Hel.Abs n f) = Lam (toString n) (translateToLC f)</span>
+<span class="lineno">   22 </span><span class="spaces"></span><span class="nottickedoff">translateToLC _             = error &quot;error in translateToLC&quot;</span></span>
 
 </pre>
 </body>

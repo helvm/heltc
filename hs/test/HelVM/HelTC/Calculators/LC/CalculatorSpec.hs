@@ -67,11 +67,11 @@ spec = describe "parse" $ do
     let parsedFile = (controlTToIOWithoutLogs $ parseILFile Meta absolutePath) :: IO InstructionList
     describe "partial" $ do
       let ext = "mlc" </> "partial"
-      it ("parsed"   </> path) $ showP <$> parsedFile `goldenShouldIO` buildAbsoluteParsedFileName ext path
-      it ("reduced"  </> path) $ showP <$> (reduceLambda <$> parsedFile) `goldenShouldIO` buildAbsoluteReducedFileName ext path
-      it ("expanded" </> path) $ safeIOToPTextIO (reduceIL <$> parsedFile) `goldenShouldIO` buildAbsoluteExpandedFileName ext path
-      it ("translate" </> path) $ (showP <$> translate <$> (safeIOToIO $ reduceIL <$> parsedFile))`goldenShouldIO` buildAbsoluteExtFileName "translate" ext path
-      it ("run" </> path) $ (showP <$> (flip Blynn.runCom "") <$> translate <$> (safeIOToIO $ reduceIL <$> parsedFile))`goldenShouldIO` buildAbsoluteExtFileName "run" ext path
+      it ("parsed"    </> path) $ showP <$> parsedFile `goldenShouldIO` buildAbsoluteParsedFileName ext path
+      it ("reduced"   </> path) $ showP <$> (reduceLambda <$> parsedFile) `goldenShouldIO` buildAbsoluteReducedFileName ext path
+      it ("expanded"  </> path) $ safeIOToPTextIO (reduceIL <$> parsedFile) `goldenShouldIO` buildAbsoluteExpandedFileName ext path
+      it ("translate" </> path) $ (showP <$> translateToCL <$> (safeIOToIO $ reduceIL <$> parsedFile))`goldenShouldIO` buildAbsoluteExtFileName "translate" ext path
+      it ("run"       </> path) $ (showP <$> (flip Blynn.runCom "") <$> translateToCL <$> (safeIOToIO $ reduceIL <$> parsedFile))`goldenShouldIO` buildAbsoluteExtFileName "run" ext path
 
     describe "translate" $ forM_ parserTypes $ \parseType -> do
       let parseTypeAsString = toLower <$> show parseType

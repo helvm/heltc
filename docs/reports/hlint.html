@@ -161,15 +161,17 @@ document.body.className = "script";
 
 <p><a class="all" href="javascript:show('')">All hints</a></p>
 <ul>
-<li><a id="hint0" href="javascript:show('hint0')">Suggestion: Reduce duplication (1)</a></li>
-<li><a id="hint1" href="javascript:show('hint1')">Suggestion: Redundant $ (1)</a></li>
-<li><a id="hint2" href="javascript:show('hint2')">Suggestion: Redundant bracket (5)</a></li>
+<li><a id="hint0" href="javascript:show('hint0')">Warning: Redundant lambda (3)</a></li>
+<li><a id="hint1" href="javascript:show('hint1')">Suggestion: Reduce duplication (1)</a></li>
+<li><a id="hint2" href="javascript:show('hint2')">Suggestion: Redundant bracket (1)</a></li>
 </ul>
 
 <p><a class="all" href="javascript:show('')">All files</a></p>
 <ul>
 <li><a id="file0" href="javascript:show('file0')">./dist-newstyle/src/helio-157a2fc26d319c83/hs/test/HelVM/HelIO/Collections/MapListSpec.hs (1)</a></li>
-<li><a id="file1" href="javascript:show('file1')">./hs/test/HelVM/HelTC/Calculators/Lambda/CalculatorSpec.hs (6)</a></li>
+<li><a id="file1" href="javascript:show('file1')">./hs/app/AppOptions.hs (1)</a></li>
+<li><a id="file2" href="javascript:show('file2')">./hs/app/Main.hs (2)</a></li>
+<li><a id="file3" href="javascript:show('file3')">./hs/src/HelVM/HelTC/Calculators/Combinators/Zot/Calculator.hs (1)</a></li>
 </ul>
 
 </div>
@@ -180,7 +182,7 @@ v3.1.6
     - a tool to suggest improvements to your Haskell code.
 </p>
 
-<div class="hint0 file0">
+<div class="hint1 file0">
 dist-newstyle/src/helio-157a2fc26d319c83/hs/test/HelVM/HelIO/Collections/MapListSpec.hs:50:11-112: Suggestion: Reduce duplication<br/>
 Found<br/>
 <pre><span class='hs-definition'>it</span> <span class='hs-str'>"mapListToList . fromIntIndexedList"</span>
@@ -195,183 +197,56 @@ Perhaps<br/>
 
 </div>
 
-<div class="hint2 file1">
-hs/test/HelVM/HelTC/Calculators/Lambda/CalculatorSpec.hs:66:22-62: Suggestion: Redundant bracket<br/>
+<div class="hint0 file1">
+hs/app/AppOptions.hs:(64,1)-(66,55): Warning: Redundant lambda<br/>
 Found<br/>
-<pre><span class='hs-keyword'>do</span> <span class='hs-keyword'>let</span> <span class='hs-varid'>path</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>dirName</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>fileName</span>
-   <span class='hs-keyword'>let</span> <span class='hs-varid'>absolutePath</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>buildAbsolutePathToSourceFile</span> <span class='hs-str'>"mlc"</span> <span class='hs-varid'>path</span>
-   <span class='hs-keyword'>let</span> <span class='hs-varid'>parsedILFile</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>parseILFile</span> <span class='hs-conid'>Meta</span> <span class='hs-varid'>absolutePath</span>
-   <span class='hs-keyword'>let</span> <span class='hs-varid'>parsedFile</span> <span class='hs-keyglyph'>=</span> <span class='hs-layout'>(</span><span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varop'>$</span> <span class='hs-varid'>parsedILFile</span><span class='hs-layout'>)</span>
-   <span class='hs-keyword'>let</span> <span class='hs-varid'>reducedLambdaFile</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>reduceLambda</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedILFile</span>
-   <span class='hs-keyword'>let</span> <span class='hs-varid'>reducedILFIle</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>reduceIL</span> <span class='hs-varop'>=&lt;&lt;</span> <span class='hs-varid'>parsedILFile</span>
-   <span class='hs-keyword'>let</span> <span class='hs-varid'>lazy</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>LazyK.fromLambda</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>reducedILFIle</span>
-   <span class='hs-varid'>describe</span> <span class='hs-str'>"partial"</span>
-     <span class='hs-varop'>$</span> <span class='hs-keyword'>do</span> <span class='hs-keyword'>let</span> <span class='hs-varid'>ext</span> <span class='hs-keyglyph'>=</span> <span class='hs-str'>"mlc"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-str'>"partial"</span>
-          <span class='hs-varid'>it</span> <span class='hs-layout'>(</span><span class='hs-str'>"parsed"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>path</span><span class='hs-layout'>)</span>
-            <span class='hs-varop'>$</span> <span class='hs-varid'>showP</span>
-                <span class='hs-varop'>&lt;$&gt;</span>
-                  <span class='hs-layout'>(</span><span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varid'>parsedILFile</span><span class='hs-layout'>)</span>
-                    <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteParsedFileName</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span>
-          <span class='hs-varid'>it</span> <span class='hs-layout'>(</span><span class='hs-str'>"reduced"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>path</span><span class='hs-layout'>)</span>
-            <span class='hs-varop'>$</span> <span class='hs-varid'>showP</span>
-                <span class='hs-varop'>&lt;$&gt;</span>
-                  <span class='hs-layout'>(</span><span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varid'>reducedLambdaFile</span><span class='hs-layout'>)</span>
-                    <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteReducedFileName</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span>
-          <span class='hs-varid'>it</span> <span class='hs-layout'>(</span><span class='hs-str'>"expanded"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>path</span><span class='hs-layout'>)</span>
-            <span class='hs-varop'>$</span> <span class='hs-varid'>showP</span>
-                <span class='hs-varop'>&lt;$&gt;</span>
-                  <span class='hs-layout'>(</span><span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varid'>reducedILFIle</span><span class='hs-layout'>)</span>
-                    <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteExpandedFileName</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span>
-          <span class='hs-varid'>it</span> <span class='hs-layout'>(</span><span class='hs-str'>"lazy"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>path</span><span class='hs-layout'>)</span>
-            <span class='hs-varop'>$</span> <span class='hs-varid'>showP</span>
-                <span class='hs-varop'>&lt;$&gt;</span>
-                  <span class='hs-layout'>(</span><span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varid'>lazy</span><span class='hs-layout'>)</span>
-                    <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteExtFileName</span> <span class='hs-str'>"lazy"</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span>
-   <span class='hs-varid'>describe</span> <span class='hs-str'>"translate"</span>
-     <span class='hs-varop'>$</span> <span class='hs-varid'>forM_</span> <span class='hs-varid'>parserTypes</span>
-         <span class='hs-varop'>$</span> <span class='hs-keyglyph'>\</span> <span class='hs-varid'>parseType</span>
-             <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyword'>do</span> <span class='hs-keyword'>let</span> <span class='hs-varid'>parseTypeAsString</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>toLower</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>show</span> <span class='hs-varid'>parseType</span>
-                   <span class='hs-keyword'>let</span> <span class='hs-varid'>f</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>generateCodeForIL</span> <span class='hs-varid'>parseType</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span>
-                   <span class='hs-varid'>it</span> <span class='hs-layout'>(</span><span class='hs-str'>"translate"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>parseTypeAsString</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>path</span><span class='hs-layout'>)</span>
-                     <span class='hs-varop'>$</span> <span class='hs-varid'>f</span> <span class='hs-varop'>`goldenShouldIO`</span>
-                           <span class='hs-varid'>buildAbsoluteExtFileName</span>
-                             <span class='hs-varid'>parseTypeAsString</span> <span class='hs-layout'>(</span><span class='hs-str'>"mlc"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-str'>"translate"</span><span class='hs-layout'>)</span> <span class='hs-varid'>path</span>
-   <span class='hs-varid'>describe</span> <span class='hs-str'>"minify"</span>
-     <span class='hs-varop'>$</span> <span class='hs-varid'>forM_</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>defaultParserType</span><span class='hs-keyglyph'>]</span>
-         <span class='hs-varop'>$</span> <span class='hs-keyglyph'>\</span> <span class='hs-varid'>parseType</span>
-             <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyword'>do</span> <span class='hs-keyword'>let</span> <span class='hs-varid'>parseTypeAsString</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>toLower</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>show</span> <span class='hs-varid'>parseType</span>
-                   <span class='hs-keyword'>let</span> <span class='hs-varid'>f</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>generateCodeForIL</span> <span class='hs-varid'>parseType</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span>
-                   <span class='hs-keyword'>let</span> <span class='hs-varid'>f2</span>
-                         <span class='hs-keyglyph'>=</span> <span class='hs-layout'>(</span><span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varop'>.</span> <span class='hs-varid'>minimizeText</span> <span class='hs-varid'>parseType</span> <span class='hs-varop'>=&lt;&lt;</span> <span class='hs-varid'>f</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>::</span>
-                             <span class='hs-conid'>IO</span> <span class='hs-conid'>Text</span>
-                   <span class='hs-varid'>it</span> <span class='hs-layout'>(</span><span class='hs-str'>"minify"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>parseTypeAsString</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>path</span><span class='hs-layout'>)</span>
-                     <span class='hs-varop'>$</span> <span class='hs-varid'>f2</span>
-                         <span class='hs-varop'>`goldenShouldIO`</span>
-                           <span class='hs-varid'>buildAbsoluteExtFileName</span>
-                             <span class='hs-varid'>parseTypeAsString</span> <span class='hs-layout'>(</span><span class='hs-str'>"mlc"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-str'>"minify"</span><span class='hs-layout'>)</span> <span class='hs-varid'>path</span>
-   <span class='hs-varid'>describe</span> <span class='hs-str'>"generator"</span>
-     <span class='hs-varop'>$</span> <span class='hs-varid'>forM_</span> <span class='hs-varid'>generatorTypes</span>
-         <span class='hs-varop'>$</span> <span class='hs-keyglyph'>\</span> <span class='hs-varid'>lambdaType</span>
-             <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyword'>do</span> <span class='hs-keyword'>let</span> <span class='hs-varid'>generatorTypeAsString</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>toLower</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>show</span> <span class='hs-varid'>lambdaType</span>
-                   <span class='hs-keyword'>let</span> <span class='hs-varid'>f</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>toCombinatorsFile</span> <span class='hs-varid'>lambdaType</span> <span class='hs-conid'>Meta</span> <span class='hs-varid'>absolutePath</span>
-                   <span class='hs-varid'>it</span> <span class='hs-layout'>(</span><span class='hs-str'>"generator"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>generatorTypeAsString</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>path</span><span class='hs-layout'>)</span>
-                     <span class='hs-varop'>$</span> <span class='hs-varid'>f</span> <span class='hs-varop'>`goldenShouldControlT`</span>
-                           <span class='hs-varid'>buildAbsoluteExtFileName</span>
-                             <span class='hs-varid'>generatorTypeAsString</span> <span class='hs-layout'>(</span><span class='hs-str'>"mlc"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-str'>"generator"</span><span class='hs-layout'>)</span> <span class='hs-varid'>path</span></pre>
+<pre><span class='hs-definition'>calculatorParams</span>
+  <span class='hs-keyglyph'>=</span> <span class='hs-keyglyph'>\</span> <span class='hs-varid'>o</span>
+      <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyword'>case</span> <span class='hs-varid'>calculatorType</span> <span class='hs-varid'>o</span> <span class='hs-keyword'>of</span>
+           <span class='hs-conid'>Lambda</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Params.Lambda</span> <span class='hs-layout'>(</span><span class='hs-varid'>lambdaType</span> <span class='hs-varid'>o</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-varid'>ilType</span> <span class='hs-varid'>o</span><span class='hs-layout'>)</span>
+           <span class='hs-conid'>Combinators</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Params.Combinators</span> <span class='hs-layout'>(</span><span class='hs-varid'>combinatorsType</span> <span class='hs-varid'>o</span><span class='hs-layout'>)</span></pre>
 Perhaps<br/>
-<pre><span class='hs-keyword'>do</span> <span class='hs-keyword'>let</span> <span class='hs-varid'>path</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>dirName</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>fileName</span>
-   <span class='hs-keyword'>let</span> <span class='hs-varid'>absolutePath</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>buildAbsolutePathToSourceFile</span> <span class='hs-str'>"mlc"</span> <span class='hs-varid'>path</span>
-   <span class='hs-keyword'>let</span> <span class='hs-varid'>parsedILFile</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>parseILFile</span> <span class='hs-conid'>Meta</span> <span class='hs-varid'>absolutePath</span>
-   <span class='hs-keyword'>let</span> <span class='hs-varid'>parsedFile</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varop'>$</span> <span class='hs-varid'>parsedILFile</span>
-   <span class='hs-keyword'>let</span> <span class='hs-varid'>reducedLambdaFile</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>reduceLambda</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedILFile</span>
-   <span class='hs-keyword'>let</span> <span class='hs-varid'>reducedILFIle</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>reduceIL</span> <span class='hs-varop'>=&lt;&lt;</span> <span class='hs-varid'>parsedILFile</span>
-   <span class='hs-keyword'>let</span> <span class='hs-varid'>lazy</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>LazyK.fromLambda</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>reducedILFIle</span>
-   <span class='hs-varid'>describe</span> <span class='hs-str'>"partial"</span>
-     <span class='hs-varop'>$</span> <span class='hs-keyword'>do</span> <span class='hs-keyword'>let</span> <span class='hs-varid'>ext</span> <span class='hs-keyglyph'>=</span> <span class='hs-str'>"mlc"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-str'>"partial"</span>
-          <span class='hs-varid'>it</span> <span class='hs-layout'>(</span><span class='hs-str'>"parsed"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>path</span><span class='hs-layout'>)</span>
-            <span class='hs-varop'>$</span> <span class='hs-varid'>showP</span>
-                <span class='hs-varop'>&lt;$&gt;</span>
-                  <span class='hs-layout'>(</span><span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varid'>parsedILFile</span><span class='hs-layout'>)</span>
-                    <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteParsedFileName</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span>
-          <span class='hs-varid'>it</span> <span class='hs-layout'>(</span><span class='hs-str'>"reduced"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>path</span><span class='hs-layout'>)</span>
-            <span class='hs-varop'>$</span> <span class='hs-varid'>showP</span>
-                <span class='hs-varop'>&lt;$&gt;</span>
-                  <span class='hs-layout'>(</span><span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varid'>reducedLambdaFile</span><span class='hs-layout'>)</span>
-                    <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteReducedFileName</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span>
-          <span class='hs-varid'>it</span> <span class='hs-layout'>(</span><span class='hs-str'>"expanded"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>path</span><span class='hs-layout'>)</span>
-            <span class='hs-varop'>$</span> <span class='hs-varid'>showP</span>
-                <span class='hs-varop'>&lt;$&gt;</span>
-                  <span class='hs-layout'>(</span><span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varid'>reducedILFIle</span><span class='hs-layout'>)</span>
-                    <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteExpandedFileName</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span>
-          <span class='hs-varid'>it</span> <span class='hs-layout'>(</span><span class='hs-str'>"lazy"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>path</span><span class='hs-layout'>)</span>
-            <span class='hs-varop'>$</span> <span class='hs-varid'>showP</span>
-                <span class='hs-varop'>&lt;$&gt;</span>
-                  <span class='hs-layout'>(</span><span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varid'>lazy</span><span class='hs-layout'>)</span>
-                    <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteExtFileName</span> <span class='hs-str'>"lazy"</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span>
-   <span class='hs-varid'>describe</span> <span class='hs-str'>"translate"</span>
-     <span class='hs-varop'>$</span> <span class='hs-varid'>forM_</span> <span class='hs-varid'>parserTypes</span>
-         <span class='hs-varop'>$</span> <span class='hs-keyglyph'>\</span> <span class='hs-varid'>parseType</span>
-             <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyword'>do</span> <span class='hs-keyword'>let</span> <span class='hs-varid'>parseTypeAsString</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>toLower</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>show</span> <span class='hs-varid'>parseType</span>
-                   <span class='hs-keyword'>let</span> <span class='hs-varid'>f</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>generateCodeForIL</span> <span class='hs-varid'>parseType</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span>
-                   <span class='hs-varid'>it</span> <span class='hs-layout'>(</span><span class='hs-str'>"translate"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>parseTypeAsString</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>path</span><span class='hs-layout'>)</span>
-                     <span class='hs-varop'>$</span> <span class='hs-varid'>f</span> <span class='hs-varop'>`goldenShouldIO`</span>
-                           <span class='hs-varid'>buildAbsoluteExtFileName</span>
-                             <span class='hs-varid'>parseTypeAsString</span> <span class='hs-layout'>(</span><span class='hs-str'>"mlc"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-str'>"translate"</span><span class='hs-layout'>)</span> <span class='hs-varid'>path</span>
-   <span class='hs-varid'>describe</span> <span class='hs-str'>"minify"</span>
-     <span class='hs-varop'>$</span> <span class='hs-varid'>forM_</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>defaultParserType</span><span class='hs-keyglyph'>]</span>
-         <span class='hs-varop'>$</span> <span class='hs-keyglyph'>\</span> <span class='hs-varid'>parseType</span>
-             <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyword'>do</span> <span class='hs-keyword'>let</span> <span class='hs-varid'>parseTypeAsString</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>toLower</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>show</span> <span class='hs-varid'>parseType</span>
-                   <span class='hs-keyword'>let</span> <span class='hs-varid'>f</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>generateCodeForIL</span> <span class='hs-varid'>parseType</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>parsedFile</span>
-                   <span class='hs-keyword'>let</span> <span class='hs-varid'>f2</span>
-                         <span class='hs-keyglyph'>=</span> <span class='hs-layout'>(</span><span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varop'>.</span> <span class='hs-varid'>minimizeText</span> <span class='hs-varid'>parseType</span> <span class='hs-varop'>=&lt;&lt;</span> <span class='hs-varid'>f</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>::</span>
-                             <span class='hs-conid'>IO</span> <span class='hs-conid'>Text</span>
-                   <span class='hs-varid'>it</span> <span class='hs-layout'>(</span><span class='hs-str'>"minify"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>parseTypeAsString</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>path</span><span class='hs-layout'>)</span>
-                     <span class='hs-varop'>$</span> <span class='hs-varid'>f2</span>
-                         <span class='hs-varop'>`goldenShouldIO`</span>
-                           <span class='hs-varid'>buildAbsoluteExtFileName</span>
-                             <span class='hs-varid'>parseTypeAsString</span> <span class='hs-layout'>(</span><span class='hs-str'>"mlc"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-str'>"minify"</span><span class='hs-layout'>)</span> <span class='hs-varid'>path</span>
-   <span class='hs-varid'>describe</span> <span class='hs-str'>"generator"</span>
-     <span class='hs-varop'>$</span> <span class='hs-varid'>forM_</span> <span class='hs-varid'>generatorTypes</span>
-         <span class='hs-varop'>$</span> <span class='hs-keyglyph'>\</span> <span class='hs-varid'>lambdaType</span>
-             <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyword'>do</span> <span class='hs-keyword'>let</span> <span class='hs-varid'>generatorTypeAsString</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>toLower</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>show</span> <span class='hs-varid'>lambdaType</span>
-                   <span class='hs-keyword'>let</span> <span class='hs-varid'>f</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>toCombinatorsFile</span> <span class='hs-varid'>lambdaType</span> <span class='hs-conid'>Meta</span> <span class='hs-varid'>absolutePath</span>
-                   <span class='hs-varid'>it</span> <span class='hs-layout'>(</span><span class='hs-str'>"generator"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>generatorTypeAsString</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-varid'>path</span><span class='hs-layout'>)</span>
-                     <span class='hs-varop'>$</span> <span class='hs-varid'>f</span> <span class='hs-varop'>`goldenShouldControlT`</span>
-                           <span class='hs-varid'>buildAbsoluteExtFileName</span>
-                             <span class='hs-varid'>generatorTypeAsString</span> <span class='hs-layout'>(</span><span class='hs-str'>"mlc"</span> <span class='hs-varop'>&lt;/&gt;</span> <span class='hs-str'>"generator"</span><span class='hs-layout'>)</span> <span class='hs-varid'>path</span></pre>
+<pre><span class='hs-definition'>calculatorParams</span> <span class='hs-varid'>o</span>
+  <span class='hs-keyglyph'>=</span> <span class='hs-keyword'>case</span> <span class='hs-varid'>calculatorType</span> <span class='hs-varid'>o</span> <span class='hs-keyword'>of</span>
+      <span class='hs-conid'>Lambda</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Params.Lambda</span> <span class='hs-layout'>(</span><span class='hs-varid'>lambdaType</span> <span class='hs-varid'>o</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-varid'>ilType</span> <span class='hs-varid'>o</span><span class='hs-layout'>)</span>
+      <span class='hs-conid'>Combinators</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Params.Combinators</span> <span class='hs-layout'>(</span><span class='hs-varid'>combinatorsType</span> <span class='hs-varid'>o</span><span class='hs-layout'>)</span></pre>
 
 </div>
 
-<div class="hint1 file1">
-hs/test/HelVM/HelTC/Calculators/Lambda/CalculatorSpec.hs:66:48: Suggestion: Redundant $<br/>
+<div class="hint0 file2">
+hs/app/Main.hs:(25,1)-(28,55): Warning: Redundant lambda<br/>
 Found<br/>
-<pre><span class='hs-definition'>businessTToIOWithoutLogs</span> <span class='hs-varop'>$</span> <span class='hs-varid'>parsedILFile</span></pre>
+<pre><span class='hs-definition'>runApp</span>
+  <span class='hs-keyglyph'>=</span> <span class='hs-keyglyph'>\</span> <span class='hs-varid'>o</span>
+      <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyword'>do</span> <span class='hs-varid'>hSetBuffering</span> <span class='hs-varid'>stdout</span> <span class='hs-conid'>IO.NoBuffering</span>
+            <span class='hs-varid'>source</span> <span class='hs-keyglyph'>&lt;-</span> <span class='hs-varid'>readSourceFile</span> <span class='hs-layout'>(</span><span class='hs-conid'>App.exec</span> <span class='hs-varid'>o</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-conid'>App.file</span> <span class='hs-varid'>o</span><span class='hs-layout'>)</span>
+            <span class='hs-varid'>run</span> <span class='hs-layout'>(</span><span class='hs-conid'>App.printLogs</span> <span class='hs-varid'>o</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-conid'>App.calculatorParams</span> <span class='hs-varid'>o</span><span class='hs-layout'>)</span> <span class='hs-varid'>source</span></pre>
 Perhaps<br/>
-<pre><span class='hs-definition'>businessTToIOWithoutLogs</span> <span class='hs-varid'>parsedILFile</span></pre>
+<pre><span class='hs-definition'>runApp</span> <span class='hs-varid'>o</span>
+  <span class='hs-keyglyph'>=</span> <span class='hs-keyword'>do</span> <span class='hs-varid'>hSetBuffering</span> <span class='hs-varid'>stdout</span> <span class='hs-conid'>IO.NoBuffering</span>
+       <span class='hs-varid'>source</span> <span class='hs-keyglyph'>&lt;-</span> <span class='hs-varid'>readSourceFile</span> <span class='hs-layout'>(</span><span class='hs-conid'>App.exec</span> <span class='hs-varid'>o</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-conid'>App.file</span> <span class='hs-varid'>o</span><span class='hs-layout'>)</span>
+       <span class='hs-varid'>run</span> <span class='hs-layout'>(</span><span class='hs-conid'>App.printLogs</span> <span class='hs-varid'>o</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-conid'>App.calculatorParams</span> <span class='hs-varid'>o</span><span class='hs-layout'>)</span> <span class='hs-varid'>source</span></pre>
 
 </div>
 
-<div class="hint2 file1">
-hs/test/HelVM/HelTC/Calculators/Lambda/CalculatorSpec.hs:72:44-82: Suggestion: Redundant bracket<br/>
+<div class="hint0 file2">
+hs/app/Main.hs:(35,1)-(36,61): Warning: Redundant lambda<br/>
 Found<br/>
-<pre><span class='hs-layout'>(</span><span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varid'>parsedILFile</span><span class='hs-layout'>)</span>
-  <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteParsedFileName</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span></pre>
+<pre><span class='hs-definition'>run</span>
+  <span class='hs-keyglyph'>=</span> <span class='hs-keyglyph'>\</span> <span class='hs-varid'>printLogs</span> <span class='hs-varid'>calculatorParams</span> <span class='hs-varid'>source</span>
+      <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>controlTToIO</span> <span class='hs-varid'>printLogs</span> <span class='hs-layout'>(</span><span class='hs-varid'>evalSource</span> <span class='hs-varid'>calculatorParams</span> <span class='hs-varid'>source</span><span class='hs-layout'>)</span></pre>
 Perhaps<br/>
-<pre><span class='hs-definition'>businessTToIOWithoutLogs</span> <span class='hs-varid'>parsedILFile</span>
-  <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteParsedFileName</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span></pre>
+<pre><span class='hs-definition'>run</span> <span class='hs-varid'>printLogs</span> <span class='hs-varid'>calculatorParams</span> <span class='hs-varid'>source</span>
+  <span class='hs-keyglyph'>=</span> <span class='hs-varid'>controlTToIO</span> <span class='hs-varid'>printLogs</span> <span class='hs-layout'>(</span><span class='hs-varid'>evalSource</span> <span class='hs-varid'>calculatorParams</span> <span class='hs-varid'>source</span><span class='hs-layout'>)</span></pre>
 
 </div>
 
-<div class="hint2 file1">
-hs/test/HelVM/HelTC/Calculators/Lambda/CalculatorSpec.hs:73:44-87: Suggestion: Redundant bracket<br/>
+<div class="hint2 file3">
+hs/src/HelVM/HelTC/Calculators/Combinators/Zot/Calculator.hs:30:39-58: Suggestion: Redundant bracket<br/>
 Found<br/>
-<pre><span class='hs-layout'>(</span><span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varid'>reducedLambdaFile</span><span class='hs-layout'>)</span>
-  <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteReducedFileName</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span></pre>
+<pre><span class='hs-definition'>wGetContentsText</span> <span class='hs-varop'>&gt;&gt;=</span> <span class='hs-layout'>(</span><span class='hs-varid'>evalWithFormat</span> <span class='hs-varid'>t</span> <span class='hs-varid'>s</span><span class='hs-layout'>)</span></pre>
 Perhaps<br/>
-<pre><span class='hs-definition'>businessTToIOWithoutLogs</span> <span class='hs-varid'>reducedLambdaFile</span>
-  <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteReducedFileName</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span></pre>
-
-</div>
-
-<div class="hint2 file1">
-hs/test/HelVM/HelTC/Calculators/Lambda/CalculatorSpec.hs:74:44-83: Suggestion: Redundant bracket<br/>
-Found<br/>
-<pre><span class='hs-layout'>(</span><span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varid'>reducedILFIle</span><span class='hs-layout'>)</span>
-  <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteExpandedFileName</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span></pre>
-Perhaps<br/>
-<pre><span class='hs-definition'>businessTToIOWithoutLogs</span> <span class='hs-varid'>reducedILFIle</span>
-  <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteExpandedFileName</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span></pre>
-
-</div>
-
-<div class="hint2 file1">
-hs/test/HelVM/HelTC/Calculators/Lambda/CalculatorSpec.hs:75:44-74: Suggestion: Redundant bracket<br/>
-Found<br/>
-<pre><span class='hs-layout'>(</span><span class='hs-varid'>businessTToIOWithoutLogs</span> <span class='hs-varid'>lazy</span><span class='hs-layout'>)</span>
-  <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteExtFileName</span> <span class='hs-str'>"lazy"</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span></pre>
-Perhaps<br/>
-<pre><span class='hs-definition'>businessTToIOWithoutLogs</span> <span class='hs-varid'>lazy</span>
-  <span class='hs-varop'>`goldenShouldIO`</span> <span class='hs-varid'>buildAbsoluteExtFileName</span> <span class='hs-str'>"lazy"</span> <span class='hs-varid'>ext</span> <span class='hs-varid'>path</span></pre>
+<pre><span class='hs-definition'>wGetContentsText</span> <span class='hs-varop'>&gt;&gt;=</span> <span class='hs-varid'>evalWithFormat</span> <span class='hs-varid'>t</span> <span class='hs-varid'>s</span></pre>
 
 </div>
 

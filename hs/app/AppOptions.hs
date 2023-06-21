@@ -1,6 +1,11 @@
 {-# LANGUAGE StrictData #-}
 module AppOptions where
 
+import qualified HelVM.HelTC.Calculators.API.CalculatorParams            as Params
+import           HelVM.HelTC.Calculators.API.CalculatorType
+
+import           HelVM.HelTC.Calculators.Combinators.API.CombinatorsType
+
 import           HelVM.HelTC.Calculators.Lambda.API.ILType
 import           HelVM.HelTC.Calculators.Lambda.API.LambdaType
 
@@ -13,6 +18,13 @@ optionParser = AppOptions
   <$> switch       (  long    "print-logs"
                    <> short   'L'
                    <> help    "Pring logs to strerr"
+                   <> showDefault
+                   )
+  <*> option auto  (  long    "calculatorType"
+                   <> short   'c'
+--                   <> metavar "[LANG]"
+                   <> help   ("Language to interpret " <> show calculatorTypes)
+                   <> value    defaultCalculatorType
                    <> showDefault
                    )
   <*> option auto  (  long    "ilType"
@@ -29,18 +41,39 @@ optionParser = AppOptions
                    <> value    defaultGeneratorType
                    <> showDefault
                    )
+  <*> option auto  (  long    "combinatorsType"
+                   <> short   'g'
+                   <> metavar "[CombinatorsType]"
+                   <> help   ("CombinatorsType: " <> show combinatorsTypes)
+                   <> value    defaultCombinatorsType
+                   <> showDefault
+                   )
+  <*> switch       (  long    "eval"
+                   <> short   'e'
+                   <> help    "Exec"
+                   <> showDefault
+                   )
   <*> argument str (  metavar "FILE"
                    <> help   "File to calculate"
                    <> showDefault
                    )
 
--- | Methods
+-- | Method to generate
+
+calculatorParams :: AppOptions -> Params.CalculatorParams
+calculatorParams = \ o -> case calculatorType o of
+  Lambda      -> Params.Lambda (lambdaType o) (ilType o)
+  Combinators -> Params.Combinators (combinatorsType o)
+
 
 -- | Types
 
 data AppOptions = AppOptions
-  { printLogs  :: !PrintLogs
-  , ilType     :: !ILType
-  , lambdaType :: !LambdaType
-  , file       :: !String
+  { printLogs       :: !PrintLogs
+  , calculatorType  :: !CalculatorType
+  , ilType          :: !ILType
+  , lambdaType      :: !LambdaType
+  , combinatorsType :: !CombinatorsType
+  , exec            :: !Exec
+  , file            :: !String
   }

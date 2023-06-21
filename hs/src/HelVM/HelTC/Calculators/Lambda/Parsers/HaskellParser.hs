@@ -9,16 +9,16 @@ import           HelVM.HelIO.Extra                     hiding (Parser)
 import           Text.Parser.Token
 import           Text.Trifecta
 
-parseUmlambda :: String -> Either String Lambda
-parseUmlambda input = case parseString umlambdaExpr mempty input of
+parseUmLambda :: String -> Either String Lambda
+parseUmLambda = parseString umlambdaExpr mempty <&> check
+
+check :: Result a -> Either String a
+check = \ case
   Success e -> Right e
-  Failure e -> Left (show e)
+  Failure e -> show e & Left
 
 umlambdaExpr :: Parser Lambda
-umlambdaExpr = do
-  expr <- terminalParser
-  _ <- optional newline
-  pure expr
+umlambdaExpr = terminalParser <* optional newline
 
 terminalParser :: Parser Lambda
 terminalParser = (absParser <|> applicationParser <|> variableParser) <?> "terminal"

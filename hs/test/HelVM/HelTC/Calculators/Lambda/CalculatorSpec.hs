@@ -63,16 +63,16 @@ spec = describe "parse" $ do
     let path = dirName </> fileName
     let absolutePath = buildAbsolutePathToSourceFile "mlc" path
     let parsedILFile = parseILFile Meta absolutePath -- :: BusinessT IO InstructionList
-    let parsedFile = (businessTToIOWithoutLogs $ parsedILFile) -- :: IO InstructionList
+    let parsedFile = businessTToIOWithoutLogs parsedILFile -- :: IO InstructionList
     let reducedLambdaFile = reduceLambda <$> parsedILFile -- :: BusinessT IO InstructionList
     let reducedILFIle = reduceIL =<< parsedILFile -- :: BusinessT IO Lambda
     let lazy = LazyK.fromLambda <$> reducedILFIle -- :: BusinessT IO LazyK.Combinator
     describe "partial" $ do
       let ext = "mlc" </> "partial"
-      it ("parsed"   </> path) $ showP <$> (businessTToIOWithoutLogs parsedILFile) `goldenShouldIO` buildAbsoluteParsedFileName ext path
-      it ("reduced"  </> path) $ showP <$> (businessTToIOWithoutLogs reducedLambdaFile) `goldenShouldIO` buildAbsoluteReducedFileName ext path
-      it ("expanded" </> path) $ showP <$> (businessTToIOWithoutLogs reducedILFIle) `goldenShouldIO` buildAbsoluteExpandedFileName ext path
-      it ("lazy"     </> path) $ showP <$> (businessTToIOWithoutLogs lazy) `goldenShouldIO` buildAbsoluteExtFileName "lazy" ext path
+      it ("parsed"   </> path) $ showP <$> businessTToIOWithoutLogs parsedILFile `goldenShouldIO` buildAbsoluteParsedFileName ext path
+      it ("reduced"  </> path) $ showP <$> businessTToIOWithoutLogs reducedLambdaFile `goldenShouldIO` buildAbsoluteReducedFileName ext path
+      it ("expanded" </> path) $ showP <$> businessTToIOWithoutLogs reducedILFIle `goldenShouldIO` buildAbsoluteExpandedFileName ext path
+      it ("lazy"     </> path) $ showP <$> businessTToIOWithoutLogs lazy `goldenShouldIO` buildAbsoluteExtFileName "lazy" ext path
 
     describe "translate" $ forM_ parserTypes $ \parseType -> do
       let parseTypeAsString = toLower <$> show parseType

@@ -1,7 +1,7 @@
 cabal-version:         2.4
 
 name:                  heltc
-version:               0.1.2.0
+version:               0.1.4.0
 
 synopsis:              HelTC - Heavenly Esoteric Little True Calculator to Esoteric Languages
 description:           Please see the README on GitHub at <https://github.com/helvm/heltc#readme>
@@ -110,6 +110,16 @@ library
     HelVM.HelTC.Calculator.Value
 
     HelVM.HelTC.Calculator.API.IOTypes
+    HelVM.HelTC.Calculator.Types.FormatType
+
+    HelVM.HelTC.Calculators.Evaluator
+
+    HelVM.HelTC.Calculators.API.CalculatorParams
+    HelVM.HelTC.Calculators.API.CalculatorType
+
+    HelVM.HelTC.Calculators.Combinators.Evaluator
+
+    HelVM.HelTC.Calculators.Combinators.API.CombinatorsType
 
     HelVM.HelTC.Calculators.Combinators.LazyK.Calculator
     HelVM.HelTC.Calculators.Combinators.LazyK.Combinator
@@ -119,6 +129,11 @@ library
     HelVM.HelTC.Calculators.Combinators.LazyK.Lexer
     HelVM.HelTC.Calculators.Combinators.LazyK.Parser
     HelVM.HelTC.Calculators.Combinators.LazyK.Reducer
+
+    HelVM.HelTC.Calculators.Combinators.Zot.Calculator
+    HelVM.HelTC.Calculators.Combinators.Zot.Parser
+    HelVM.HelTC.Calculators.Combinators.Zot.Evaluator
+    HelVM.HelTC.Calculators.Combinators.Zot.Expression
 
     HelVM.HelTC.Calculators.Lambda.API.ILType
     HelVM.HelTC.Calculators.Lambda.API.LambdaType
@@ -173,7 +188,11 @@ library
     , attoparsec           <  0.14.4
     , bytestring
     , containers           <  0.7
+    , dlist
+    , ListLike
+    , mtl
     , parsers
+    , text
     , trifecta
     , type-operators
     , yjtools
@@ -217,6 +236,9 @@ test-suite heltc-test
     HelVM.HelTC.Calculators.Combinators.LazyK.FileExtra
     HelVM.HelTC.Calculators.Combinators.LazyK.NumberSpec
     HelVM.HelTC.Calculators.Combinators.LazyK.ParserSpec
+
+    HelVM.HelTC.Calculators.Combinators.Zot.EvaluatorSpec
+    HelVM.HelTC.Calculators.Combinators.Zot.FileExtra
 
     HelVM.HelTC.Calculators.Legacy.CalculatorSpec
     HelVM.HelTC.Calculators.Legacy.ParserSpec

@@ -1,10 +1,14 @@
-Name,Alias,Composition,SK,Haskell,Implementation,Type
+Symbol,Name,Bird,Composition,SK,Haskell,Implementation,Type
+I,identity,Idiot,`SKK`,`(SK)K`,`id`,`a -> a`, `a -> a`
 S,Starling,`S`,`(S),,,
 K,Kestrel,`K`,`(K)`,,,
-I,Idiot,`SKK`,`(SK)K`,`id`,`a -> a`, `a -> a`
 Ki,Kite/False,`KI`,`(K((SK)K))`,,,
 B,Bluebird,`S(KS)K`,`S(KS)K`,`.`,,
 O,Owl,`SI`,`(S((SK)K))`,,,
 M,Mockingbird,`SII`,`((S((SK)K))((SK)K))`,,,
 Ω,Omega,`MM`,`(((S((SK)K))((SK)K))((S((SK)K))((SK)K)))`,,,
 Y,Y-Fixed point,,,,,
+Name,Implementation,Type,Haskell,Bird,Symbol,Combinator,SK Combinator
+`identity`,`a -> a`,`a -> a`,`id`,Identity Bird (aka Idiot),`I`,`SKK`,`SKK`
+`constant`,`a -> b -> a`,`a -> b -> a`,`const`/`pure`,Kestrel (True), K,K,K
+`apply`,,`(a -> b) -> a -> b`,`($)`,,A,`SK(SK)`,`SK(SK)`

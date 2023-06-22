@@ -1,5 +1,10 @@
 Name,Alias,Composition,SK,Haskell,Implementation,Type
-S,Starling,S,S,,,
-K,Kestrel,K,K,,,
-I,Idiot,SKK,SKK,id,`a -> a`, `a -> a
-B,Bluebird,S(KS)K,S(KS)K,"`.`",,
+S,Starling,`S`,`S,,,
+K,Kestrel,`K`,`K`,,,
+I,Idiot,`SKK`,`SKK`,`id`,`a -> a`, `a -> a`
+Ki,Kite/False,`KI`,`(K((SK)K))`,,,
+B,Bluebird,`S(KS)K`,`S(KS)K`,`.`,,
+O,Owl,`SI`,`(S((SK)K))`,,,
+M,Mockingbird,`SII`,`((S((SK)K))((SK)K))`,,,
+Ω,Omega,`MM`,`(((S((SK)K))((SK)K))((S((SK)K))((SK)K)))`,,,
+Y,Y-Fixed point,,,,,

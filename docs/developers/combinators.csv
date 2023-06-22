@@ -3,11 +3,11 @@ Name,Haskell,Implementation,Type,Bird,Symbol,Combinator,SK Combinator
 `constant`,`const`/`pure`,`\a b -> a`,`a -> b -> a`,Kestrel (True),`K`,`K`,`K`
 `apply`,`($)`,`\f x -> f x`,`(a -> b) -> a -> b`,Identity Bird Once Removed,`A`/`I*`,`SK(SK)`,`SK(SK)`
 `thrush`,`(&),`\x f -> f x`,`a -> (a -> b) -> b`,Thrush,`T`,`CI`,`(S(K(S((SK)K))))K`
-`duplication`,`join`,`\f x -> f x x`,`(a -> a -> b) -> a -> b`,,`W`,``,``
-`flip`,`flip`,`\f y x => f x y`,`(a -> b -> c) -> b -> a -> c`,,`C`,``,``
+`duplication`,`join`,`\f x -> f x x`,`(a -> a -> b) -> a -> b`,Warbler,`W`,`C(BMR)`,`((S(K(S((S(K((S((SK)K))((SK)K))))((S(K(S(KS)K)))((S(K(S((SK)K))))K))))))K)`
+`flip`,`flip`,`\f y x => f x y`,`(a -> b -> c) -> b -> a -> c`,Cardinal,`C`,`S(BBS)(KK)`,`((S((S(K(S(KS)K)))S))(KK))`
 `compose`,`.`/`fmap`,`\f g x -> f (g x)`,`(b -> c) -> (a -> b) -> a -> c`,Bluebird,`B`,`S(KS)K`,`S(KS)K`
 `substitution`,`(<*>)`,`\f g x -> f x (g x)`,`(a -> b -> c) -> (a -> b) -> a -> c`,Starling,`S`,`S`,`S`
-`chain`/`bind`,`(=<<)`,`\f g x -> f (g x) x`,`(a -> b -> c) -> (b -> a) -> b -> c`,,`S_`,``,``
+`chain`/`bind`,`(=<<)`,`f g x -> f (g x) x`,`(a -> b -> c) -> (b -> a) -> b -> c`,,`S_`,``,``
 `converge`,`apply2way/`liftA2`/`liftM2`,`\f g h x -> f (g x) (h x)`,`(b -> c -> d) -> (a -> b) -> (a -> c) -> a -> d`,,`S2`,``,``
 `psi`,`on`,`\f g x y -> f (g x) (g y)`,`(b -> b -> c) -> (a -> b) -> a -> a -> c`,,`P`,``,``
 `fix-point`,`fix`,`\f -> (\g -> g (g)) (\g -> f (\x -> g g x))`,`(a -> a) -> a`,Y-Fixed point,`Y`,``,``

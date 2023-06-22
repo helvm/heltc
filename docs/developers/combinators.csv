@@ -1,5 +1,3 @@
-
-
-Name,Alias,
-S,Starling,
-K,Kestrel,
+Name,Alias,Composition,Haskell,Type
+S,Starling,S,,
+K,Kestrel,K,,

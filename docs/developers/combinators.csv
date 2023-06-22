@@ -1,7 +1,7 @@
 Name,Alias,Composition,SK,Haskell,Implementation,Type
 S,Starling,`S`,`S,,,
 K,Kestrel,`K`,`K`,,,
-I,Idiot,`SKK`,`SKK`,`id`,`a -> a`, `a -> a`
+I,Idiot,`SKK`,`(SK)K`,`id`,`a -> a`, `a -> a`
 Ki,Kite/False,`KI`,`(K((SK)K))`,,,
 B,Bluebird,`S(KS)K`,`S(KS)K`,`.`,,
 O,Owl,`SI`,`(S((SK)K))`,,,

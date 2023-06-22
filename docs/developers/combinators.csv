@@ -2,4 +2,4 @@ Name,Alias,Composition,Haskell,Implementation,Type
 S,Starling,S,,
 K,Kestrel,K,,
 I,Idiot,SKK,SKK,id, `a -> a`, `a -> a
-B,Bluebird,S(KS)K,S(KS)K,.
+B,Bluebird,S(KS)K,S(KS)K,"`.`"

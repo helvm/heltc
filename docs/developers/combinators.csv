@@ -1,7 +1,5 @@
 Symbol,Name,Bird,Composition,SK,Haskell,Implementation,Type
-I,identity,Idiot,`SKK`,`(SK)K`,`id`,`a -> a`, `a -> a`
 S,Starling,`S`,`(S),,,
-K,Kestrel,`K`,`(K)`,,,
 Ki,Kite/False,`KI`,`(K((SK)K))`,,,
 B,Bluebird,`S(KS)K`,`S(KS)K`,`.`,,
 O,Owl,`SI`,`(S((SK)K))`,,,

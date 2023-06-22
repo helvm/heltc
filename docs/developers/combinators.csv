@@ -9,7 +9,7 @@ Name,Haskell,Arity,Type,Implementation,Bird,Symbol,Combinator,SK Combinator
 `substitution`,`(<*>)`,3,`(a -> b -> c) -> (a -> b) -> a -> c`,`\f g x -> f x (g x)`,Starling,`S`,`S`,`S`
 `chain`/`bind`,`(=<<)`,3,`(a -> b -> c) -> (b -> a) -> b -> c`,`f g x -> f (g x) x`,,`S_`,``,``
 `converge`,`apply2way/`liftA2`/`liftM2`,4,`(b -> c -> d) -> (a -> b) -> (a -> c) -> a -> d`,`\f g h x -> f (g x) (h x)`,,`S2`,``,``
-`psi`,`on`,3,`(b -> b -> c) -> (a -> b) -> a -> a -> c`,`\f g x y -> f (g x) (g y)`,,`P`,``,``
+`psi`,`on`,4,`(b -> b -> c) -> (a -> b) -> a -> a -> c`,`\f g x y -> f (g x) (g y)`,,`P`,``,``
 `fix-point`,`fix`,1,`(a -> a) -> a`,`\f -> (\g -> g (g)) (\g -> f (\x -> g g x))`,Why Bird (aka Sage Bird),`Y`,`SLL`,`(((SS)K)((S(K((SS)(S((SS)K)))))K)`
 ,,,,,Kite (False),KI,`KI`,`(K((SK)K))`
 ,,,,,Owl,O,`SI`,`(S((SK)K))`

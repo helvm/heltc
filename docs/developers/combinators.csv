@@ -8,5 +8,6 @@ M,Mockingbird,`SII`,`((S((SK)K))((SK)K))`,,,
 Y,Y-Fixed point,,,,,
 Name,Implementation,Type,Haskell,Bird,Symbol,Combinator,SK Combinator
 `identity`,`a -> a`,`a -> a`,`id`,Identity Bird (aka Idiot),`I`,`SKK`,`SKK`
-`constant`,`a -> b -> a`,`a -> b -> a`,`const`/`pure`,Kestrel (True), K,K,K
-`apply`,,`(a -> b) -> a -> b`,`($)`,,A,`SK(SK)`,`SK(SK)`
+`constant`,`a -> b -> a`,`a -> b -> a`,`const`/`pure`,Kestrel (True), `K`,`K`,`K`
+`apply`,`f -> x -> f x`,`(a -> b) -> a -> b`,`($)`,Identity Bird Once Removed,`A`/`I*`,`SK(SK)`,`SK(SK)`
+`thrush`,`f -> x -> f x`,`a -> (a -> b) -> b`,`(&),Thrush,`T`,`CI`,`((S(K(S((SK)K))))K)`

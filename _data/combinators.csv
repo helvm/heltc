@@ -1,0 +1,18 @@
+Name,Haskell,Arity,Type,Implementation,Bird,Symbol,Combinator,SK Combinator
+`identity`,`id`,1,`a -> a`,`\a -> a`,Identity Bird (aka Idiot),`I`,`SKK`,`SKK`
+`constant`,`const`/`pure`,2,`a -> b -> a`,`\a b -> a`,Kestrel (True),`K`,`K`,`K`
+`apply`,`($)`,2,`(a -> b) -> a -> b`,`\f x -> f x`,Identity Bird Once Removed,`A`/`I*`,`SK(SK)`,`SK(SK)`
+`thrush`,`(&),2,`a -> (a -> b) -> b`,`\x f -> f x`,Thrush,`T`,`CI`,`(S(K(S((SK)K))))K`
+`duplication`,`join`,2,`(a -> a -> b) -> a -> b`,`\f x -> f x x`,Warbler,`W`,`C(BMR)`,`((S(K(S((S(K((S((SK)K))((SK)K))))((S(K(S(KS)K)))((S(K(S((SK)K))))K))))))K)`
+`flip`,`flip`,3,`(a -> b -> c) -> b -> a -> c`,`\f y x => f x y`,Cardinal,`C`,`S(BBS)(KK)`,`((S((S(K(S(KS)K)))S))(KK))`
+`compose`,`.`/`fmap`,3,`(b -> c) -> (a -> b) -> a -> c`,`\f g x -> f (g x)`,Bluebird,`B`,`S(KS)K`,`S(KS)K`
+`substitution`,`(<*>)`,3,`(a -> b -> c) -> (a -> b) -> a -> c`,`\f g x -> f x (g x)`,Starling,`S`,`S`,`S`
+`chain`/`bind`,`(=<<)`,3,`(a -> b -> c) -> (b -> a) -> b -> c`,`f g x -> f (g x) x`,,`S_`,``,``
+`converge`,`apply2way/`liftA2`/`liftM2`,4,`(b -> c -> d) -> (a -> b) -> (a -> c) -> a -> d`,`\f g h x -> f (g x) (h x)`,,`S2`,``,``
+`psi`,`on`,4,`(b -> b -> c) -> (a -> b) -> a -> a -> c`,`\f g x y -> f (g x) (g y)`,,`P`,``,``
+`fix-point`,`fix`,1,`(a -> a) -> a`,`\f -> (\g -> g (g)) (\g -> f (\x -> g g x))`,Why Bird (aka Sage Bird),`Y`,`SLL`,`(((SS)K)((S(K((SS)(S((SS)K)))))K)`
+`cons `,`(:)`,3,``,`\x y f -> f x y`,Vireo (aka Pairing),`V`,`BCT`,`((S(K((S((S(K((S(KS))K)))S))(KK))))((S(K(S((SK)K))))K))`
+,,,,,Kite (False),KI,`KI`,`(K((SK)K))`
+,,,,,Owl,O,`SI`,`(S((SK)K))`
+,,,,,Mockingbird,M,`SII`,`((S((SK)K))((SK)K))`
+,,,,,Omega,Ω,`MM`,`(((S((SK)K))((SK)K))((S((SK)K))((SK)K)))`

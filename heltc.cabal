@@ -122,6 +122,10 @@ library
     HelVM.HelTC.Calculators.Combinators.API.CombinatorsType
 
     HelVM.HelTC.Calculators.Combinators.DBLC.Evaluator
+    HelVM.HelTC.Calculators.Combinators.DBLC.Main
+    HelVM.HelTC.Calculators.Combinators.DBLC.Parser
+    HelVM.HelTC.Calculators.Combinators.DBLC.Term
+    HelVM.HelTC.Calculators.Combinators.DBLC.Token
 
     HelVM.HelTC.Calculators.Combinators.LazyK.Calculator
     HelVM.HelTC.Calculators.Combinators.LazyK.Combinator

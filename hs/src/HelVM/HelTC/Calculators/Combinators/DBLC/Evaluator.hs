@@ -1,14 +1,17 @@
 module HelVM.HelTC.Calculators.Combinators.DBLC.Evaluator where
 
+import           HelVM.HelTC.Calculators.Combinators.DBLC.Parser
+import           HelVM.HelTC.Calculators.Combinators.DBLC.Term
+
 import           HelVM.HelIO.Control.Safe
 import           HelVM.HelIO.Extra
 
 import           Control.Monad.Except
 
-import qualified Data.List                as List
-import qualified Data.Map.Strict          as Map
+import qualified Data.List                                       as List
+import qualified Data.Map.Strict                                 as Map
 
-import qualified Relude.Unsafe            as Unsafe
+import qualified Relude.Unsafe                                   as Unsafe
 
 -- The proof environment monad.
 -- Contains a map from de bruijn levels to terms
@@ -21,16 +24,6 @@ type Proof = ExceptLegacy (ReaderT [Term] (StateT (Map.Map Int (Term, Term)) (St
 
 runProof :: ExceptLegacy (ReaderT [a1] (StateT (Map k a2) (State Int))) a3 -> EitherLegacy a3
 runProof p = fst $ evalState (runStateT (runReaderT (runExceptT p) []) Map.empty) 0
-
--- Basic abstract syntax
-infixl 9 :%
-data Term
-    = Lam Term Term
-    | Var Int
-    | Level Int
-    | Term :% Term
-    | U
-    deriving stock (Eq, Show)
 
 -- ======= Evaluation =======
 
@@ -67,7 +60,7 @@ whnf' names ee = spine ee [] where
   -- Eta conversion
   spine (Lam t (tp :% Var 0)) [] =
             if freeIn tp 0
-            then return (Lam t (tp :% Var 0))
+            then pure (Lam t (tp :% Var 0))
             else spine (sub (Var 0) 0 tp) []
   spine (Level i) as =
     if names -- Should names/levels be removed
@@ -78,7 +71,7 @@ whnf' names ee = spine ee [] where
         Just t  -> spine (fst t) as
     else app (Level i) as
   spine f as = app f as
-  app f as = return $ List.foldl (:%) f as
+  app f as = pure $ List.foldl (:%) f as
 
 whnf :: Term -> Proof Term
 whnf = whnf' False
@@ -104,15 +97,11 @@ nf' ee = spine ee [] where
           Just t  -> spine (fst t) as
   spine f as = List.foldl (:%) f <$> mapM nf' as
 
-nf :: Term
-            -> ExceptT
-                 String
-                 (ReaderT [Term] (StateT (Map Int (Term, Term)) (State Int)))
-                 Term
+nf :: Term -> ExceptLegacy (ReaderT [Term] (StateT (Map Int (Term, Term)) (State Int))) Term
 nf d = do
   r <- nf' d
   if d == r
-  then return r
+  then pure r
   else nf r
 
 -- ======= Type Checking =======
@@ -125,31 +114,31 @@ infer t = do
       tbl <- get
       case Map.lookup i tbl of
            Nothing -> throwError $ "Level " ++ show i ++ " not found in context durring type inference."
-           Just t' -> return $ snd t'
+           Just t' -> pure $ snd t'
     Var n -> do
       ctx <- ask
       case (ctx , n) of
         ([], _) -> throwError $ "Cannot infer term variable in empty context."
         (x:_g, 0) -> local Unsafe.tail $ do
                        check x U
-                       return (quote 0 x)
+                       pure (quote 0 x)
         (_:_g, _n) -> local Unsafe.tail $ do
                        ty <- infer (Var (n - 1))
-                       return (quote 0 ty)
+                       pure (quote 0 ty)
     tr1 :% tr2 -> do
       ty1' <- infer tr1
       ty1  <- nwhnf ty1'
       case ty1 of
         Lam tp1 tp2 -> do
           check tr2 tp1
-          return (sub tr2 0 tp2)
+          pure (sub tr2 0 tp2)
         _ -> error "infer"
     Lam ty1 ty2 -> do
       check ty1 U
       local (ty1:) $ do
         check ty2 U
-        return U
-    U -> return U
+        pure U
+    U -> pure U
 
 check :: Term -> Term -> Proof ()
 check tr ty =
@@ -162,7 +151,7 @@ check tr ty =
              tnf  <- nf t
              tynf <- nf ty
              if tnf == tynf
-             then return ()
+             then pure ()
              else throwError $ "Type didn't match durring lookup."
     Var n -> do
       ctx <- ask
@@ -200,42 +189,10 @@ check tr ty =
     U -> do
       tyw <- nwhnf ty
       case tyw of
-        U -> return ()
+        U -> pure ()
         _ -> throwError $  "* can only have type *."
 
 -- ======= Concrete Syntax =======
-
--- Parse a string of 1s and 0s into a collection of terms
-data Token
-  = PLam
-  | PVar Int
-  | PLevel Int
-  | PApp
-  | PU
-
-parse :: String -> [Token] -> [Term] -> [Term]
--- Tokenize
-parse e@('1':_)       p  [] = let (i, s) = readInt e in parse s (PVar (i-1):p) []
-parse ('0':'0':s)     p  [] = parse s (PApp:p) []
-parse ('0':'1':'0':s) p  [] = parse s (PLam:p) []
-parse ('0':'1':'1':s) p  [] = case readInt s of
-  (0, s') -> parse s' (PU:p)           []
-  (i, s') -> parse s' (PLevel (i-1):p) []
--- Build ASTs
-parse [] (PLam:p)     (a:b:stk) = parse [] p (Lam a b:stk)
-parse [] (PU:p)       stk       = parse [] p (U:stk)
-parse [] (PApp:p)     (a:b:stk) = parse [] p ((a :% b):stk)
-parse [] (PVar i:p)   stk       = parse [] p (Var i:stk)
-parse [] (PLevel i:p) stk       = parse [] p (Level i:stk)
--- Finish
-parse [] [] t = t
-parse _ _ _ = error "parse"
-
-
-readInt :: String -> (Int, String)
-readInt ('1': s) = let (i, s') = readInt s in (i+1, s')
-readInt ('0': s) = (0,s)
-readInt other    = other & show & error
 
 toBin :: Term -> String
 toBin (Lam a b) = "010" ++ toBin a ++ toBin b
@@ -265,7 +222,7 @@ checkProg s = go (parse s [] []) where
     lift $ lift $ lift $ modify (+1)
     go ctx
   go (_:[]) = throwError $ "Type is given without implementation."
-  go [] = return ()
+  go [] = pure ()
 
 -- ======= Input / Output =======
 
@@ -284,12 +241,3 @@ proveFile f | endQ f = do
                                 putStrLn $ output res
                  Left e   -> putStrLn e
             | otherwise = proveFile (f ++ extention)
-
--- Main program
-main :: IO ()
-main = do
-  hSetBuffering stdout NoBuffering
-  args <- getArgs
-  case args of
-   name:_ -> proveFile name
-   _      -> putStrLn "No file provided."

@@ -23,7 +23,7 @@ cabal.project.local*
 .HTF/
 .ghc.environment.*
 
-.idea
+.idea/
 *.iml
 .gradle
 build/

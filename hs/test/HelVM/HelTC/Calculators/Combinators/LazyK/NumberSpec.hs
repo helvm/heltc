@@ -12,7 +12,7 @@ import           HelVM.Expectations
 import           Test.Hspec                                             (Spec, describe, it)
 
 spec :: Spec
-spec =
+spec = do
   describe "special church" $ forM_
     [0, 1, 4, 8, 9, 16, 27, 36, 64, 81, 100, 121, 125, 256] $ \number ->
     it ("special church " <> show number) $

@@ -6,5 +6,6 @@ defaultCombinatorsType = minBound
 combinatorsTypes :: NonEmpty CombinatorsType
 combinatorsTypes = universeNonEmpty
 
-data CombinatorsType = LazyK | Zot
+data CombinatorsType = DBLC | LazyK | Zot
+--data CombinatorsType = LazyK | Zot
   deriving stock (Bounded , Enum , Eq , Read , Show)

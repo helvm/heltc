@@ -1,5 +1,8 @@
 # 📅 Revision history for HelTC
 
+## 0.1.5.0  -- 2023-06-28
+* Implement DBLC
+
 ## 0.1.4.0  -- 2023-06-27
 * Implement Zot
 

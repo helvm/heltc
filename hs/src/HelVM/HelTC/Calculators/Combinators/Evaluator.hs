@@ -4,6 +4,8 @@ import           HelVM.HelTC.Calculators.Combinators.API.CombinatorsType
 
 import           HelVM.HelTC.Calculator.Types.FormatType
 
+import qualified HelVM.HelTC.Calculators.Combinators.DBLC.Evaluator      as DBLC
+
 import qualified HelVM.HelTC.Calculators.Combinators.LazyK.Evaluator     as LazyK
 import qualified HelVM.HelTC.Calculators.Combinators.Zot.Calculator      as Zot
 
@@ -15,5 +17,6 @@ import           HelVM.HelIO.IO.Console
 
 evalSource :: BIO m => CombinatorsType -> Source -> m ()
 evalSource = \ case
+  DBLC  -> DBLC.evalSource
   LazyK -> LazyK.evalSource
   Zot   -> Zot.evalSource TextLabel >=> wPutStr

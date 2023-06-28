@@ -18,7 +18,7 @@ type ExceptLegacy = ExceptT String
 
 type Proof = ExceptLegacy (ReaderT [Term] (StateT (Map.Map Int (Term, Term)) (State Int)))
 
-runProof :: ExceptLegacy (ReaderT [a1] (StateT (Map k a2) (State Int))) a3 -> Either e a3
+runProof :: ExceptLegacy (ReaderT [a1] (StateT (Map k a2) (State Int))) a3 -> EitherLegacy a3
 runProof p = fst $ evalState (runStateT (runReaderT (runExceptT p) []) Map.empty) 0
 
 -- Basic abstract syntax

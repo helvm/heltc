@@ -1,17 +1,17 @@
 module HelVM.HelTC.Calculators.Combinators.DBLC.Evaluator where
 
+import           HelVM.HelTC.Calculators.Combinators.DBLC.Generator
 import           HelVM.HelTC.Calculators.Combinators.DBLC.Parser
 import           HelVM.HelTC.Calculators.Combinators.DBLC.Term
 
 import           HelVM.HelIO.Control.Safe
-import           HelVM.HelIO.Extra
 
 import           Control.Monad.Except
 
-import qualified Data.List                                       as List
-import qualified Data.Map.Strict                                 as Map
+import qualified Data.List                                          as List
+import qualified Data.Map.Strict                                    as Map
 
-import qualified Relude.Unsafe                                   as Unsafe
+import qualified Relude.Unsafe                                      as Unsafe
 
 -- The proof environment monad.
 -- Contains a map from de bruijn levels to terms
@@ -22,34 +22,10 @@ type ExceptLegacy = ExceptT String
 
 type Proof = ExceptLegacy (ReaderT [Term] (StateT (Map.Map Int (Term, Term)) (State Int)))
 
-runProof :: ExceptLegacy (ReaderT [a1] (StateT (Map k a2) (State Int))) a3 -> EitherLegacy a3
+runProof :: Proof a -> EitherLegacy a
 runProof p = fst $ evalState (runStateT (runReaderT (runExceptT p) []) Map.empty) 0
 
 -- ======= Evaluation =======
-
--- Check if a variable occures freely in a term
-freeIn :: Term -> Int -> Bool
-freeIn (Var x)    n = x == n
-freeIn (d :% d1)  n = freeIn d n || freeIn d1 n
-freeIn (Lam t tp) n = freeIn t n || freeIn tp (1 + n)
-freeIn _          _ = False
-
--- Increment free variables
-quote :: Int -> Term -> Term
-quote n (Var x)   = if x >= n then Var (1 + x) else Var x
-quote n (Lam t d) = Lam (quote n t) (quote (1 + n) d)
-quote n (d :% b)  = quote n d :% quote n b
-quote _n x        = x
-
-sub :: Term -> Int -> Term -> Term
-sub s n (Var x) =
-  case x `compare` n of
-    GT -> Var (x - 1)
-    EQ -> s
-    LT -> Var x
-sub s n (Lam t d) = Lam (sub s n t) (sub (quote 0 s) (1 + n) d)
-sub s n (d :% b)  = sub s n d :% sub s n b
-sub _ _ x         = x
 
 -- Reduce a term to weak head normal form.
 whnf' :: Bool -> Term -> Proof Term
@@ -97,7 +73,7 @@ nf' ee = spine ee [] where
           Just t  -> spine (fst t) as
   spine f as = List.foldl (:%) f <$> mapM nf' as
 
-nf :: Term -> ExceptLegacy (ReaderT [Term] (StateT (Map Int (Term, Term)) (State Int))) Term
+nf :: Term -> Proof Term
 nf d = do
   r <- nf' d
   if d == r
@@ -194,17 +170,6 @@ check tr ty =
 
 -- ======= Concrete Syntax =======
 
-toBin :: Term -> String
-toBin (Lam a b) = "010" ++ toBin a ++ toBin b
-toBin (a :% b)  = "00" ++ toBin a ++ toBin b
-toBin (Var i)   = numToBin i
-toBin (Level i) = "011" ++ numToBin i
-toBin U         = "0110"
-
-numToBin :: Int -> String
-numToBin 0 = "10"
-numToBin i = '1' : numToBin (i-1)
-
 output :: Proof a -> String
 output p = case runState (runStateT (runReaderT (runExceptT p) []) Map.empty) 0 of
     ((_, mp'), lvl) -> case toBin <$> fst <$> Map.lookup (lvl-1) mp' of
@@ -223,21 +188,3 @@ checkProg s = go (parse s [] []) where
     go ctx
   go (_:[]) = throwError $ "Type is given without implementation."
   go [] = pure ()
-
--- ======= Input / Output =======
-
-extention :: [Char]
-extention = ".dblc"
-
-endQ :: String -> Bool
-endQ s = extention == reverse (take (length extention) (reverse s))
-
-proveFile :: String -> IO ()
-proveFile f | endQ f = do
-               fileContents <- readFileTextUtf8 f
-               let res = checkProg $ toString fileContents
-               case runProof res of
-                 Right () -> do putStrLn "Checking Successful!"
-                                putStrLn $ output res
-                 Left e   -> putStrLn e
-            | otherwise = proveFile (f ++ extention)

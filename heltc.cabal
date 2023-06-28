@@ -122,6 +122,7 @@ library
     HelVM.HelTC.Calculators.Combinators.API.CombinatorsType
 
     HelVM.HelTC.Calculators.Combinators.DBLC.Evaluator
+    HelVM.HelTC.Calculators.Combinators.DBLC.Generator
     HelVM.HelTC.Calculators.Combinators.DBLC.Main
     HelVM.HelTC.Calculators.Combinators.DBLC.Parser
     HelVM.HelTC.Calculators.Combinators.DBLC.Term

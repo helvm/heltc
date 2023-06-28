@@ -1,13 +1,14 @@
 module HelVM.HelTC.Calculators.Combinators.DBLC.Evaluator where
 
+import           HelVM.HelIO.Control.Safe
 import           HelVM.HelIO.Extra
 
 import           Control.Monad.Except
 
-import qualified Data.List            as List
-import qualified Data.Map.Strict      as Map
+import qualified Data.List                as List
+import qualified Data.Map.Strict          as Map
 
-import qualified Relude.Unsafe        as Unsafe
+import qualified Relude.Unsafe            as Unsafe
 
 -- The proof environment monad.
 -- Contains a map from de bruijn levels to terms
@@ -55,7 +56,7 @@ sub s n (Var x) =
     LT -> Var x
 sub s n (Lam t d) = Lam (sub s n t) (sub (quote 0 s) (1 + n) d)
 sub s n (d :% b)  = sub s n d :% sub s n b
-sub _s _n x         = x
+sub _ _ x         = x
 
 -- Reduce a term to weak head normal form.
 whnf' :: Bool -> Term -> Proof Term

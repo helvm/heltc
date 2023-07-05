@@ -1,3 +1,27 @@
+![haskell workflow](https://github.com/helvm/heltc/actions/workflows/haskell.yml/badge.svg)
+![jekyll workflow](https://github.com/helvm/heltc/actions/workflows/jekyll.yml/badge.svg)
+
+![watchers](https://img.shields.io/github/watchers/helvm/heltc?style=social)
+![forks](https://img.shields.io/github/forks/helvm/heltc?style=social)
+![stars](https://img.shields.io/github/stars/helvm/heltc?style=social)
+
+![issues](https://img.shields.io/github/issues/helvm/heltc)
+![issues closed](https://img.shields.io/github/issues-closed/helvm/heltc)
+![issues pr](https://img.shields.io/github/issues-pr/helvm/heltc)
+![issues pr closed](https://img.shields.io/github/issues-pr-closed/helvm/heltc)
+
+![discussions](https://img.shields.io/github/discussions/helvm/heltc)
+![release](https://img.shields.io/github/v/release/helvm/heltc)
+![release-date](https://img.shields.io/github/release-date/helvm/heltc)
+![tag](https://img.shields.io/github/v/tag/helvm/heltc)
+![last-commit](https://img.shields.io/github/last-commit/helvm/heltc)
+
+![languages count](https://img.shields.io/github/languages/count/helvm/heltc)
+![languages code size](https://img.shields.io/github/languages/code-size/helvm/heltc)
+![repo size](https://img.shields.io/github/repo-size/helvm/heltc)
+![downloads](https://img.shields.io/github/downloads/helvm/heltc/total)
+![licanse](https://img.shields.io/github/license/helvm/heltc)
+
 #  🎓 🏫 HelTC - Haskellish Esoteric Lambda True Calculator to Esoteric Languages implemented in Haskell 
 
 **🎓 🏫 HelTC** is part of [HelVM](http://helvm.github.io/) project and it is implementation of:

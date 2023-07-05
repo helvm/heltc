@@ -2,6 +2,12 @@
 
 **🎓 🏫 HelTC** is part of [HelVM](http://helvm.github.io/) project and it is implementation of:
 
+## Features
+Currently, **🔧 🎨 HelMA** can:
+* calculate:
+  * 🦄 [Lazy K](http://helvm.org/LazyK-scheme/lazy-k.html)
+  * 🦄 [Zot](https://github.com/helvm/zot_haskell)
+
 ## For Users
 * [INSTALL](users/INSTALL.md) - How to download and run
 * [AUTHORS](users/AUTHORS.md) - List of authors

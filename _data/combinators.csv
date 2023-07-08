@@ -16,4 +16,4 @@ Name,Implementation,Monomorphic type,Haskell,Polymorphic type,Haskell,Arity,Bird
 ,,,,,,,Owl,O,`SI`,`(S((SK)K))`
 ,,,,,,,Mockingbird,M,`SII`,`((S((SK)K))((SK)K))`
 ,,,,,,,Omega,Ω,`MM`,`(((S((SK)K))((SK)K))((S((SK)K))((SK)K)))`
-,,,,,,,Dove,D,`BB`,`(S(K((S(KS))K)))`
+,,`\f x g y -> f x (g y)`,`(a -> d -> c) -> a -> (b -> d) -> b -> c`,,,,Dove,D,`BB`,`(S(K((S(KS))K)))`

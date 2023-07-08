@@ -1,0 +1,18 @@
+Name,Implementation,Monomorphic type,Haskell,Polymorphic type,Haskell,Arity,Bird,Symbol,Combinator,SK Combinator
+`identity`,`\a -> a`,`a -> a`,`id`,,,1,Identity Bird (aka Idiot),`I`,`SKK`,`SKK`
+`constant`,`\a b -> a`,`a -> b -> a`,`const`,`Applicative f => a -> f a`,`pure`,2,Kestrel (True),`K`,`K`,`K`
+`apply`,`\f x -> f x`,`(a -> b) -> a -> b`,`($)`,,,2,Identity Bird Once Removed,`A`/`I*`,`SK(SK)`,`SK(SK)`
+`thrush`,`\x f -> f x`,`a -> (a -> b) -> b`,`(&),,,2,Thrush,`T`,`CI`,`(S(K(S((SK)K))))K`
+`duplication`,`\f x -> f x x`,`(a -> a -> b) -> a -> b`,`join`,,,2,Warbler,`W`,`C(BMR)`,`((S(K(S((S(K((S((SK)K))((SK)K))))((S(K(S(KS)K)))((S(K(S((SK)K))))K))))))K)`
+`flip`,`\f y x => f x y`,`(a -> b -> c) -> b -> a -> c`,`flip`,`Functor f => f (a -> b) -> a -> f b`,`flap`/`??`,3,Cardinal,`C`,`S(BBS)(KK)`,`((S((S(K(S(KS)K)))S))(KK))`
+`compose`,`\f g x -> f (g x)`,`(b -> c) -> (a -> b) -> a -> c`,`.`,`Functor f => (a -> b) -> f a -> f b`,`fmap`,3,Bluebird,`B`,`S(KS)K`,`S(KS)K`
+`substitution`,`\f g x -> f x (g x)`,`(a -> b -> c) -> (a -> b) -> a -> c`,,`Applicative f => f (a -> b) -> f a -> f b`,`(<*>)`,3,Starling,`S`,`S`,`S`
+`chain`/`bind`,`f g x -> f (g x) x`,`(a -> b -> c) -> (b -> a) -> b -> c`,,`Monad m => (a -> m b) -> m a -> m b`,`(=<<)`,3,,`S_`,``,``
+`converge`,`\f g h x -> f (g x) (h x)`,`(b -> c -> d) -> (a -> b) -> (a -> c) -> a -> d`,`apply2way`,`Applicative f => (a -> b -> c) -> f a -> f b -> f c`,`liftA2`/`liftM2`,4,,`S2`,``,``
+`psi`,`\f g x y -> f (g x) (g y)`,`(b -> b -> c) -> (a -> b) -> a -> a -> c`,`on`,,,4,,`P`,``,``
+`fix-point`,`\f -> (\g -> g (g)) (\g -> f (\x -> g g x))`,`(a -> a) -> a`,`fix`,,,1,Why Bird (aka Sage Bird),`Y`,`SLL`,`(((SS)K)((S(K((SS)(S((SS)K)))))K)`
+`pair`,`\x y f -> f x y`,`a-> b -> (a -> b -> c) -> c`,,,,3,Vireo (aka Pairing),`V`,`BCT`,`((S(K((S((S(K((S(KS))K)))S))(KK))))((S(K(S((SK)K))))K))`
+,,,,,,1,Kite (False),KI,`KI`,`(K((SK)K))`
+,,,,,,,Owl,O,`SI`,`(S((SK)K))`
+,,,,,,,Mockingbird,M,`SII`,`((S((SK)K))((SK)K))`
+,,,,,,,Omega,Ω,`MM`,`(((S((SK)K))((SK)K))((S((SK)K))((SK)K)))`
